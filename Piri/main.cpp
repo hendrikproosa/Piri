@@ -1,11 +1,19 @@
+#include <QtWidgets>
+#include <QtDebug>
+#include "nodegraph.h"
 #include "mainwindow.h"
-#include <QApplication>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    
-    return a.exec();
+    QApplication app(argc, argv);
+    MainWindow mainWindow;
+
+    QFile File(qApp->applicationDirPath() + "/stylesheet.txt");
+    File.open(QFile::ReadOnly);
+    QString StyleSheet = QLatin1String(File.readAll());
+    qApp->setStyleSheet(StyleSheet);
+
+    mainWindow.show();
+    mainWindow.resize(1200, 800);
+    return app.exec();
 }
