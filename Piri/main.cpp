@@ -1,6 +1,6 @@
 #include <QtWidgets>
 #include <QtDebug>
-#include "nodegraph.h"
+
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     MainWindow mainWindow;
 
+    // Stylesheet for ui desing
     QFile File(qApp->applicationDirPath() + "/stylesheet.txt");
     File.open(QFile::ReadOnly);
     QString StyleSheet = QLatin1String(File.readAll());

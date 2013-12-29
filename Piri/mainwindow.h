@@ -6,6 +6,7 @@
 #include <QStandardItemModel>
 #include <QDir>
 
+// Forward declarations of classes used
 QT_BEGIN_NAMESPACE
 class QAction;
 class QListWidget;
@@ -19,7 +20,7 @@ class nodeGraph;
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+    Q_OBJECT   // Vajalik signal-slot mehhanismi jaoks
 public:
     MainWindow();
     QStandardItemModel* getTableData();
@@ -71,7 +72,6 @@ private:
     QMenu *editMenu;
     QMenu *viewMenu;
     QMenu *helpMenu;
-
 
     QAction *aboutAct;
     QAction *quitAct;

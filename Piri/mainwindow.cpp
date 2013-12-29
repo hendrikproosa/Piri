@@ -1,31 +1,37 @@
+#include "mainwindow.h"
+#include "nodegraph.h"
+#include "viewer.h"
+#include "interfaces.h"
+
 #include <QtWidgets>
 #include <QStandardItemModel>
 #include <QtDebug>
 #include <QScrollArea>
 
-#include "mainwindow.h"
-#include "nodegraph.h"
-#include "viewer.h"
-#include "interfaces.h"
 
 MainWindow::MainWindow()
 {
 
     qDebug() << "MainWindow init start...";
 
-
     qDebug() << "MainWindow scene...";
     createScene();
+
     qDebug() << "MainWindow DAG...";
     createDAG();
+
     qDebug() << "MainWindow data...";
     createData();
+
     qDebug() << "MainWindow actions...";
     createActions();
+
     qDebug() << "MainWindow menus...";
     createMenus();
+
     qDebug() << "MainWindow statusbar...";
     createStatusBar();
+
     qDebug() << "MainWindow load plugins...";
     loadPlugins();
 
@@ -243,7 +249,7 @@ void MainWindow::loadPlugins()
     }
 #endif
     pluginsDir.cd("plugins");
-    pluginsDir = QDir("C:/Qt/Qt5.1.0/Tools/QtCreator/bin/nodeTest/plugins/");
+    //pluginsDir = QDir("C:/Qt/Qt5.1.0/Tools/QtCreator/bin/nodeTest/plugins/");
     qDebug() << "Plugins dir: " << pluginsDir;
 
     foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
