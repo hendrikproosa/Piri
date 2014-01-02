@@ -84,9 +84,9 @@ void ViewerOp::engine()
         GeoObject *gO = dynamic_cast<GeoObject*>(i);
         GeoPoint *gP = dynamic_cast<GeoPoint*>(i);
         GeoLine *gL = dynamic_cast<GeoLine*>(i);
-        qDebug() << "GeoObject cast O: " << gO;
-        qDebug() << "GeoObject cast P: " << gP;
-        qDebug() << "GeoObject cast L: " << gL;
+        //qDebug() << "GeoObject cast O: " << gO;
+        //qDebug() << "GeoObject cast P: " << gP;
+        //qDebug() << "GeoObject cast L: " << gL;
         if (gO || gP || gL)
         {
             pen = gO->getPen();

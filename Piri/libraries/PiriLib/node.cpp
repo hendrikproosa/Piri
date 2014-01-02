@@ -90,22 +90,27 @@ void Node::setupInputs2()
     Op *o = dynamic_cast<Op*>(myOp2);
     qDebug() << "Node::setupInputs2 Op cast: " << i;
     o->setParent(this);
-
+    qDebug() << "SetParent OK!";
+    maxInputs = i;
     for (int c = 0; c < i; c++)
     {
         if (c == 0)
         {
+            qDebug() << "C is 0";
             if (i > 1)
             {
+                qDebug() << "I is greater than 1";
                 addEdge(graph->addEdge(new Edge(0, this, 1)), 1);
             } else {
+                qDebug() << "I is not greater than 1";
                 addEdge(graph->addEdge(new Edge(0, this, 3)), 1);
             }
         } else {
+            qDebug() << "C is not null";
             addEdge(graph->addEdge(new Edge(0, this, 2)), 0);
         }
     }
-
+    qDebug() << "SetupInputs2 OK!";
 }
 
 

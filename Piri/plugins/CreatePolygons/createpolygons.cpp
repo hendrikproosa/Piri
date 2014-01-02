@@ -67,13 +67,9 @@ void CreatePolygons::engine()
         cols.chop(1);
         _columnCount = model->columnCount();
 
-
-        QWidget *knob = myCallback->getKnob("col_x")->widget;
-        UPDATE_VALUES(myCallback, knob, cols);
-        knob = myCallback->getKnob("col_y")->widget;
-        UPDATE_VALUES(myCallback, knob, cols);
-        knob = myCallback->getKnob("col_id")->widget;
-        UPDATE_VALUES(myCallback, knob, cols);
+        UPDATE_VALUES(myCallback, getKnob("col_x"), cols);
+        UPDATE_VALUES(myCallback, getKnob("col_y"), cols);
+        UPDATE_VALUES(myCallback, getKnob("col_id"), cols);
 
     }
 
@@ -95,5 +91,5 @@ void CreatePolygons::engine()
         model->insertRow(row, list);
     }
 
-    qDebug() << "CreatePolygons Engine finished!!!";
+    qDebug() << "CreatePolygons Engine finished sucessfully!!!";
 }

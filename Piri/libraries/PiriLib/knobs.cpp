@@ -117,6 +117,7 @@ IntegerKnob::IntegerKnob(Knob_Callback *f, int* value, QString label) :
     this->setValue(*value);
     this->setMaximumWidth(70);
     this->setMinimumHeight(20);
+    this->setRange(-100000000, 100000000);
     connect(this, SIGNAL(valueChanged(int)), this, SLOT(updateValue(int)));
     connect(this, SIGNAL(valueChanged(int)), f, SLOT(valueChanged()));
 

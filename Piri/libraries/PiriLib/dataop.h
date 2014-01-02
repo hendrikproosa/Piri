@@ -12,6 +12,7 @@
 #include <QGraphicsScene>
 
 #include "pirilib.h"
+#include "op.h"
 
 class Node;
 class Knob_Callback;
@@ -28,8 +29,8 @@ public:
     virtual void engine();
     virtual void knobs(Knob_Callback* f);
     virtual void description(QString name, QString desc);
-
     QString description();
+
 
 
     void setCallback(Knob_Callback *cb);

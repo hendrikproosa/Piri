@@ -12,6 +12,7 @@ Viewer2dView::Viewer2dView(QGraphicsScene *scene, Viewer *parent) : QGraphicsVie
     setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
 }
 
 

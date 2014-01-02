@@ -31,11 +31,6 @@ void Op::disabled()
     }
 }
 
-void Op::test()
-{
-    qDebug() << "Vastus on 42";
-}
-
 void Op::showError(QString msg)
 {
     //qDebug() << "Vastus on 42";
@@ -76,4 +71,42 @@ int Op::validateToCol(QStandardItemModel *model, int value)
     if (value < 1) return 1;
     if (value > model->columnCount()) return model->columnCount();
     return value;
+}
+
+int Op::validateToRow(QStandardItemModel *model, int value)
+{
+    if (value < 1) return 1;
+    if (value > model->rowCount()) return model->rowCount();
+    return value;
+}
+
+QWidget* Op::getKnob(QString knobName)
+{
+    return myCallback->getKnob(knobName)->widget;
+}
+
+void Op::copyHeaders(QStandardItemModel *from, QStandardItemModel *to)
+{
+    qDebug() << "Copyheaders..." << from << from->columnCount();
+    QStringList labelList;
+    int cc = from->columnCount();
+    if (to->columnCount() > cc) { cc = to->columnCount(); }
+    for (int c = 0; c < cc; c++)
+    {
+        if (from->horizontalHeaderItem(c))
+        {
+            labelList << from->horizontalHeaderItem(c)->text();
+        }
+        else if (to->horizontalHeaderItem(c))
+        {
+            labelList << to->horizontalHeaderItem(c)->text();
+        }
+
+        else {
+            labelList << QString("%1").arg(c+1);
+        }
+    }
+    qDebug() << labelList;
+    to->setHorizontalHeaderLabels(labelList);
+    qDebug() << "Label copy ok!";
 }

@@ -74,6 +74,7 @@ public:
     virtual QString hash();
     virtual void setupPolygon(int poly);
     virtual void addPoint(float x, float y, float z = 0, int poly = 0);
+    virtual void updatePoint(float x, float y, float z = 0, int point = 0);
 
 
 private:

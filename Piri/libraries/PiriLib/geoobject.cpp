@@ -182,6 +182,23 @@ void GeoLine::addPoint(float x, float y, float z, int poly)
     setupPolygon(poly);
 }
 
+void GeoLine::updatePoint(float x, float y, float z, int point)
+{
+    QList<QVector3D> temp;
+    int v = 0;
+    foreach (QVector3D p, vertices) {
+        if (v == point)
+        {
+            p.setX(p.x() + x);
+            p.setY(p.y() + y);
+            p.setZ(p.z() + z);
+        }
+        temp.append(p);
+        v++;
+    }
+    vertices = temp;
+}
+
 void GeoLine::flipDirection()
 {
     QList<QVector3D> temp;

@@ -18,13 +18,14 @@ public:
     Knob_Callback* getCallback() {return myCallback;}
     void showError(QString msg);
     void disabled();
-    void test();
 
     QStandardItemModel* getTableModel();
     QGraphicsScene* getScene2D();
     int numInputs();
     QList<Edge*> inputs();
     int validateToCol(QStandardItemModel *model, int value);
+    int validateToRow(QStandardItemModel *model, int value);
+    void copyHeaders(QStandardItemModel *from, QStandardItemModel *to);
     void setParent(Node* node);
 
 protected:
@@ -34,6 +35,7 @@ protected:
     QString _myDesc;
     int inputCount;
     QList<Edge*> myInputs; // see tuleks tegelt asendada Node-dega, kuna nendelt küsime ju sisendit
+    QWidget* getKnob(QString knobName);
 };
 
 #endif // OP_H
