@@ -1,0 +1,10 @@
+<map id="DataOp" name="DataOp">
+<area shape="rect" id="node2" href="$class_node.html" title="[0] " alt="" coords="273,96,324,123"/>
+<area shape="rect" id="node4" href="$classnode_graph.html" title="[0] " alt="" coords="261,293,347,320"/>
+<area shape="rect" id="node6" href="$class_edge.html" title="[0] " alt="" coords="5,201,56,228"/>
+<area shape="rect" id="node13" href="$class_knob___callback.html" title="Knob_Callback" alt="" coords="496,201,605,228"/>
+<area shape="rect" id="node7" href="$class_main_window.html" title="MainWindow" alt="" coords="355,384,451,411"/>
+<area shape="rect" id="node9" href="$class_viewer.html" title="Viewer" alt="" coords="569,475,631,501"/>
+<area shape="rect" id="node11" href="$structsettings.html" title="settings" alt="" coords="681,384,748,411"/>
+<area shape="rect" id="node12" href="$class_op_interface.html" title="OpInterface" alt="" coords="517,5,605,32"/>
+</map>

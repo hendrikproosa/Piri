@@ -36,6 +36,7 @@ public:
 public slots:
     void valueChanged();
     void updateKnobs();
+    void nodeNameChanged(QString name);
 
 private:
     QFormLayout* myLayout;

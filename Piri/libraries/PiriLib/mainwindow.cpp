@@ -66,17 +66,26 @@ void MainWindow::addOp()
     mainGraph->addOp(Op);
 }
 
-
+/*!
+ * \brief Creates the main scene for 2D data.
+ *
+ * This function creates the main QGraphicsScene 'scene2D' where all 2D graphical objects will be added.
+ * Scene span is -10 000 000 to 10 000 000 units.
+ */
 void MainWindow::createScene()
 {
     QBrush bgBrush(Qt::white);
     scene2D = new QGraphicsScene(this);
     scene2D->setItemIndexMethod(QGraphicsScene::NoIndex);
-    scene2D->setSceneRect(-100000, -100000, 200000, 200000);
+    scene2D->setSceneRect(-10000000, -10000000, 20000000, 20000000);
     scene2D->setBackgroundBrush(bgBrush);
 }
 
-
+/*!
+ * \brief Creates the nodegraph DAG scene.
+ *
+ * Nodegraph DAG scene creates a QGrapicsScene 'sceneDAG' that spans -10 000 to 10 000 units and holds all node graph items.
+ */
 void MainWindow::createDAG()
 {
     sceneDAG = new QGraphicsScene(this);
@@ -84,20 +93,34 @@ void MainWindow::createDAG()
     sceneDAG->setSceneRect(-10000, -10000, 20000, 20000);
 }
 
+/*!
+ * \brief Creates the table datamodel.
+ *
+ * Creates table data model 'tableData' based on QStandardItemModel.
+ * @see getTableData()
+ */
 void MainWindow::createData()
 {
     tableData = new QStandardItemModel(this);
 }
 
-
+/*!
+ * \brief Get main tabledata model.
+ * @see createData()
+ * \return main table datamodel 'tableData'
+ */
 QStandardItemModel* MainWindow::getTableData()
 {
-    qDebug() << "MainWindow::getTableData()";
     if (tableData)
         return tableData;
     return 0;
 }
 
+/*!
+ * \brief Get main properties view.
+ * @see createDockWindows()
+ * \return Main properties view 'propView'
+ */
 QWidget* MainWindow::getPropView()
 {
     if (propView)
@@ -105,6 +128,12 @@ QWidget* MainWindow::getPropView()
     return 0;
 }
 
+/*!
+ * \brief Get main properties view layout.
+ * @see createDockWindows()
+ * @see getPropView()
+ * \return Main properties view layout.
+ */
 QLayout* MainWindow::getPropViewLayout()
 {
     if (propView)
@@ -172,7 +201,25 @@ void MainWindow::createMenus()
 
     helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(aboutAct);
+
+    // Nodegraph popup menu.
     nodeMenu = new QMenu;
+
+    QStringList menulist;
+    menulist << "File" << "Edit" << "Input" << "Output" << "Create" << "Transform" << "Query" << "Merge" << "MetaData" << "Viewer" << "Other";
+
+    foreach(QString s, menulist)
+    {
+        addNodeMenuItem(s);
+    }
+
+}
+
+void MainWindow::addNodeMenuItem(QString s)
+{
+    QMenu *menu = new QMenu(s);
+    nodeMenu->addMenu(menu);
+    menuClasses.append(menu);
 }
 
 
@@ -181,7 +228,14 @@ void MainWindow::createStatusBar()
     statusBar()->showMessage(tr("Ready"));
 }
 
-
+/*!
+ * \brief Create UI docking windows.
+ *
+ * Creates main UI docking windows: viewer area, nodegraph, properties view.
+ * @see createScene()
+ * @see createData()
+ * @see createDAG()
+ */
 void MainWindow::createDockWindows()
 {
     QDockWidget* dock;
@@ -233,7 +287,14 @@ void MainWindow::createDockWindows()
 
 }
 
-
+/*!
+ * \brief Loads DLL plugins.
+ *
+ * Loads all DLL plugins from /plugin directory that are compatible with OpInterface.
+ * @see OpInterface
+ * @see registerOp()
+ * @see populateMenus()
+ */
 void MainWindow::loadPlugins()
 {
     pluginsDir = QDir(qApp->applicationDirPath());
@@ -264,7 +325,15 @@ void MainWindow::loadPlugins()
     qDebug() << "Loaded plugins: " << pluginFileNames;
 }
 
-
+/*!
+ * \brief Casts plugins to OpInterface and calls registerOp()
+ *
+ * Casts loaded plugins to OpInterface and if successful, sends them to registerOp() for loading.
+ * \param plugin Plugin to be cast.
+ * @see loadPlugins()
+ * @see registerOp()
+ * @see OpInterface
+ */
 void MainWindow::populateMenus(QObject *plugin)
 {
     OpInterface *Op = qobject_cast<OpInterface *>(plugin);
@@ -275,7 +344,19 @@ void MainWindow::populateMenus(QObject *plugin)
     }
 }
 
-
+/*!
+ * \brief Registers loaded plugin to system.
+ *
+ * Splits description of loaded plugin into class, name and description.
+ * Creates new QAction and ties it with menu entry and addOp() function
+ * for adding new node to graph.
+ * Adds new menu class if necessary and new entry for loaded operation.
+ * \param plugin Plugin to be registered.
+ * \param text Plugin desctiption from Op->description().
+ * \param member addOp() function to be tied into signal-slot mechanism.
+ * @see loadPlugins()
+ * @see populateMenus()
+ */
 void MainWindow::registerOp(QObject *plugin, const QString text, const char *member)
 {
     qDebug() << "Register plugin...";

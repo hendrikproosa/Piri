@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 
 #include "pirilib.h"
+#include "viewer.h"
 
 class Knob_Callback;
 class Node;
@@ -21,6 +22,7 @@ public:
 
     QStandardItemModel* getTableModel();
     QGraphicsScene* getScene2D();
+    Viewer* getViewer();
     int numInputs();
     QList<Edge*> inputs();
     int validateToCol(QStandardItemModel *model, int value);

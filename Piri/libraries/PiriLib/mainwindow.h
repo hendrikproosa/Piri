@@ -53,6 +53,7 @@ private:
     void createData();
     void createActions();
     void createMenus();
+    void addNodeMenuItem(QString s);
     //void createToolbars();
     void createStatusBar();
     void createDockWindows();

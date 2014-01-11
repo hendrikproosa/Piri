@@ -5,6 +5,7 @@
 #include "knobs.h"
 #include "node.h"
 #include "edge.h"
+#include "nodegraph.h"
 #include "geoobject.h"
 
 class PIRILIBSHARED_EXPORT PiriLib

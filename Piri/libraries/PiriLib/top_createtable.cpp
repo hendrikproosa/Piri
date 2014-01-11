@@ -11,7 +11,7 @@
 #include <QTableView>
 
 tOp_createTable::tOp_createTable(Node *parent) :
-    _file("E:/hendrik/progemine/varia/points.txt"),
+    _file("E:\projektid\progemine\piri\maakond_1000p.txt"),
     _delimiter(","),
     _colorSpace(0)
 {

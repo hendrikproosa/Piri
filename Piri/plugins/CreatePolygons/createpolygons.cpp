@@ -1,4 +1,14 @@
 #include "createpolygons.h"
+#include "boost/geometry.hpp"
+#include "boost/geometry/geometries/point_xy.hpp"
+#include "boost/geometry/geometries/polygon.hpp"
+#include "boost/geometry/io/wkt/wkt.hpp"
+#include <boost/geometry/index/rtree.hpp>
+#include "boost/geometry/geometries/point.hpp"
+#include "boost/geometry/geometries/box.hpp"
+
+namespace bg = boost::geometry;
+namespace bgi = boost::geometry::index;
 
 void CreatePolygons::setup()
 {
@@ -52,6 +62,19 @@ void CreatePolygons::engine()
 
     qDebug() << "CreatePolygons engine!!!";
 
+    // Boost test!
+
+    typedef bg::model::point<float, 2, bg::cs::cartesian> point;
+    typedef bg::model::box<point> box;
+    typedef std::pair<box, unsigned> value;
+    // Calculate the area of a cartesian polygon
+    bg::model::polygon<bg::model::d2::point_xy<double> > poly;
+    bg::read_wkt("POLYGON((0 0,0 7,4 2,2 0,0 0))", poly);
+    double area = bg::area(poly);
+    qDebug() << "BOOST Area: " << area;
+    bgi::rtree< value, bgi::quadratic<16> > rtree;
+
+
     if (!_keepScene)
     {
         scene->clear();
@@ -87,9 +110,9 @@ void CreatePolygons::engine()
         QPen pen(Qt::black, 2);
         QBrush brush(Qt::red);
         gL->addPoint(x, y, 0);
-        gL->setupPolygon(0);
         model->insertRow(row, list);
     }
+    gL->setupPolygon(0);
 
     qDebug() << "CreatePolygons Engine finished sucessfully!!!";
 }

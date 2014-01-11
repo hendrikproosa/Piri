@@ -1,0 +1,9 @@
+<map id="OpInterface" name="OpInterface">
+<area shape="rect" id="node2" href="$class_append.html" title="Append" alt="" coords="5,80,72,107"/>
+<area shape="rect" id="node3" href="$class_create_lines.html" title="CreateLines" alt="" coords="96,80,187,107"/>
+<area shape="rect" id="node4" href="$class_create_polygons.html" title="CreatePolygons" alt="" coords="211,80,325,107"/>
+<area shape="rect" id="node5" href="$class_read.html" title="Read" alt="" coords="350,80,401,107"/>
+<area shape="rect" id="node6" href="$class_select.html" title="Select" alt="" coords="427,80,485,107"/>
+<area shape="rect" id="node7" href="$class_transform.html" title="Transform" alt="" coords="510,80,588,107"/>
+<area shape="rect" id="node8" href="$class_viewerp.html" title="Viewerp" alt="" coords="613,80,680,107"/>
+</map>

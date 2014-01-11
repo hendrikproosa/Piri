@@ -17,20 +17,6 @@ void Op::setCallback(Knob_Callback* cb)
 }
 
 
-void Op::disabled()
-{
-    if (myParent->edgesIn().count())
-    {
-        Edge* e = myParent->edgesIn().first();
-        e->sourceNode()->execute();
-    } else {
-        QStandardItemModel *model = getTableModel();
-        QGraphicsScene *scene = getScene2D();
-        model->clear();
-        scene->clear();
-    }
-}
-
 void Op::showError(QString msg)
 {
     //qDebug() << "Vastus on 42";
@@ -43,6 +29,23 @@ void Op::setParent(Node *node)
     myParent = node;
 }
 
+
+void Op::disabled()
+{
+    if (myParent->edgesIn().count())
+    {
+        foreach (Edge* e, myParent->edgesIn())
+        {
+            e->sourceNode()->execute();
+        }
+    } else {
+        QStandardItemModel *model = getTableModel();
+        QGraphicsScene *scene = getScene2D();
+        model->clear();
+        scene->clear();
+    }
+}
+
 QStandardItemModel* Op::getTableModel()
 {
     qDebug() << "Op::getTableModel..." << myParent->getParent();
@@ -53,6 +56,11 @@ QGraphicsScene* Op::getScene2D()
 {
     qDebug() << "Op::getScene2D..." << myParent;//->getParent();
     return myParent->getParent()->getParent()->getScene2D();
+}
+
+Viewer* Op::getViewer()
+{
+    return myParent->getParent()->getParent()->getViewer();
 }
 
 int Op::numInputs()

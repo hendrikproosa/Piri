@@ -68,6 +68,7 @@ void Transform::engine()
             gL->updatePoint(_transformX, _transformY, 0, p);
             p++;
         }
+        gL->setupPolygon(0);
     }
     }
 }

@@ -1,0 +1,8 @@
+<map id="TableOp" name="TableOp">
+<area shape="rect" id="node3" href="$classt_op__append.html" title="tOp_append" alt="" coords="5,155,96,181"/>
+<area shape="rect" id="node4" href="$classt_op__create_table.html" title="tOp_createTable" alt="" coords="121,155,239,181"/>
+<area shape="rect" id="node5" href="$classt_op__select.html" title="tOp_select" alt="" coords="263,155,348,181"/>
+<area shape="rect" id="node6" href="$classt_op__sort.html" title="tOp_sort" alt="" coords="372,155,444,181"/>
+<area shape="rect" id="node7" href="$classt_op__sql_command.html" title="tOp_sqlCommand" alt="" coords="469,155,595,181"/>
+<area shape="rect" id="node2" href="$class_data_op.html" title="DataOp" alt="" coords="272,5,339,32"/>
+</map>

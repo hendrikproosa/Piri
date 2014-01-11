@@ -47,6 +47,8 @@ public:
 
     void disableSelected();
 
+    Node* getSelectedNode();
+
 public slots:
     void zoomIn();
     void zoomOut();
@@ -69,6 +71,8 @@ protected:
     void scaleView(qreal scaleFactor);
     void centerView();
     QPoint _lastPos;
+    QPointF _contextMenuPos;
+    Node* _contextSelectedNode;
 
 private:
 

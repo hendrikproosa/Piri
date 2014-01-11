@@ -411,7 +411,7 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
         }
         else
         {
-            t = "A";
+            t = "";
             //painter->drawText(textPos, QString());
         }
         break;

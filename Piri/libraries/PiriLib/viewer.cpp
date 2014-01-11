@@ -124,6 +124,9 @@ void Viewer::createTableView()
                           tr("myMainWindow->getTableData() returned 0!"));
     }
     myTableView->setAlternatingRowColors(true);
+    //qDebug() << "---------------------- Table rows: " << QString(myMainWindow->getTableData()->rowCount()).length();
+    myTableView->verticalHeader()->setFixedWidth(30);
+    //myTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 }
 
 

@@ -1,5 +1,5 @@
-#include "edge.h"
 #include "node.h"
+#include "edge.h"
 #include "nodegraph.h"
 #include "dataop.h"
 #include "tableop.h"
@@ -91,6 +91,10 @@ void Node::setupInputs2()
     qDebug() << "Node::setupInputs2 Op cast: " << i;
     o->setParent(this);
     qDebug() << "SetParent OK!";
+
+    if (getParent()->getSelectedNode())
+        qDebug() << "Nodegraph has selected nodes: " << getParent()->getSelectedNode()->name();
+
     maxInputs = i;
     for (int c = 0; c < i; c++)
     {
@@ -100,10 +104,29 @@ void Node::setupInputs2()
             if (i > 1)
             {
                 qDebug() << "I is greater than 1";
-                addEdge(graph->addEdge(new Edge(0, this, 1)), 1);
+                if (getParent()->getSelectedNode())
+                {
+                    foreach(Edge* eo, getParent()->getSelectedNode()->edgesOut())
+                    {
+                        eo->setSourceNode(this);
+                    }
+                    addEdge(graph->addEdge(new Edge(getParent()->getSelectedNode(), this, 1)), 1);
+                } else {
+                    addEdge(graph->addEdge(new Edge(0, this, 1)), 1);
+                }
             } else {
                 qDebug() << "I is not greater than 1";
-                addEdge(graph->addEdge(new Edge(0, this, 3)), 1);
+                if (getParent()->getSelectedNode())
+                {
+                    //addEdge(graph->addEdge(new Edge(getParent()->getSelectedNode(), this, 3)), 1);
+                    foreach(Edge* eo, getParent()->getSelectedNode()->edgesOut())
+                    {
+                        eo->setSourceNode(this);
+                    }
+                    addEdge(graph->addEdge(new Edge(getParent()->getSelectedNode(), this, 3)), 1);
+                } else {
+                    addEdge(graph->addEdge(new Edge(0, this, 3)), 1);
+                }
             }
         } else {
             qDebug() << "C is not null";
@@ -259,7 +282,10 @@ void Node::execute()
             qDebug() << "Disabled...";
             if (version)
             {
-                myOp2->engine();
+                Op *o = dynamic_cast<Op*>(myOp2);
+                //myOp2->disabled();
+                o->disabled();
+                //myOp2->engine();
             } else {
                 myOp->disabled();
             }
@@ -276,8 +302,13 @@ void Node::setName(QString name)
 {
     nodeName = name;
     myName = name;
+    this->update();
 }
 
+void Node::setNameS(QString name)
+{
+    setName(name);
+}
 
 void Node::addEdge(Edge *edge, int isMain)
 {
@@ -387,7 +418,7 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     QColor color2d(QColor::fromRgbF(0.5, 0.6, 1.0, 1));
     QColor disabledC(QColor::fromRgbF(0.4, 0.4, 0.4, 1.0));
     QPen readPen(Qt::darkRed, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-    QPen writePen(Qt::darkBlue, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen writePen(Qt::darkYellow, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QPen viewerPen(Qt::darkYellow, 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QPen geo2dPen(color2d.darker(150), 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     QPen pen(QColor::fromRgbF(0.4, 0.4, 0.4, 1), 3, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
@@ -398,7 +429,7 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     QPen disabledPen(disabledC.darker(150), 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
 
     QBrush readBrush(QColor::fromRgbF(0.8, 0.3, 0.3, 1), Qt::SolidPattern);
-    QBrush writeBrush(Qt::blue);
+    QBrush writeBrush(Qt::yellow);
     QBrush viewerBrush(Qt::yellow);
     QBrush geo2dBrush(color2d);
     QBrush brush(Qt::darkGray);
@@ -413,6 +444,10 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
     }
 
     if (myClass == "Create") nodeType = 21;
+    if (myClass == "Input") nodeType = 1;
+    //if (myClass == "Output") nodeType = 2;
+    //if (myName == "Viewer") nodeType = 0;
+    //if (myName == "Dot") nodeType = 99;
 
     switch (nodeType) {
     case 0:

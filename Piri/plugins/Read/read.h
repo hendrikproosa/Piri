@@ -36,8 +36,10 @@ public:
 
 protected:
     QString _file;
+    QString _file2;
     QString _delimiter;
     int _colorSpace;
+    bool _headers;
 };
 
 #endif // CREATEPOLYGONS_H

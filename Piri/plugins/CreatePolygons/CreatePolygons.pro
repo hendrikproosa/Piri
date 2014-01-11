@@ -2,7 +2,9 @@
 TEMPLATE      = lib
 CONFIG       += plugin
 QT           += widgets core gui opengl sql
-INCLUDEPATH  += ../../libraries/PiriLib
+INCLUDEPATH  += ../../libraries/PiriLib \
+                E:/projektid/progemine/boost_1_55_0
+
 HEADERS      += createpolygons.h
 
 SOURCES      += createpolygons.cpp \

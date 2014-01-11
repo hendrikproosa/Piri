@@ -58,6 +58,9 @@ public:
 
     void execute();
 
+public Q_SLOTS:
+    void setNameS(QString name);
+
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant &value);
     void setupInputs();

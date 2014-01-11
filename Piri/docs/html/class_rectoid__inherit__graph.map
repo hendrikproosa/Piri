@@ -1,0 +1,4 @@
+<map id="Rectoid" name="Rectoid">
+<area shape="rect" id="node2" href="$class_rect_prism.html" title="RectPrism" alt="" coords="5,80,88,107"/>
+<area shape="rect" id="node3" href="$class_rect_torus.html" title="RectTorus" alt="" coords="113,80,193,107"/>
+</map>

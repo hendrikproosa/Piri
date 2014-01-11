@@ -26,7 +26,8 @@ nodeGraph::nodeGraph(QGraphicsScene *scene, MainWindow *parent)
       myScene(scene),
       onNode(0),
       selectRect(0),
-      myMode(Pan)
+      myMode(Pan),
+      _contextMenuPos(QPointF(0.0, 0.0))
 {
 
     addScene(myScene);
@@ -245,6 +246,7 @@ void nodeGraph::removeNode(Node *node)
     qDebug() << "Edges: " << node->edges();
 
     delete node->getOp();
+    delete node->getCallback();
 
     Edge *mE = node->getMainEdge();
     Node *mD = 0;
@@ -374,6 +376,16 @@ void nodeGraph::disableSelected()
         }
     }
     evaluate();
+}
+
+Node* nodeGraph::getSelectedNode()
+{
+    if (_contextSelectedNode)
+    {
+        return _contextSelectedNode;
+    } else {
+        return 0;
+    }
 }
 
 void nodeGraph::keyPressEvent(QKeyEvent *event)
@@ -1085,12 +1097,12 @@ void nodeGraph::addOp(OpInterface *Op)
 
     QGraphicsItem *item = 0;
     item = new Node(this, opName, Op);
-    qDebug() << "nodeGraph::addOp item: " << item;
-    QPointF pos(mapToScene(mapFromGlobal(QCursor::pos())));
-    pushItem(item, pos);
+    if (_contextSelectedNode)
+        _contextMenuPos += QPoint(0.0, 40.0);
+    pushItem(item, _contextMenuPos);
     qDebug() << "nodeGraph::addOp item pushed...";
-    //this->scene()->clearSelection();
-    //item->setSelected(true);
+    this->scene()->clearSelection();
+    item->setSelected(true);
     qDebug() << "nodeGraph::addOp finished...";
 }
 
@@ -1127,26 +1139,12 @@ void nodeGraph::createActions()
     newBackDrop = new QAction(tr("&New Backdrop"), this);
     newBackDrop->setStatusTip(tr("Create a new backdrop"));
     connect(newBackDrop, SIGNAL(triggered()), this, SLOT(addNode()));
+
 }
 
 void nodeGraph::contextMenuEvent(QContextMenuEvent *event)
 {
     /*
-    QMenu menu(this);
-    menu.addAction(newActR);
-    menu.addAction(newActV);
-    menu.addSeparator();
-    menu.addAction(newAct);
-    menu.addAction(newActSort);
-    menu.addAction(newActSQL);
-    menu.addAction(newActM);
-    menu.addSeparator();
-    menu.addAction(newActGeo01);
-    menu.addSeparator();
-    menu.addAction(newBackDrop);
-    menu.exec(event->globalPos());
-    */
-
     myParent->nodeMenu->addAction(newActR);
     myParent->nodeMenu->addAction(newActV);
     myParent->nodeMenu->addSeparator();
@@ -1158,5 +1156,17 @@ void nodeGraph::contextMenuEvent(QContextMenuEvent *event)
     myParent->nodeMenu->addAction(newActGeo01);
     myParent->nodeMenu->addSeparator();
     myParent->nodeMenu->addAction(newBackDrop);
+    */
+    _contextMenuPos = mapToScene(mapFromGlobal(event->globalPos()));
+    qDebug() << "Contextmenupos: " << _contextMenuPos;
+    qDebug() << "Selected items: " << this->scene()->selectedItems();
+    if (this->scene()->selectedItems().count() == 1)
+    {
+        Node* u = qgraphicsitem_cast<Node*>(this->scene()->selectedItems().first());
+        qDebug() << "Selecteditem: " << u->name();
+        _contextSelectedNode = u;
+    } else {
+        _contextSelectedNode = 0;
+    }
     myParent->nodeMenu->exec(event->globalPos());
 }

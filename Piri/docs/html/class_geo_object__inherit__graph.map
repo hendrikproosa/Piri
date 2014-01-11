@@ -1,0 +1,5 @@
+<map id="GeoObject" name="GeoObject">
+<area shape="rect" id="node3" href="$class_geo_line.html" title="GeoLine" alt="" coords="5,155,75,181"/>
+<area shape="rect" id="node4" href="$class_geo_point.html" title="GeoPoint" alt="" coords="99,155,175,181"/>
+<area shape="rect" id="node5" href="$class_geo_polygon.html" title="GeoPolygon" alt="" coords="200,155,293,181"/>
+</map>

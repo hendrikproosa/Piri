@@ -7,12 +7,6 @@
 #include <QtWidgets>
 #include <QObject>
 
-/*
-__declspec(dllexport) int TestFunc(int a, int b)
-{
-    return a + b;
-}
-*/
 
 void ADD_VALUES(Knob_Callback *f, QString str)
 {
@@ -29,6 +23,7 @@ void ADD_VALUES(Knob_Callback *f, QString str)
         combo->setMaximumWidth(str.length() * 5);
     }
 }
+
 
 void UPDATE_VALUES(Knob_Callback *f, QWidget* widget, QString str)
 {
@@ -224,4 +219,80 @@ ComboBoxKnob::ComboBoxKnob(Knob_Callback *f, int* value, QString label) :
 void ComboBoxKnob::updateValue(int v)
 {
     *_myValue = this->currentIndex();
+}
+
+
+/*
+----------------------------------------------------------------------
+FILEOPENDIALOG
+----------------------------------------------------------------------
+*/
+
+FileDialogKnob* FileDialog_knob(Knob_Callback *f, QString *value, QString label)
+{
+    //qDebug() << "Filedialog knob: " << value << *value << label;
+    FileDialogKnob *knob = new FileDialogKnob(f, value, label);
+    /*
+    QWidget *fdl = new QWidget();
+    QHBoxLayout* hLayout = new QHBoxLayout;
+    hLayout->setMargin(0);
+    fdl->setLayout(hLayout);
+
+    QPushButton *dlgButton = new QPushButton();
+    StringKnob *nameknob = new StringKnob(f, value, label);
+    nameknob->setToolTip(label.replace(":", "").toLower());
+
+    //connect(dlgButton, SIGNAL(clicked()), knob, SLOT(getFileName());
+    QObject::connect(dlgButton, SIGNAL(clicked()), knob, SLOT(getFileName()));
+    QObject::connect(this, SIGNAL(clicked()), knob, SLOT(getFileName()));
+    hLayout->addWidget(nameknob);
+    hLayout->addWidget(dlgButton);
+
+    */
+    f->getLayout()->addRow(label, knob);
+    knob->setToolTip(label.replace(":", "").toLower());
+    return knob;
+}
+
+FileDialogKnob::FileDialogKnob(QWidget *parent) : QWidget(parent)
+{
+
+}
+
+FileDialogKnob::FileDialogKnob(Knob_Callback *f, QString* value, QString label) :
+    _myValue(value)
+{
+
+    QHBoxLayout* hLayout = new QHBoxLayout;
+    hLayout->setMargin(0);
+    this->setLayout(hLayout);
+
+    QPushButton *dlgButton = new QPushButton();
+    QLineEdit *nameknob = new QLineEdit();
+
+    hLayout->addWidget(nameknob);
+    hLayout->addWidget(dlgButton);
+
+    QObject::connect(dlgButton, SIGNAL(clicked()), this, SLOT(getFileName()));
+    QObject::connect(this, SIGNAL(valueUpdated(QString)), nameknob, SLOT(setText(QString)));
+    QObject::connect(nameknob, SIGNAL(textChanged(QString)), f, SLOT(valueChanged()));
+}
+
+
+void FileDialogKnob::updateValue()
+{
+    //*_myValue = this->text();
+    qDebug() << "Update catched!";
+}
+
+void FileDialogKnob::updateValueFromDialog(QString s)
+{
+    *_myValue = s;
+}
+
+void FileDialogKnob::getFileName()
+{
+    QString fname = QFileDialog::getOpenFileName(this, tr("Open File"), "E:/projektid/progemine/piri/");
+    *_myValue = fname;
+    emit valueUpdated(fname);
 }

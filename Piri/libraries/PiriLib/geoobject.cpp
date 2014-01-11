@@ -170,7 +170,7 @@ void GeoLine::setupPolygon(int poly)
     } else {
         polygons.append(pl);
     }
-    qDebug() << polygons.first();
+    //qDebug() << polygons.first();
 
 
 }
@@ -179,11 +179,12 @@ void GeoLine::setupPolygon(int poly)
 void GeoLine::addPoint(float x, float y, float z, int poly)
 {
     vertices << QVector3D(x, y, z);
-    setupPolygon(poly);
+    //setupPolygon(poly);
 }
 
 void GeoLine::updatePoint(float x, float y, float z, int point)
 {
+
     QList<QVector3D> temp;
     int v = 0;
     foreach (QVector3D p, vertices) {
@@ -197,6 +198,22 @@ void GeoLine::updatePoint(float x, float y, float z, int point)
         v++;
     }
     vertices = temp;
+
+    /*
+    QVector3D* p;
+    p = vertices.at(point);
+    p->setX(p->x() + x);
+    p->setY(p->y() + y);
+    p->setZ(p->z() + z);
+
+    QVector3D p;
+    p.setX(vertices.at(point).x() + x);
+    p.setY(vertices.at(point).y() + y);
+    p.setZ(vertices.at(point).z() + z);
+    vertices.at(point).setX(p.x());
+    vertices.at(point).setY(p.y());
+    vertices.at(point).setZ(p.z());
+    */
 }
 
 void GeoLine::flipDirection()

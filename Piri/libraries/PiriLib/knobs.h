@@ -78,12 +78,33 @@ private:
     int* _myValue;
 };
 
+class PIRILIBSHARED_EXPORT FileDialogKnob : public QWidget
+{
+    Q_OBJECT
+public:
+    FileDialogKnob(QWidget *parent = 0);
+    FileDialogKnob(Knob_Callback *f, QString *value, QString label);
+
+public slots:
+    void updateValue();
+    void updateValueFromDialog(QString s);
+    void getFileName();
+
+signals:
+    void valueUpdated(QString fileName);
+
+private:
+    QString* _myValue;
+
+};
+
 
 StringKnob* PIRILIBSHARED_EXPORT String_knob(Knob_Callback* f, QString* value, QString label);
 IntegerKnob* PIRILIBSHARED_EXPORT Integer_knob(Knob_Callback* f, int *value, QString label);
 //void PIRILIBSHARED_EXPORT Integer_pair_knob(Knob_Callback* f, QString* value, QString label);
 CheckBoxKnob* PIRILIBSHARED_EXPORT CheckBox_knob(Knob_Callback* f, bool *value, QString label);
 ComboBoxKnob* PIRILIBSHARED_EXPORT ComboBox_knob(Knob_Callback* f, int *value, QString label, QString valueName);
+FileDialogKnob* PIRILIBSHARED_EXPORT FileDialog_knob(Knob_Callback* f, QString* value, QString label);
 
 ComboBoxKnob* PIRILIBSHARED_EXPORT ComboBox_knob2();
 

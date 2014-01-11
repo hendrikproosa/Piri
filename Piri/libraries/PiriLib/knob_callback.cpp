@@ -34,20 +34,22 @@ void Knob_Callback::makeKnobs()
     qDebug() << "Making knobs...";
 
     // Header bar
-    QPushButton *button = new QPushButton(this->getParent()->name());
+    QLineEdit *nodeName = new QLineEdit(this->getParent()->name());
     QPushButton *buttonh = new QPushButton("?");
     QPushButton *buttonx = new QPushButton("✕");
     //buttonx->setStyleSheet("QPushButton { image: url(E:/hendrik/progemine/varia/icons/icon_close_x.png); }");
-    buttonh->setMaximumWidth(25);
+    buttonh->setFixedWidth(25);
     buttonh->setToolTip(getParent()->myDesc);
-    buttonx->setMaximumWidth(25);
+    buttonx->setFixedWidth(25);
     connect(buttonx, SIGNAL(clicked()), this, SLOT(hide()));
+    connect(nodeName, SIGNAL(textChanged(QString)), this, SLOT(nodeNameChanged(QString)));
 
     QWidget *header = new QWidget();
     QHBoxLayout* hLayout = new QHBoxLayout;
     hLayout->setMargin(0);
     header->setLayout(hLayout);
-    hLayout->addWidget(button);
+    //hLayout->addWidget(button);
+    hLayout->addWidget(nodeName);
     hLayout->addWidget(buttonh);
     hLayout->addWidget(buttonx);
 
@@ -79,6 +81,11 @@ void Knob_Callback::makeKnobs()
     //mainLayout->setSizePolicy(QSizePolicy::Expanding);
     this->setLayout(mainLayout);
 
+}
+
+void Knob_Callback::nodeNameChanged(QString name)
+{
+    this->getParent()->setName(name);
 }
 
 

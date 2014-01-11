@@ -1,0 +1,10 @@
+<map id="MainWindow" name="MainWindow">
+<area shape="rect" id="node3" href="$classnode_graph.html" title="[0] " alt="" coords="587,173,672,200"/>
+<area shape="rect" id="node12" href="$class_viewer.html" title="Viewer" alt="" coords="353,173,415,200"/>
+<area shape="rect" id="node5" href="$class_node.html" title="[0] " alt="" coords="249,277,300,304"/>
+<area shape="rect" id="node8" href="$class_data_op.html" title="DataOp" alt="" coords="132,472,199,499"/>
+<area shape="rect" id="node9" href="$class_knob___callback.html" title="Knob_Callback" alt="" coords="5,381,115,408"/>
+<area shape="rect" id="node11" href="$class_edge.html" title="[0] " alt="" coords="405,381,456,408"/>
+<area shape="rect" id="node7" href="$class_op_interface.html" title="OpInterface" alt="" coords="108,173,196,200"/>
+<area shape="rect" id="node13" href="$structsettings.html" title="settings" alt="" coords="218,83,285,109"/>
+</map>
