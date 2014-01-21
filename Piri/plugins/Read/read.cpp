@@ -94,7 +94,7 @@ void Read::engine()
            }
         }
         qDebug() << "Lugesin ridu: " << row;
-        qDebug() << "Read Node took: " << timer.elapsed() << "milliseconds";
+
     }
     else
     {

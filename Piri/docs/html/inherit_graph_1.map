@@ -3,7 +3,7 @@
 <area shape="rect" id="node3" href="$class_cornergrabber.html" title="Cornergrabber" alt="" coords="163,56,266,83"/>
 <area shape="rect" id="node4" href="$class_edge.html" title="[0] " alt="" coords="189,107,241,133"/>
 <area shape="rect" id="node5" href="$class_geo_object.html" title="GeoObject" alt="" coords="173,157,257,184"/>
-<area shape="rect" id="node9" href="$class_node.html" title="[0] " alt="" coords="189,208,241,235"/>
+<area shape="rect" id="node9" href="$class_node.html" title="Node" alt="" coords="189,208,241,235"/>
 <area shape="rect" id="node6" href="$class_geo_line.html" title="GeoLine" alt="" coords="326,107,397,133"/>
 <area shape="rect" id="node7" href="$class_geo_point.html" title="GeoPoint" alt="" coords="323,157,399,184"/>
 <area shape="rect" id="node8" href="$class_geo_polygon.html" title="GeoPolygon" alt="" coords="315,208,408,235"/>

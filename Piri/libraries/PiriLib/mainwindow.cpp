@@ -9,6 +9,21 @@
 #include <QScrollArea>
 
 
+/*!
+ * \brief MainWindow initializer.
+ *
+ * Calls methots to create scene, DAG, table datamodel, actions, menus,
+ * statusbar and docked subwindows. Also calls loadPlugins() that loads
+ * all DLL plugins.
+ * @see createScene()
+ * @see createDAG()
+ * @see createData()
+ * @see createActions()
+ * @see createMenus()
+ * @see createStatusBar()
+ * @see loadPlugins()
+ * @see createDockWindows()
+ */
 MainWindow::MainWindow()
 {
 
@@ -42,7 +57,13 @@ MainWindow::MainWindow()
 
 }
 
-
+/*!
+ * \brief MainWindow about action.
+ *
+ * Action that gets called when user selects menu item Help->About...
+ * @see createActions()
+ * @see createMenus()
+ */
 void MainWindow::about()
 {
     QMessageBox::about(this, tr("About Piri"),
@@ -52,13 +73,24 @@ void MainWindow::about()
                 "then <b>Piri</b> is made for you!"));
 }
 
-
+/*!
+ * \brief MainWindow close action.
+ *
+ * Action that gets called when user selects menu item File->Close
+ * @see createActions()
+ * @see createMenus()
+ */
 void MainWindow::close()
 {
     qApp->exit();
 }
 
-
+/*!
+ * \brief Adds new Op to nodegraph.
+ * Adds new Op to main nodegraph. At first it casts the sender object to QAction,
+ * then casts QAction parent to OpInterface and calls mainGraph->addOp(Op).
+ * @see nodeGraph::addOp()
+ */
 void MainWindow::addOp()
 {
     QAction *action = qobject_cast<QAction *>(sender());
@@ -84,7 +116,8 @@ void MainWindow::createScene()
 /*!
  * \brief Creates the nodegraph DAG scene.
  *
- * Nodegraph DAG scene creates a QGrapicsScene 'sceneDAG' that spans -10 000 to 10 000 units and holds all node graph items.
+ * Nodegraph DAG scene creates a QGrapicsScene 'sceneDAG' that spans
+ * -10 000 to 10 000 units and holds all node graph items.
  */
 void MainWindow::createDAG()
 {
@@ -144,7 +177,13 @@ QLayout* MainWindow::getPropViewLayout()
     return 0;
 }
 
-
+/*!
+ * \brief Get main nodegraph.
+ * Get main nodegraph that holds nodes and edges.
+ * @see createDAG()
+ * @see createDockWindows()
+ * \return Nodegraph 'mainGraph'
+ */
 nodeGraph* MainWindow::getMainGraph()
 {
     if (mainGraph)
@@ -152,7 +191,12 @@ nodeGraph* MainWindow::getMainGraph()
     return 0;
 }
 
-
+/*!
+ * \brief Get main viewer area.
+ * Returns main viewer area, that contains tableview and graphical views.
+ * @see createDockWindows()
+ * \return Main viewer area 'myViewer'
+ */
 Viewer* MainWindow::getViewer()
 {
     if (myViewer)
@@ -160,7 +204,11 @@ Viewer* MainWindow::getViewer()
     return 0;
 }
 
-
+/*!
+ * \brief Get main 2D scene.
+ * Returns main 2D QGraphicsScene scene called 'scene2D'.
+ * \return Main 2D scene 'scene2D'
+ */
 QGraphicsScene* MainWindow::getScene2D()
 {
     if (scene2D)
@@ -168,7 +216,14 @@ QGraphicsScene* MainWindow::getScene2D()
     return 0;
 }
 
-
+/*!
+ * \brief Creates main application actions.
+ *
+ * Creates main application actions.
+ * @see createMenus()
+ * @see close()
+ * @see about()
+ */
 void MainWindow::createActions()
 {
     quitAct = new QAction(tr("&Quit"), this);
@@ -182,19 +237,18 @@ void MainWindow::createActions()
     connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
 }
 
-
+/*!
+ * \brief Creates main menubar and nodegraph popup menu.
+ *
+ * Creates main UI menubar items and nodegraph popup menu items.
+ * @see addNodeMenuItem()
+ */
 void MainWindow::createMenus()
 {
     fileMenu = menuBar()->addMenu(tr("&File"));
-    //fileMenu->addAction(newLetterAct);
-    //fileMenu->addAction(saveAct);
-    //fileMenu->addAction(printAct);
-    //fileMenu->addSeparator();
     fileMenu->addAction(quitAct);
 
     editMenu = menuBar()->addMenu(tr("&Edit"));
-    //editMenu->addAction(undoAct);
-
     viewMenu = menuBar()->addMenu(tr("&View"));
 
     menuBar()->addSeparator();
@@ -206,7 +260,17 @@ void MainWindow::createMenus()
     nodeMenu = new QMenu;
 
     QStringList menulist;
-    menulist << "File" << "Edit" << "Input" << "Output" << "Create" << "Transform" << "Query" << "Merge" << "MetaData" << "Viewer" << "Other";
+    menulist << "File"
+             << "Edit"
+             << "Input"
+             << "Output"
+             << "Create"
+             << "Transform"
+             << "Query"
+             << "Merge"
+             << "MetaData"
+             << "Viewer"
+             << "Other";
 
     foreach(QString s, menulist)
     {
@@ -215,18 +279,31 @@ void MainWindow::createMenus()
 
 }
 
-void MainWindow::addNodeMenuItem(QString s)
+
+/*!
+ * \brief Adds new class to node menu. Not used?
+ * \param s Menu item name.
+ * @see createMenus()
+ */
+void MainWindow::addNodeMenuItem(QString menuItemName)
 {
-    QMenu *menu = new QMenu(s);
+    QMenu *menu = new QMenu(menuItemName);
     nodeMenu->addMenu(menu);
     menuClasses.append(menu);
 }
 
 
+/*!
+ * \brief Creates main UI statusbar.
+ *
+ * Main UI statusbar in the bottom left corner.
+ * @see Knob_Callback::showError()
+ */
 void MainWindow::createStatusBar()
 {
     statusBar()->showMessage(tr("Ready"));
 }
+
 
 /*!
  * \brief Create UI docking windows.

@@ -1,11 +1,12 @@
 <map id="C:/Users/hendrik/Documents/GitHub/Piri/Piri/plugins" name="C:/Users/hendrik/Documents/GitHub/Piri/Piri/plugins">
-<area shape="rect" id="node2" href="dir_0d78f97b199290e81604365aa0b7c383.html" title="Append" alt="" coords="683,63,755,111"/>
-<area shape="rect" id="node3" href="dir_b92a2c28ae11d00a7e43bd7f42b3c599.html" title="CreateLines" alt="" coords="568,63,659,111"/>
-<area shape="rect" id="node4" href="dir_35daa51aeb8c3d6ebb62e82c715fce5c.html" title="CreatePolygons" alt="" coords="429,63,544,111"/>
-<area shape="rect" id="node5" href="dir_95b7481eb543010b263ac19691df7054.html" title="Read" alt="" coords="333,63,405,111"/>
-<area shape="rect" id="node6" href="dir_486caed6e1d67bd7f40252d5898e8423.html" title="Select" alt="" coords="237,63,309,111"/>
-<area shape="rect" id="node7" href="dir_95263c163929afb88e4b4786bfd422b9.html" title="Transform" alt="" coords="134,63,212,111"/>
-<area shape="rect" id="node8" href="dir_0ed1d75d34265a533b1f1f3c5c5db2a6.html" title="Viewer" alt="" coords="37,63,109,111"/>
-<area shape="rect" id="clust2" href="dir_e0ae1c37450f723a04fb47764d8013a7.html" alt="" coords="27,52,861,121"/>
-<area shape="rect" id="clust1" href="dir_45fff232d337398457b1f1fe5c711614.html" title="Piri" alt="" coords="16,16,872,132"/>
+<area shape="rect" id="node2" href="dir_0d78f97b199290e81604365aa0b7c383.html" title="Append" alt="" coords="797,63,869,111"/>
+<area shape="rect" id="node3" href="dir_b92a2c28ae11d00a7e43bd7f42b3c599.html" title="CreateLines" alt="" coords="683,63,773,111"/>
+<area shape="rect" id="node4" href="dir_35daa51aeb8c3d6ebb62e82c715fce5c.html" title="CreatePolygons" alt="" coords="544,63,659,111"/>
+<area shape="rect" id="node5" href="dir_95b7481eb543010b263ac19691df7054.html" title="Read" alt="" coords="448,63,520,111"/>
+<area shape="rect" id="node6" href="dir_307e6b29ddb5efb032f6d9e9756a1971.html" title="ReadRaster" alt="" coords="333,63,424,111"/>
+<area shape="rect" id="node7" href="dir_486caed6e1d67bd7f40252d5898e8423.html" title="Select" alt="" coords="237,63,309,111"/>
+<area shape="rect" id="node8" href="dir_95263c163929afb88e4b4786bfd422b9.html" title="Transform" alt="" coords="134,63,212,111"/>
+<area shape="rect" id="node9" href="dir_0ed1d75d34265a533b1f1f3c5c5db2a6.html" title="Viewer" alt="" coords="37,63,109,111"/>
+<area shape="rect" id="clust2" href="dir_e0ae1c37450f723a04fb47764d8013a7.html" alt="" coords="27,52,976,121"/>
+<area shape="rect" id="clust1" href="dir_45fff232d337398457b1f1fe5c711614.html" title="Piri" alt="" coords="16,16,987,132"/>
 </map>

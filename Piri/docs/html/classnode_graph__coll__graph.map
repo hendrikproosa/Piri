@@ -1,5 +1,5 @@
 <map id="nodeGraph" name="nodeGraph">
-<area shape="rect" id="node3" href="$class_node.html" title="[0] " alt="" coords="631,187,682,213"/>
+<area shape="rect" id="node3" href="$class_node.html" title="Node" alt="" coords="631,187,682,213"/>
 <area shape="rect" id="node10" href="$class_main_window.html" title="MainWindow" alt="" coords="65,187,161,213"/>
 <area shape="rect" id="node6" href="$class_data_op.html" title="DataOp" alt="" coords="689,381,755,408"/>
 <area shape="rect" id="node7" href="$class_knob___callback.html" title="Knob_Callback" alt="" coords="434,291,543,317"/>

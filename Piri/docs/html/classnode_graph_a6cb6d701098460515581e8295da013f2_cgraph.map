@@ -1,0 +1,12 @@
+<map id="nodeGraph::evaluate" name="nodeGraph::evaluate">
+<area shape="rect" id="node2" href="$class_node.html#a77633cd46714b708d3e42f2c165f42ff" title="Get list of incoming edges. " alt="" coords="467,21,573,48"/>
+<area shape="rect" id="node3" href="$classnode_graph.html#a5e24dbba0dee05f7e247abbdcf7a34c4" title="Add all nodes that are inputs for current node to &#39;nodeStack&#39;. " alt="" coords="195,43,383,85"/>
+<area shape="rect" id="node4" href="$classnode_graph.html#ac34f075a84e0c3a9367115d5295a1ecb" title="Reverses the order of nodes in stack. " alt="" coords="205,109,373,136"/>
+<area shape="rect" id="node5" href="$classnode_graph.html#af5d3bbbc716069763ac14f013e2619f6" title="Get parent object of nodegraph. " alt="" coords="445,160,595,187"/>
+<area shape="rect" id="node6" href="$class_main_window.html#a4910bd522e8791abaed69a7ee692753a" title="Get main viewer area. Returns main viewer area, that contains tableview and graphical views..." alt="" coords="209,211,370,237"/>
+<area shape="rect" id="node7" href="$classnode_graph.html#a14141eb2a0040c0eec920a5550f51e00" title="Node graph execution method. " alt="" coords="220,261,359,288"/>
+<area shape="rect" id="node11" href="$classnode_graph.html#a6815faf0db29b0a5bc0891e578db4e7c" title="Creates list of nodes in stack. " alt="" coords="208,312,371,339"/>
+<area shape="rect" id="node8" href="$classnode_graph.html#af4e5a43f5d9d6ed266663a8fa1ae7300" title="Get pointer to main table data model. " alt="" coords="435,236,605,263"/>
+<area shape="rect" id="node10" href="$class_main_window.html#a195a755d1c5b5282556c4ced26c3de41" title="Get main 2D scene. Returns main 2D QGraphicsScene scene called &#39;scene2D&#39;. " alt="" coords="433,287,607,313"/>
+<area shape="rect" id="node9" href="$class_main_window.html#a4862a67e934ab749c7e20642ce28e141" title="Get main tabledata model. " alt="" coords="657,236,837,263"/>
+</map>

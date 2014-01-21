@@ -8,6 +8,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -63,12 +70,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="files.html"><span>File&#160;List</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('nodegraph_8h_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -77,11 +99,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_a3ce8d80b5995a1ea5cd50032e2c3307.html">hendrik</a></li><li class="navelem"><a class="el" href="dir_2a651d9ffe5ab1764d84d8eab9ae459b.html">Documents</a></li><li class="navelem"><a class="el" href="dir_b754844dd8b6c59d05eb653e53743610.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_23a4539f8b0218238b8c6fc85c0e728f.html">Piri</a></li><li class="navelem"><a class="el" href="dir_45fff232d337398457b1f1fe5c711614.html">Piri</a></li><li class="navelem"><a class="el" href="dir_02d4f07b80a25be3542f4a1886274dad.html">libraries</a></li><li class="navelem"><a class="el" href="dir_66cb053064ffaba1f230d7a2808fd6b2.html">PiriLib</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">nodegraph.h</div>  </div>
@@ -158,55 +175,73 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor"></span>    <span class="keywordtype">void</span> contextMenuEvent(QContextMenuEvent *event);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> scaleView(qreal scaleFactor);</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> centerView();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    QPoint _lastPos;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    QPointF _contextMenuPos;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="class_node.html">Node</a>* _contextSelectedNode;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="class_main_window.html">MainWindow</a> *myParent;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    QGraphicsScene *myScene;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    QList&lt;Node *&gt; nodeList, nodeStack, evalStack, visitStack;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    QGraphicsLineItem *line;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    QGraphicsRectItem *selectRect;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    QGraphicsItem *selectedItem;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    Mode myMode;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="class_edge.html">Edge</a> *activeEdge;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">int</span> onNode;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="class_node.html">Node</a> *activeViewer;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> createActions();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    QAction *newAct;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    QAction *newActSort;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    QAction *newActSQL;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    QAction *newActM;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    QAction *newActGeo01;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    QAction *newActR;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    QAction *newActV;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    QAction *newBackDrop;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    QStandardItemModel *tableData;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classnode_graph.html#af5bee20937d31b53e72340b63383e058">   74</a></span>&#160;    QPoint <a class="code" href="classnode_graph.html#af5bee20937d31b53e72340b63383e058">_lastPos</a>; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classnode_graph.html#ae6bf8ff221cb30a86d5119a085f36e26">   75</a></span>&#160;    QPointF <a class="code" href="classnode_graph.html#ae6bf8ff221cb30a86d5119a085f36e26">_contextMenuPos</a>; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classnode_graph.html#acd341a799e5dd5c53403bbf88f1c979f">   76</a></span>&#160;    <a class="code" href="class_node.html">Node</a>* <a class="code" href="classnode_graph.html#acd341a799e5dd5c53403bbf88f1c979f">_contextSelectedNode</a>; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classnode_graph.html#a13849d8f39850b9203cedbb10cd4aa61">   80</a></span>&#160;    <a class="code" href="class_main_window.html">MainWindow</a> *<a class="code" href="classnode_graph.html#a13849d8f39850b9203cedbb10cd4aa61">myParent</a>; </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classnode_graph.html#a2dd769fd58b9154fae4f4a2fa45897fe">   81</a></span>&#160;    QGraphicsScene *<a class="code" href="classnode_graph.html#a2dd769fd58b9154fae4f4a2fa45897fe">myScene</a>; </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classnode_graph.html#accfb574daec340ee65935521973ffa44">   83</a></span>&#160;    QList&lt;Node *&gt; <a class="code" href="classnode_graph.html#accfb574daec340ee65935521973ffa44">nodeList</a>; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classnode_graph.html#a094ba4e961a92b61298f5248f162db9c">   84</a></span>&#160;    QList&lt;Node *&gt; <a class="code" href="classnode_graph.html#a094ba4e961a92b61298f5248f162db9c">nodeStack</a>; </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classnode_graph.html#ae23fe967bafa5d0c1b8cf3d99bec5ff7">   85</a></span>&#160;    QList&lt;Node *&gt; <a class="code" href="classnode_graph.html#ae23fe967bafa5d0c1b8cf3d99bec5ff7">evalStack</a>; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classnode_graph.html#a2ccfbc2b44637b565b216a85cce26a3c">   86</a></span>&#160;    QList&lt;Node *&gt; <a class="code" href="classnode_graph.html#a2ccfbc2b44637b565b216a85cce26a3c">visitStack</a>; </div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classnode_graph.html#a3e77adf4e0955c77c7bd9e119b9c5938">   87</a></span>&#160;    QGraphicsLineItem *<a class="code" href="classnode_graph.html#a3e77adf4e0955c77c7bd9e119b9c5938">line</a>; </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classnode_graph.html#a7ae9a2139642cdd5387a41aca8968b52">   88</a></span>&#160;    QGraphicsRectItem *<a class="code" href="classnode_graph.html#a7ae9a2139642cdd5387a41aca8968b52">selectRect</a>; </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classnode_graph.html#a6dc5da3aafd6d104bab269de7baec6b8">   89</a></span>&#160;    QGraphicsItem *<a class="code" href="classnode_graph.html#a6dc5da3aafd6d104bab269de7baec6b8">selectedItem</a>; </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classnode_graph.html#a2b35c632f34fceb315477e63ad789de6">   90</a></span>&#160;    Mode <a class="code" href="classnode_graph.html#a2b35c632f34fceb315477e63ad789de6">myMode</a>; </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classnode_graph.html#a65a1a3a1a61f958697de9ae4af1ab46a">   91</a></span>&#160;    <a class="code" href="class_edge.html">Edge</a> *<a class="code" href="classnode_graph.html#a65a1a3a1a61f958697de9ae4af1ab46a">activeEdge</a>; </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classnode_graph.html#a1178bc43673961e58581102a4a489a00">   92</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classnode_graph.html#a1178bc43673961e58581102a4a489a00">onNode</a>; </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classnode_graph.html#abbceb993dba97114592045a40091e09d">   94</a></span>&#160;    <a class="code" href="class_node.html">Node</a> *<a class="code" href="classnode_graph.html#abbceb993dba97114592045a40091e09d">activeViewer</a>; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">void</span> createActions();</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    QAction *newAct;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    QAction *newActSort;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    QAction *newActSQL;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    QAction *newActM;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    QAction *newActGeo01;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    QAction *newActR;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    QAction *newActV;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    QAction *newBackDrop;</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;};</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#endif // NODEGRAPH_H</span></div>
-<div class="ttc" id="class_node_html"><div class="ttname"><a href="class_node.html">Node</a></div><div class="ttdoc">[0] </div><div class="ttdef"><b>Definition:</b> node.h:21</div></div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classnode_graph.html#a416ab9597b2f508b5eec3f4d93ef2625">  106</a></span>&#160;    QStandardItemModel *<a class="code" href="classnode_graph.html#a416ab9597b2f508b5eec3f4d93ef2625">tableData</a>; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;};</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#endif // NODEGRAPH_H</span></div>
+<div class="ttc" id="classnode_graph_html_a3e77adf4e0955c77c7bd9e119b9c5938"><div class="ttname"><a href="classnode_graph.html#a3e77adf4e0955c77c7bd9e119b9c5938">nodeGraph::line</a></div><div class="ttdeci">QGraphicsLineItem * line</div><div class="ttdef"><b>Definition:</b> nodegraph.h:87</div></div>
+<div class="ttc" id="classnode_graph_html_a2ccfbc2b44637b565b216a85cce26a3c"><div class="ttname"><a href="classnode_graph.html#a2ccfbc2b44637b565b216a85cce26a3c">nodeGraph::visitStack</a></div><div class="ttdeci">QList&lt; Node * &gt; visitStack</div><div class="ttdef"><b>Definition:</b> nodegraph.h:86</div></div>
+<div class="ttc" id="classnode_graph_html_ae23fe967bafa5d0c1b8cf3d99bec5ff7"><div class="ttname"><a href="classnode_graph.html#ae23fe967bafa5d0c1b8cf3d99bec5ff7">nodeGraph::evalStack</a></div><div class="ttdeci">QList&lt; Node * &gt; evalStack</div><div class="ttdef"><b>Definition:</b> nodegraph.h:85</div></div>
+<div class="ttc" id="class_node_html"><div class="ttname"><a href="class_node.html">Node</a></div><div class="ttdef"><b>Definition:</b> node.h:19</div></div>
 <div class="ttc" id="class_op_html"><div class="ttname"><a href="class_op.html">Op</a></div><div class="ttdef"><b>Definition:</b> op.h:14</div></div>
+<div class="ttc" id="classnode_graph_html_ae6bf8ff221cb30a86d5119a085f36e26"><div class="ttname"><a href="classnode_graph.html#ae6bf8ff221cb30a86d5119a085f36e26">nodeGraph::_contextMenuPos</a></div><div class="ttdeci">QPointF _contextMenuPos</div><div class="ttdef"><b>Definition:</b> nodegraph.h:75</div></div>
+<div class="ttc" id="classnode_graph_html_a094ba4e961a92b61298f5248f162db9c"><div class="ttname"><a href="classnode_graph.html#a094ba4e961a92b61298f5248f162db9c">nodeGraph::nodeStack</a></div><div class="ttdeci">QList&lt; Node * &gt; nodeStack</div><div class="ttdef"><b>Definition:</b> nodegraph.h:84</div></div>
+<div class="ttc" id="classnode_graph_html_a65a1a3a1a61f958697de9ae4af1ab46a"><div class="ttname"><a href="classnode_graph.html#a65a1a3a1a61f958697de9ae4af1ab46a">nodeGraph::activeEdge</a></div><div class="ttdeci">Edge * activeEdge</div><div class="ttdef"><b>Definition:</b> nodegraph.h:91</div></div>
+<div class="ttc" id="classnode_graph_html_a13849d8f39850b9203cedbb10cd4aa61"><div class="ttname"><a href="classnode_graph.html#a13849d8f39850b9203cedbb10cd4aa61">nodeGraph::myParent</a></div><div class="ttdeci">MainWindow * myParent</div><div class="ttdef"><b>Definition:</b> nodegraph.h:80</div></div>
 <div class="ttc" id="class_edge_html"><div class="ttname"><a href="class_edge.html">Edge</a></div><div class="ttdoc">[0] </div><div class="ttdef"><b>Definition:</b> edge.h:11</div></div>
+<div class="ttc" id="classnode_graph_html_abbceb993dba97114592045a40091e09d"><div class="ttname"><a href="classnode_graph.html#abbceb993dba97114592045a40091e09d">nodeGraph::activeViewer</a></div><div class="ttdeci">Node * activeViewer</div><div class="ttdef"><b>Definition:</b> nodegraph.h:94</div></div>
+<div class="ttc" id="classnode_graph_html_a416ab9597b2f508b5eec3f4d93ef2625"><div class="ttname"><a href="classnode_graph.html#a416ab9597b2f508b5eec3f4d93ef2625">nodeGraph::tableData</a></div><div class="ttdeci">QStandardItemModel * tableData</div><div class="ttdef"><b>Definition:</b> nodegraph.h:106</div></div>
+<div class="ttc" id="classnode_graph_html_a6dc5da3aafd6d104bab269de7baec6b8"><div class="ttname"><a href="classnode_graph.html#a6dc5da3aafd6d104bab269de7baec6b8">nodeGraph::selectedItem</a></div><div class="ttdeci">QGraphicsItem * selectedItem</div><div class="ttdef"><b>Definition:</b> nodegraph.h:89</div></div>
 <div class="ttc" id="classnode_graph_html"><div class="ttname"><a href="classnode_graph.html">nodeGraph</a></div><div class="ttdoc">[0] </div><div class="ttdef"><b>Definition:</b> nodegraph.h:16</div></div>
+<div class="ttc" id="classnode_graph_html_accfb574daec340ee65935521973ffa44"><div class="ttname"><a href="classnode_graph.html#accfb574daec340ee65935521973ffa44">nodeGraph::nodeList</a></div><div class="ttdeci">QList&lt; Node * &gt; nodeList</div><div class="ttdef"><b>Definition:</b> nodegraph.h:83</div></div>
+<div class="ttc" id="classnode_graph_html_a2b35c632f34fceb315477e63ad789de6"><div class="ttname"><a href="classnode_graph.html#a2b35c632f34fceb315477e63ad789de6">nodeGraph::myMode</a></div><div class="ttdeci">Mode myMode</div><div class="ttdef"><b>Definition:</b> nodegraph.h:90</div></div>
+<div class="ttc" id="classnode_graph_html_a1178bc43673961e58581102a4a489a00"><div class="ttname"><a href="classnode_graph.html#a1178bc43673961e58581102a4a489a00">nodeGraph::onNode</a></div><div class="ttdeci">int onNode</div><div class="ttdef"><b>Definition:</b> nodegraph.h:92</div></div>
+<div class="ttc" id="classnode_graph_html_a2dd769fd58b9154fae4f4a2fa45897fe"><div class="ttname"><a href="classnode_graph.html#a2dd769fd58b9154fae4f4a2fa45897fe">nodeGraph::myScene</a></div><div class="ttdeci">QGraphicsScene * myScene</div><div class="ttdef"><b>Definition:</b> nodegraph.h:81</div></div>
+<div class="ttc" id="classnode_graph_html_af5bee20937d31b53e72340b63383e058"><div class="ttname"><a href="classnode_graph.html#af5bee20937d31b53e72340b63383e058">nodeGraph::_lastPos</a></div><div class="ttdeci">QPoint _lastPos</div><div class="ttdef"><b>Definition:</b> nodegraph.h:74</div></div>
+<div class="ttc" id="classnode_graph_html_a7ae9a2139642cdd5387a41aca8968b52"><div class="ttname"><a href="classnode_graph.html#a7ae9a2139642cdd5387a41aca8968b52">nodeGraph::selectRect</a></div><div class="ttdeci">QGraphicsRectItem * selectRect</div><div class="ttdef"><b>Definition:</b> nodegraph.h:88</div></div>
 <div class="ttc" id="class_select_html"><div class="ttname"><a href="class_select.html">Select</a></div><div class="ttdef"><b>Definition:</b> select.h:16</div></div>
 <div class="ttc" id="class_op_interface_html"><div class="ttname"><a href="class_op_interface.html">OpInterface</a></div><div class="ttdef"><b>Definition:</b> interfaces.h:16</div></div>
 <div class="ttc" id="class_main_window_html"><div class="ttname"><a href="class_main_window.html">MainWindow</a></div><div class="ttdef"><b>Definition:</b> mainwindow.h:23</div></div>
+<div class="ttc" id="classnode_graph_html_acd341a799e5dd5c53403bbf88f1c979f"><div class="ttname"><a href="classnode_graph.html#acd341a799e5dd5c53403bbf88f1c979f">nodeGraph::_contextSelectedNode</a></div><div class="ttdeci">Node * _contextSelectedNode</div><div class="ttdef"><b>Definition:</b> nodegraph.h:76</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 11 2014 14:56:15 for Piri by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.6
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_a3ce8d80b5995a1ea5cd50032e2c3307.html">hendrik</a></li><li class="navelem"><a class="el" href="dir_2a651d9ffe5ab1764d84d8eab9ae459b.html">Documents</a></li><li class="navelem"><a class="el" href="dir_b754844dd8b6c59d05eb653e53743610.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_23a4539f8b0218238b8c6fc85c0e728f.html">Piri</a></li><li class="navelem"><a class="el" href="dir_45fff232d337398457b1f1fe5c711614.html">Piri</a></li><li class="navelem"><a class="el" href="dir_02d4f07b80a25be3542f4a1886274dad.html">libraries</a></li><li class="navelem"><a class="el" href="dir_66cb053064ffaba1f230d7a2808fd6b2.html">PiriLib</a></li><li class="navelem"><b>nodegraph.h</b></li>
+    <li class="footer">Generated on Mon Jan 13 2014 16:17:52 for Piri by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,0 +1,10 @@
+<map id="Node::execute" name="Node::execute">
+<area shape="rect" id="node2" href="$class_node.html#a339261597715c88141ccb52d8e10f38c" title="Get list of node edges. " alt="" coords="201,5,295,32"/>
+<area shape="rect" id="node3" href="$class_node.html#a14317825890619b1bc1ab48169391bf3" title="Get list of outgoing edges. " alt="" coords="190,56,306,83"/>
+<area shape="rect" id="node4" href="$class_node.html#a77633cd46714b708d3e42f2c165f42ff" title="Get list of incoming edges. " alt="" coords="195,107,301,133"/>
+<area shape="rect" id="node5" href="$class_node.html#ad043510fed99fb5f3fecda50902ab0d8" title="Is node disabled? " alt="" coords="188,157,308,184"/>
+<area shape="rect" id="node6" href="$classnode_graph.html#af4e5a43f5d9d6ed266663a8fa1ae7300" title="Get pointer to main table data model. " alt="" coords="163,208,333,235"/>
+<area shape="rect" id="node8" href="$classnode_graph.html#af5d3bbbc716069763ac14f013e2619f6" title="Get parent object of nodegraph. " alt="" coords="173,259,323,285"/>
+<area shape="rect" id="node9" href="$class_main_window.html#a195a755d1c5b5282556c4ced26c3de41" title="Get main 2D scene. Returns main 2D QGraphicsScene scene called &#39;scene2D&#39;. " alt="" coords="161,309,335,336"/>
+<area shape="rect" id="node7" href="$class_main_window.html#a4862a67e934ab749c7e20642ce28e141" title="Get main tabledata model. " alt="" coords="385,208,565,235"/>
+</map>

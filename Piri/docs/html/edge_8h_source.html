@@ -8,6 +8,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -63,12 +70,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="files.html"><span>File&#160;List</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('edge_8h_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -77,11 +99,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_a3ce8d80b5995a1ea5cd50032e2c3307.html">hendrik</a></li><li class="navelem"><a class="el" href="dir_2a651d9ffe5ab1764d84d8eab9ae459b.html">Documents</a></li><li class="navelem"><a class="el" href="dir_b754844dd8b6c59d05eb653e53743610.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_23a4539f8b0218238b8c6fc85c0e728f.html">Piri</a></li><li class="navelem"><a class="el" href="dir_45fff232d337398457b1f1fe5c711614.html">Piri</a></li><li class="navelem"><a class="el" href="dir_02d4f07b80a25be3542f4a1886274dad.html">libraries</a></li><li class="navelem"><a class="el" href="dir_66cb053064ffaba1f230d7a2808fd6b2.html">PiriLib</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">edge.h</div>  </div>
@@ -137,14 +154,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif // EDGE_H</span></div>
-<div class="ttc" id="class_node_html"><div class="ttname"><a href="class_node.html">Node</a></div><div class="ttdoc">[0] </div><div class="ttdef"><b>Definition:</b> node.h:21</div></div>
+<div class="ttc" id="class_node_html"><div class="ttname"><a href="class_node.html">Node</a></div><div class="ttdef"><b>Definition:</b> node.h:19</div></div>
 <div class="ttc" id="class_edge_html"><div class="ttname"><a href="class_edge.html">Edge</a></div><div class="ttdoc">[0] </div><div class="ttdef"><b>Definition:</b> edge.h:11</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 11 2014 14:56:14 for Piri by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.6
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_a3ce8d80b5995a1ea5cd50032e2c3307.html">hendrik</a></li><li class="navelem"><a class="el" href="dir_2a651d9ffe5ab1764d84d8eab9ae459b.html">Documents</a></li><li class="navelem"><a class="el" href="dir_b754844dd8b6c59d05eb653e53743610.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_23a4539f8b0218238b8c6fc85c0e728f.html">Piri</a></li><li class="navelem"><a class="el" href="dir_45fff232d337398457b1f1fe5c711614.html">Piri</a></li><li class="navelem"><a class="el" href="dir_02d4f07b80a25be3542f4a1886274dad.html">libraries</a></li><li class="navelem"><a class="el" href="dir_66cb053064ffaba1f230d7a2808fd6b2.html">PiriLib</a></li><li class="navelem"><b>edge.h</b></li>
+    <li class="footer">Generated on Mon Jan 13 2014 16:17:52 for Piri by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
 </body>
 </html>

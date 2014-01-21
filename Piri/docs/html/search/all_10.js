@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['select',['Select',['../class_select.html',1,'']]],
-  ['settings',['settings',['../structsettings.html',1,'']]],
-  ['stringknob',['StringKnob',['../class_string_knob.html',1,'']]]
+  ['qtlogo',['QtLogo',['../class_qt_logo.html',1,'']]],
+  ['quitact',['quitAct',['../class_main_window.html#a2c7d0504f384c2b6d383a5aa478f1fe7',1,'MainWindow']]]
 ];

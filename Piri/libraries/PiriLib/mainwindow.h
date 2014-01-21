@@ -33,8 +33,8 @@ public:
     QGraphicsScene* getScene2D();
 
     QString errorMessage();
-    QMenu *nodeMenu;
-    QList<QMenu*> menuClasses;
+    QMenu *nodeMenu; /*!< Node graph context menu. */
+    QList<QMenu*> menuClasses; /*!< List of node graph context menu items. */
 
 public slots:
     //void showErrorMessage();
@@ -53,7 +53,7 @@ private:
     void createData();
     void createActions();
     void createMenus();
-    void addNodeMenuItem(QString s);
+    void addNodeMenuItem(QString menuItemName);
     //void createToolbars();
     void createStatusBar();
     void createDockWindows();
@@ -62,22 +62,22 @@ private:
     void registerOp(QObject *plugin, const QString text,
                    const char *member);
 
-    QDir pluginsDir;
-    QStringList pluginFileNames;
-    QGraphicsScene *scene2D;
-    QGraphicsScene *sceneDAG;
-    nodeGraph *mainGraph;
-    QStandardItemModel *tableData;
-    QWidget *propView;
-    Viewer* myViewer;
+    QDir pluginsDir; /*!< Plugin directory. */
+    QStringList pluginFileNames; /*!< List of all plugin names. */
+    QGraphicsScene *scene2D; /*!< 2D scene that holds graphical objects. */
+    QGraphicsScene *sceneDAG; /*!< Nodegraph scene that holds graphical objects of graph. */
+    nodeGraph *mainGraph; /*!< Nodegraph object that operates on DAG. */
+    QStandardItemModel *tableData; /*!< Table data model. */
+    QWidget *propView; /*!< Dockable properties subwindow. */
+    Viewer* myViewer; /*!< Dockable viewer subwindow. */
 
-    QMenu *fileMenu;
-    QMenu *editMenu;
-    QMenu *viewMenu;
-    QMenu *helpMenu;
+    QMenu *fileMenu; /*!< File menu object. */
+    QMenu *editMenu; /*!< Edit menu object. */
+    QMenu *viewMenu; /*!< View menu object. */
+    QMenu *helpMenu; /*!< Help menu object. */
 
-    QAction *aboutAct;
-    QAction *quitAct;
+    QAction *aboutAct; /*!< Shows about dialog. */
+    QAction *quitAct; /*!< Closes application. */
 
 };
 

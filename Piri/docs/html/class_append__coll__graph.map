@@ -1,6 +1,6 @@
 <map id="Append" name="Append">
 <area shape="rect" id="node3" href="$class_op_interface.html" title="OpInterface" alt="" coords="687,5,775,32"/>
-<area shape="rect" id="node5" href="$class_node.html" title="[0] " alt="" coords="489,96,540,123"/>
+<area shape="rect" id="node5" href="$class_node.html" title="Node" alt="" coords="489,96,540,123"/>
 <area shape="rect" id="node4" href="$class_op.html" title="Op" alt="" coords="650,293,688,320"/>
 <area shape="rect" id="node7" href="$classnode_graph.html" title="[0] " alt="" coords="216,293,301,320"/>
 <area shape="rect" id="node9" href="$class_edge.html" title="[0] " alt="" coords="142,201,193,228"/>

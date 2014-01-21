@@ -1,0 +1,6 @@
+<map id="Node::setupInputs2" name="Node::setupInputs2">
+<area shape="rect" id="node2" href="$classnode_graph.html#a7c15d5fb252354061882f19d5658138b" title="Gets node that was selected at contextmenuevent time. " alt="" coords="189,5,381,32"/>
+<area shape="rect" id="node3" href="$class_node.html#a14317825890619b1bc1ab48169391bf3" title="Get list of outgoing edges. " alt="" coords="227,56,343,83"/>
+<area shape="rect" id="node4" href="$class_node.html#a316a35260420de72583338c11016b1d3" title="Add new edge. " alt="" coords="230,107,341,133"/>
+<area shape="rect" id="node5" href="$classnode_graph.html#a3496913073b738baca992ba93f494998" title="Adds new edge object to graph scene. " alt="" coords="213,157,357,184"/>
+</map>

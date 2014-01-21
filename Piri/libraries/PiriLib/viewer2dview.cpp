@@ -6,13 +6,14 @@ Viewer2dView::Viewer2dView(QGraphicsScene *scene, Viewer *parent) : QGraphicsVie
     myParent(parent)
 {
     setScene(scene);
-    setCacheMode(QGraphicsView::CacheBackground);
-    setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
-    setRenderHint(QPainter::Antialiasing);
+    //setCacheMode(QGraphicsView::CacheBackground);
+    setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
+    setRenderHint(QPainter::Antialiasing, false);
     setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
+    //setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers)));
 }
 
 

@@ -1,0 +1,4 @@
+<map id="MainWindow::addOp" name="MainWindow::addOp">
+<area shape="rect" id="node2" href="$classnode_graph.html#a80eb6c9c9ef7d4eec41e15dcabf9b5c7" title="Adds new Op to nodegraph. " alt="" coords="197,5,328,32"/>
+<area shape="rect" id="node3" href="$classnode_graph.html#a58c9cc14f65765c17a6d381be6c8ab6f" title="Pushes item to nodegraph at certain position. " alt="" coords="376,5,523,32"/>
+</map>

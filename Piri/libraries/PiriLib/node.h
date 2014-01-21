@@ -15,21 +15,20 @@ QT_BEGIN_NAMESPACE
 class QGraphicsSceneMouseEvent;
 QT_END_NAMESPACE
 
-int PIRILIBSHARED_EXPORT TestFuncNode(int a, int b);
 
-//! [0]
 class PIRILIBSHARED_EXPORT Node : public QGraphicsItem
 {
 public:
     Node(nodeGraph *nodeGraph, QString name, int type);
-    Node(nodeGraph *nodeGraph, QString name, OpInterface *Op);
+    Node(nodeGraph *nodeGraph, QString name, OpInterface *op);
     ~Node();
     enum { Type = UserType + 1 };
     int type() const { return Type; }
+    /*
     QString myName;
     QString myDesc;
     QString myClass;
-
+    */
     void addEdge(Edge *edge, int isMain);
     void removeEdge(Edge *edge);
     QList<Edge *> edges() const;
@@ -42,7 +41,9 @@ public:
     void setName(QString name);
     QString name() { return myName; }
     int getType() { return nodeType; }
+    QString getDesc() { return myDesc; }
     QString hash() { return nodeHash; }
+    QString getHash();
     void setMaxInputs(int inputs) { maxInputs = inputs; }
     void setNumInputs(int inputs) { numInputs = inputs; }
     int getMaxInputs() { return maxInputs; }
@@ -72,24 +73,26 @@ protected:
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
 
 private:
-    QList<Edge *> edgeList;
-    QPointF newPos;
-    nodeGraph *graph;
-    QString nodeName;
-    int nodeType;
-    QString nodeHash;
-    int maxInputs;
-    int numInputs;
-    Edge* mainEdge;
-    bool disabled;
+    QString myName; /*!< Node name. First set in Op description. */
+    QString myDesc; /*!< Node description. Set in Op description. */
+    QString myClass; /*!< Node class. Set in Op description. */
+    QList<Edge *> edgeList; /*!< List of all node edges. */
+    QPointF newPos; /*!< Some position holder. */
+    nodeGraph *graph; /*!< Nodegraph this node is in. */
+    QString nodeName; /*!< Node name. OLD!!! */
+    int nodeType; /*!< Node type. OLD!!! */
+    QString nodeHash; /*!< Node hash. Not used. */
+    int maxInputs; /*!< Maximum number of inputs. */
+    int numInputs; /*!< Number of node inputs. */
+    Edge* mainEdge; /*!< Main edge object. */
+    bool disabled; /*!< Is node disabled? */
 
-    DataOp *myOp;
-    Knob_Callback* myCallback;
+    DataOp *myOp; /*!< Node dataop. OLD!!! */
+    Knob_Callback* myCallback; /*!< Knob callback of node. */
 
-    OpInterface *myOp2;
-    int version;
+    OpInterface *myOp2; /*!< Node OpInterface. Used instead of myOp in plugins. */
+    int version; /*!< Node version. Separates built-in and plugin ops. To be removed. */
 
 };
-//! [0]
 
 #endif // NODE_H

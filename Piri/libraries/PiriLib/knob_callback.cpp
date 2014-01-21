@@ -10,7 +10,6 @@
 
 Knob_Callback::Knob_Callback(QWidget *parent) : QWidget(parent)
 {
-
     makeKnobs();
 }
 
@@ -18,6 +17,7 @@ Knob_Callback::Knob_Callback(QWidget *parent) : QWidget(parent)
 Knob_Callback::Knob_Callback(Node *parent)
 {
     myParent = parent;
+    myHash = "a";
     setFocusPolicy(Qt::WheelFocus);
 
     makeKnobs();
@@ -39,7 +39,7 @@ void Knob_Callback::makeKnobs()
     QPushButton *buttonx = new QPushButton("✕");
     //buttonx->setStyleSheet("QPushButton { image: url(E:/hendrik/progemine/varia/icons/icon_close_x.png); }");
     buttonh->setFixedWidth(25);
-    buttonh->setToolTip(getParent()->myDesc);
+    buttonh->setToolTip(getParent()->getDesc());
     buttonx->setFixedWidth(25);
     connect(buttonx, SIGNAL(clicked()), this, SLOT(hide()));
     connect(nodeName, SIGNAL(textChanged(QString)), this, SLOT(nodeNameChanged(QString)));
@@ -106,14 +106,17 @@ DataOp* Knob_Callback::getOp()
 }
 
 
-void Knob_Callback::addKnob(QWidget* knob, QString label, QString valName)
+void Knob_Callback::addKnob(QWidget* knob, QString label, QVariant* value)
 {
     qDebug() << "Knob_Callback::addKnob...";
-    //qDebug() << knob << value << *value << label << valName;
+    qDebug() << knob << value << value->toString() << label;
     KnobStruct *kn = new KnobStruct;
     kn->widget = knob;
     kn->label = label;
-    kn->valueName = valName;
+    kn->value = value;
+    kn->valueName = label;
+
+
     knobs << kn;
     qDebug() << "Knob_Callback::addKnob: " << knobs;
 }
@@ -128,6 +131,28 @@ KnobStruct* Knob_Callback::getKnob(QString valName)
     return 0;
 }
 
+
+QString Knob_Callback::getHash()
+{
+    QString hashString;
+
+    qDebug() << "Knob_Callback::getHash()";
+    foreach (KnobStruct *ks, knobs) {
+        QWidget* w = ks->widget;
+        KnobBase* kb = dynamic_cast<KnobBase*>(w);
+        if (kb)
+        {
+            qDebug() << "----------" << ks->label << kb->getHash() << ks->widget << "-----------";
+            //hashString += ks->value->toString().toLatin1();
+            hashString += kb->getHash();
+        }
+
+    }
+    //qDebug() << "Hash string: " << hashString << hashString.toLatin1();
+    myHash = QString(QCryptographicHash::hash(hashString.toLatin1(),QCryptographicHash::Md5).toHex());
+    //qDebug() << "Hash string: " << myHash;
+    return myHash;
+}
 
 void Knob_Callback::valueChanged()
 {

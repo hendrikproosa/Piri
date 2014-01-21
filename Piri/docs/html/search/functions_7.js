@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['populatemenus',['populateMenus',['../class_main_window.html#a150054b7e0f06b55eb2640adbd3d7cb9',1,'MainWindow']]]
+  ['loadplugins',['loadPlugins',['../class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2',1,'MainWindow']]]
 ];

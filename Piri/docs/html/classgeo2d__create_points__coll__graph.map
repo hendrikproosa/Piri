@@ -1,7 +1,7 @@
 <map id="geo2d_createPoints" name="geo2d_createPoints">
 <area shape="rect" id="node2" href="$class_geo2d_op.html" title="Geo2dOp" alt="" coords="444,96,521,123"/>
 <area shape="rect" id="node3" href="$class_data_op.html" title="DataOp" alt="" coords="419,5,485,32"/>
-<area shape="rect" id="node4" href="$class_node.html" title="[0] " alt="" coords="246,96,297,123"/>
+<area shape="rect" id="node4" href="$class_node.html" title="Node" alt="" coords="246,96,297,123"/>
 <area shape="rect" id="node6" href="$classnode_graph.html" title="[0] " alt="" coords="251,293,336,320"/>
 <area shape="rect" id="node8" href="$class_edge.html" title="[0] " alt="" coords="265,201,316,228"/>
 <area shape="rect" id="node15" href="$class_knob___callback.html" title="Knob_Callback" alt="" coords="381,201,491,228"/>

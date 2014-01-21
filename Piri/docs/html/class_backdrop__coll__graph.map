@@ -1,5 +1,5 @@
 <map id="Backdrop" name="Backdrop">
-<area shape="rect" id="node5" href="$class_node.html" title="[0] " alt="" coords="461,96,512,123"/>
+<area shape="rect" id="node5" href="$class_node.html" title="Node" alt="" coords="461,96,512,123"/>
 <area shape="rect" id="node10" href="$class_edge.html" title="[0] " alt="" coords="211,201,263,228"/>
 <area shape="rect" id="node15" href="$class_cornergrabber.html" title="Cornergrabber" alt="" coords="969,148,1071,175"/>
 <area shape="rect" id="node3" href="$classnode_graph.html" title="[0] " alt="" coords="481,293,567,320"/>

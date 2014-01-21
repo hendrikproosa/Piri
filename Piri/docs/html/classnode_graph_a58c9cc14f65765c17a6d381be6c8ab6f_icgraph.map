@@ -1,0 +1,10 @@
+<map id="nodeGraph::pushItem" name="nodeGraph::pushItem">
+<area shape="rect" id="node2" href="$classnode_graph.html#abcbaece4826aee2cce441279e21d0d7a" title="Adds node to nodegraph. OLD!!! " alt="" coords="200,5,344,32"/>
+<area shape="rect" id="node5" href="$classnode_graph.html#a80eb6c9c9ef7d4eec41e15dcabf9b5c7" title="Adds new Op to nodegraph. " alt="" coords="207,56,337,83"/>
+<area shape="rect" id="node3" href="$classnode_graph.html#a0dbbf9f2338f3644eb83c4c7dc513c3c" title="Creates actions for built&#45;in ops. OLD! " alt="" coords="392,5,565,32"/>
+<area shape="rect" id="node4" href="$classnode_graph.html#a0abbeafd84c1aad59437ff22c5c1f3b3" title="Main nodegraph class that performs operations on nodes. " alt="" coords="631,5,787,32"/>
+<area shape="rect" id="node6" href="$class_main_window.html#a4794eaad406f40093c06569cd556480d" title="Adds new Op to nodegraph. Adds new Op to main nodegraph. At first it casts the sender object to QActi..." alt="" coords="407,56,550,83"/>
+<area shape="rect" id="node7" href="$class_main_window.html#a150054b7e0f06b55eb2640adbd3d7cb9" title="Casts plugins to OpInterface and calls registerOp() " alt="" coords="613,56,805,83"/>
+<area shape="rect" id="node8" href="$class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2" title="Loads DLL plugins. " alt="" coords="853,56,1024,83"/>
+<area shape="rect" id="node9" href="$class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="1072,56,1251,83"/>
+</map>

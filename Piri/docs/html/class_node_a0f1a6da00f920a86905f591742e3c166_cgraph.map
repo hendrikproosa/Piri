@@ -1,0 +1,9 @@
+<map id="Node::Node" name="Node::Node">
+<area shape="rect" id="node2" href="$class_node.html#aa084a287fbd5b64c4db813cd82f51763" title="Node inputs setup. Old, not used! " alt="" coords="153,43,279,69"/>
+<area shape="rect" id="node5" href="$class_node.html#a2f485e7ca527011de07c7cfb63fb7c13" title="Node op setup. OLD! " alt="" coords="158,93,274,120"/>
+<area shape="rect" id="node6" href="$class_node.html#a211566b606141f95093e83000875fb32" title="Creates node callback. " alt="" coords="145,144,287,171"/>
+<area shape="rect" id="node3" href="$class_node.html#a316a35260420de72583338c11016b1d3" title="Add new edge. " alt="" coords="389,5,499,32"/>
+<area shape="rect" id="node4" href="$classnode_graph.html#a3496913073b738baca992ba93f494998" title="Adds new edge object to graph scene. " alt="" coords="372,56,516,83"/>
+<area shape="rect" id="node7" href="$classnode_graph.html#af5d3bbbc716069763ac14f013e2619f6" title="Get parent object of nodegraph. " alt="" coords="369,119,519,145"/>
+<area shape="rect" id="node8" href="$class_main_window.html#a4a9cc990bf54adc798c8d6a19795fb63" title="Get main properties view layout. " alt="" coords="336,169,552,196"/>
+</map>

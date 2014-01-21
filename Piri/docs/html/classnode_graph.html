@@ -8,6 +8,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -66,12 +73,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classnode_graph.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -80,7 +102,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
@@ -105,14 +126,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Inheritance diagram for nodeGraph:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnode_graph__inherit__graph.png" border="0" usemap="#node_graph_inherit__map" alt="Inheritance graph"/></div>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for nodeGraph:</div>
 <div class="dyncontent">
 <div class="center"><img src="classnode_graph__coll__graph.png" border="0" usemap="#node_graph_coll__map" alt="Collaboration graph"/></div>
 <map name="node_graph_coll__map" id="node_graph_coll__map">
-<area shape="rect" id="node3" href="class_node.html" title="[0] " alt="" coords="631,187,682,213"/><area shape="rect" id="node10" href="class_main_window.html" title="MainWindow" alt="" coords="65,187,161,213"/><area shape="rect" id="node6" href="class_data_op.html" title="DataOp" alt="" coords="689,381,755,408"/><area shape="rect" id="node7" href="class_knob___callback.html" title="Knob_Callback" alt="" coords="434,291,543,317"/><area shape="rect" id="node9" href="class_edge.html" title="[0] " alt="" coords="617,291,669,317"/><area shape="rect" id="node5" href="class_op_interface.html" title="OpInterface" alt="" coords="630,83,718,109"/><area shape="rect" id="node12" href="class_viewer.html" title="Viewer" alt="" coords="142,291,203,317"/><area shape="rect" id="node13" href="structsettings.html" title="settings" alt="" coords="185,187,253,213"/></map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<area shape="rect" id="node3" href="class_node.html" title="Node" alt="" coords="631,187,682,213"/><area shape="rect" id="node10" href="class_main_window.html" title="MainWindow" alt="" coords="65,187,161,213"/><area shape="rect" id="node6" href="class_data_op.html" title="DataOp" alt="" coords="689,381,755,408"/><area shape="rect" id="node7" href="class_knob___callback.html" title="Knob_Callback" alt="" coords="434,291,543,317"/><area shape="rect" id="node9" href="class_edge.html" title="[0] " alt="" coords="617,291,669,317"/><area shape="rect" id="node5" href="class_op_interface.html" title="OpInterface" alt="" coords="630,83,718,109"/><area shape="rect" id="node12" href="class_viewer.html" title="Viewer" alt="" coords="142,291,203,317"/><area shape="rect" id="node13" href="structsettings.html" title="settings" alt="" coords="185,187,253,213"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -129,17 +150,17 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr class="memitem:a5f13b3c668ad35f3872a5add3832848c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f13b3c668ad35f3872a5add3832848c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>zoomIn</b> ()</td></tr>
+<tr class="memitem:a5f13b3c668ad35f3872a5add3832848c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a5f13b3c668ad35f3872a5add3832848c">zoomIn</a> ()</td></tr>
+<tr class="memdesc:a5f13b3c668ad35f3872a5add3832848c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zoom in.  <a href="#a5f13b3c668ad35f3872a5add3832848c">More...</a><br/></td></tr>
 <tr class="separator:a5f13b3c668ad35f3872a5add3832848c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44b65b86c9532f7205b02bd224743f12"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a44b65b86c9532f7205b02bd224743f12"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>zoomOut</b> ()</td></tr>
+<tr class="memitem:a44b65b86c9532f7205b02bd224743f12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a44b65b86c9532f7205b02bd224743f12">zoomOut</a> ()</td></tr>
+<tr class="memdesc:a44b65b86c9532f7205b02bd224743f12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zoom out.  <a href="#a44b65b86c9532f7205b02bd224743f12">More...</a><br/></td></tr>
 <tr class="separator:a44b65b86c9532f7205b02bd224743f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcbaece4826aee2cce441279e21d0d7a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abcbaece4826aee2cce441279e21d0d7a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addNode</b> ()</td></tr>
+<tr class="memitem:abcbaece4826aee2cce441279e21d0d7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#abcbaece4826aee2cce441279e21d0d7a">addNode</a> ()</td></tr>
+<tr class="memdesc:abcbaece4826aee2cce441279e21d0d7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds node to nodegraph. OLD!!!  <a href="#abcbaece4826aee2cce441279e21d0d7a">More...</a><br/></td></tr>
 <tr class="separator:abcbaece4826aee2cce441279e21d0d7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80eb6c9c9ef7d4eec41e15dcabf9b5c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80eb6c9c9ef7d4eec41e15dcabf9b5c7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addOp</b> (<a class="el" href="class_op_interface.html">OpInterface</a> *<a class="el" href="class_op.html">Op</a>)</td></tr>
+<tr class="memitem:a80eb6c9c9ef7d4eec41e15dcabf9b5c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a80eb6c9c9ef7d4eec41e15dcabf9b5c7">addOp</a> (<a class="el" href="class_op_interface.html">OpInterface</a> *<a class="el" href="class_op.html">Op</a>)</td></tr>
+<tr class="memdesc:a80eb6c9c9ef7d4eec41e15dcabf9b5c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds new <a class="el" href="class_op.html">Op</a> to nodegraph.  <a href="#a80eb6c9c9ef7d4eec41e15dcabf9b5c7">More...</a><br/></td></tr>
 <tr class="separator:a80eb6c9c9ef7d4eec41e15dcabf9b5c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
@@ -150,84 +171,84 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>evaluated</b> (QStrin
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0abbeafd84c1aad59437ff22c5c1f3b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0abbeafd84c1aad59437ff22c5c1f3b3"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a0abbeafd84c1aad59437ff22c5c1f3b3">nodeGraph</a> (QGraphicsScene *scene, <a class="el" href="class_main_window.html">MainWindow</a> *parent=0)</td></tr>
-<tr class="memdesc:a0abbeafd84c1aad59437ff22c5c1f3b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">[0] <br/></td></tr>
+<tr class="memitem:a0abbeafd84c1aad59437ff22c5c1f3b3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a0abbeafd84c1aad59437ff22c5c1f3b3">nodeGraph</a> (QGraphicsScene *scene, <a class="el" href="class_main_window.html">MainWindow</a> *parent=0)</td></tr>
+<tr class="memdesc:a0abbeafd84c1aad59437ff22c5c1f3b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main nodegraph class that performs operations on nodes.  <a href="#a0abbeafd84c1aad59437ff22c5c1f3b3">More...</a><br/></td></tr>
 <tr class="separator:a0abbeafd84c1aad59437ff22c5c1f3b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14faf757d0346517efb2bdbecd69afa6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14faf757d0346517efb2bdbecd69afa6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addScene</b> (QGraphicsScene *scene)</td></tr>
+<tr class="memitem:a14faf757d0346517efb2bdbecd69afa6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a14faf757d0346517efb2bdbecd69afa6">addScene</a> (QGraphicsScene *scene)</td></tr>
+<tr class="memdesc:a14faf757d0346517efb2bdbecd69afa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add scene to nodegraph.  <a href="#a14faf757d0346517efb2bdbecd69afa6">More...</a><br/></td></tr>
 <tr class="separator:a14faf757d0346517efb2bdbecd69afa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0796764ce3f576ed96910a2d00343add"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0796764ce3f576ed96910a2d00343add"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>itemMoved</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a0796764ce3f576ed96910a2d00343add">itemMoved</a> ()</td></tr>
+<tr class="memdesc:a0796764ce3f576ed96910a2d00343add"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does nothing. <br/></td></tr>
 <tr class="separator:a0796764ce3f576ed96910a2d00343add"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cb6d701098460515581e8295da013f2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6cb6d701098460515581e8295da013f2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>evaluate</b> ()</td></tr>
+<tr class="memitem:a6cb6d701098460515581e8295da013f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2">evaluate</a> ()</td></tr>
+<tr class="memdesc:a6cb6d701098460515581e8295da013f2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_node.html">Node</a> graph evaluation loop.  <a href="#a6cb6d701098460515581e8295da013f2">More...</a><br/></td></tr>
 <tr class="separator:a6cb6d701098460515581e8295da013f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14141eb2a0040c0eec920a5550f51e00"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14141eb2a0040c0eec920a5550f51e00"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>execute</b> ()</td></tr>
+<tr class="memitem:a14141eb2a0040c0eec920a5550f51e00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a14141eb2a0040c0eec920a5550f51e00">execute</a> ()</td></tr>
+<tr class="memdesc:a14141eb2a0040c0eec920a5550f51e00"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_node.html">Node</a> graph execution method.  <a href="#a14141eb2a0040c0eec920a5550f51e00">More...</a><br/></td></tr>
 <tr class="separator:a14141eb2a0040c0eec920a5550f51e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1634c5dc271236fd596d75e5fd75a0e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1634c5dc271236fd596d75e5fd75a0e"></a>
-QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>evaluateNode</b> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memitem:aa1634c5dc271236fd596d75e5fd75a0e"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#aa1634c5dc271236fd596d75e5fd75a0e">evaluateNode</a> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memdesc:aa1634c5dc271236fd596d75e5fd75a0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates node graph starting from node.  <a href="#aa1634c5dc271236fd596d75e5fd75a0e">More...</a><br/></td></tr>
 <tr class="separator:aa1634c5dc271236fd596d75e5fd75a0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e24dbba0dee05f7e247abbdcf7a34c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e24dbba0dee05f7e247abbdcf7a34c4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pushNodeEdgesToStack</b> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memitem:a5e24dbba0dee05f7e247abbdcf7a34c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a5e24dbba0dee05f7e247abbdcf7a34c4">pushNodeEdgesToStack</a> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memdesc:a5e24dbba0dee05f7e247abbdcf7a34c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add all nodes that are inputs for current node to 'nodeStack'.  <a href="#a5e24dbba0dee05f7e247abbdcf7a34c4">More...</a><br/></td></tr>
 <tr class="separator:a5e24dbba0dee05f7e247abbdcf7a34c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6815faf0db29b0a5bc0891e578db4e7c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6815faf0db29b0a5bc0891e578db4e7c"></a>
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>debugStack</b> (QList&lt; <a class="el" href="class_node.html">Node</a> * &gt; stack)</td></tr>
+<tr class="memitem:a6815faf0db29b0a5bc0891e578db4e7c"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a6815faf0db29b0a5bc0891e578db4e7c">debugStack</a> (QList&lt; <a class="el" href="class_node.html">Node</a> * &gt; stack)</td></tr>
+<tr class="memdesc:a6815faf0db29b0a5bc0891e578db4e7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates list of nodes in stack.  <a href="#a6815faf0db29b0a5bc0891e578db4e7c">More...</a><br/></td></tr>
 <tr class="separator:a6815faf0db29b0a5bc0891e578db4e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e85a88f9f5b09e394e0016c6ff2a340"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e85a88f9f5b09e394e0016c6ff2a340"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>nodeVisited</b> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memitem:a5e85a88f9f5b09e394e0016c6ff2a340"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a5e85a88f9f5b09e394e0016c6ff2a340">nodeVisited</a> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memdesc:a5e85a88f9f5b09e394e0016c6ff2a340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if node is already visited.  <a href="#a5e85a88f9f5b09e394e0016c6ff2a340">More...</a><br/></td></tr>
 <tr class="separator:a5e85a88f9f5b09e394e0016c6ff2a340"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac34f075a84e0c3a9367115d5295a1ecb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac34f075a84e0c3a9367115d5295a1ecb"></a>
-QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>reverseStack</b> (QList&lt; <a class="el" href="class_node.html">Node</a> * &gt; stack)</td></tr>
+<tr class="memitem:ac34f075a84e0c3a9367115d5295a1ecb"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#ac34f075a84e0c3a9367115d5295a1ecb">reverseStack</a> (QList&lt; <a class="el" href="class_node.html">Node</a> * &gt; stack)</td></tr>
+<tr class="memdesc:ac34f075a84e0c3a9367115d5295a1ecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverses the order of nodes in stack.  <a href="#ac34f075a84e0c3a9367115d5295a1ecb">More...</a><br/></td></tr>
 <tr class="separator:ac34f075a84e0c3a9367115d5295a1ecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab83b8c304ac8621042a25f67995c453c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab83b8c304ac8621042a25f67995c453c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeEdge</b> (<a class="el" href="class_edge.html">Edge</a> *edge)</td></tr>
+<tr class="memitem:ab83b8c304ac8621042a25f67995c453c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#ab83b8c304ac8621042a25f67995c453c">removeEdge</a> (<a class="el" href="class_edge.html">Edge</a> *edge)</td></tr>
+<tr class="memdesc:ab83b8c304ac8621042a25f67995c453c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes edge from scene and deletes it.  <a href="#ab83b8c304ac8621042a25f67995c453c">More...</a><br/></td></tr>
 <tr class="separator:ab83b8c304ac8621042a25f67995c453c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ec3935cd3e0735969476d7463a0aa82"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ec3935cd3e0735969476d7463a0aa82"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>removeNode</b> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memitem:a7ec3935cd3e0735969476d7463a0aa82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a7ec3935cd3e0735969476d7463a0aa82">removeNode</a> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memdesc:a7ec3935cd3e0735969476d7463a0aa82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes node from nodegraph.  <a href="#a7ec3935cd3e0735969476d7463a0aa82">More...</a><br/></td></tr>
 <tr class="separator:a7ec3935cd3e0735969476d7463a0aa82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6e25c95718da6b8d0b06910f4553dcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6e25c95718da6b8d0b06910f4553dcc"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>inListNode</b> (QList&lt; <a class="el" href="class_node.html">Node</a> * &gt; list, <a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memitem:aa6e25c95718da6b8d0b06910f4553dcc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#aa6e25c95718da6b8d0b06910f4553dcc">inListNode</a> (QList&lt; <a class="el" href="class_node.html">Node</a> * &gt; list, <a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memdesc:aa6e25c95718da6b8d0b06910f4553dcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if node is in list 'list'.  <a href="#aa6e25c95718da6b8d0b06910f4553dcc">More...</a><br/></td></tr>
 <tr class="separator:aa6e25c95718da6b8d0b06910f4553dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6752281eb6d8a5bfa461e29ebb65309d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6752281eb6d8a5bfa461e29ebb65309d"></a>
-<a class="el" href="class_edge.html">Edge</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getActiveEdge</b> ()</td></tr>
+<tr class="memitem:a6752281eb6d8a5bfa461e29ebb65309d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">Edge</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a6752281eb6d8a5bfa461e29ebb65309d">getActiveEdge</a> ()</td></tr>
+<tr class="memdesc:a6752281eb6d8a5bfa461e29ebb65309d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns active edge.  <a href="#a6752281eb6d8a5bfa461e29ebb65309d">More...</a><br/></td></tr>
 <tr class="separator:a6752281eb6d8a5bfa461e29ebb65309d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58c9cc14f65765c17a6d381be6c8ab6f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58c9cc14f65765c17a6d381be6c8ab6f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pushItem</b> (QGraphicsItem *item, QPointF pos)</td></tr>
+<tr class="memitem:a58c9cc14f65765c17a6d381be6c8ab6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a58c9cc14f65765c17a6d381be6c8ab6f">pushItem</a> (QGraphicsItem *item, QPointF pos)</td></tr>
+<tr class="memdesc:a58c9cc14f65765c17a6d381be6c8ab6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes item to nodegraph at certain position.  <a href="#a58c9cc14f65765c17a6d381be6c8ab6f">More...</a><br/></td></tr>
 <tr class="separator:a58c9cc14f65765c17a6d381be6c8ab6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5f33eec269fb48a26af06e812397d1d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa5f33eec269fb48a26af06e812397d1d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pushNode</b> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memitem:aa5f33eec269fb48a26af06e812397d1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#aa5f33eec269fb48a26af06e812397d1d">pushNode</a> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memdesc:aa5f33eec269fb48a26af06e812397d1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes node to graph.  <a href="#aa5f33eec269fb48a26af06e812397d1d">More...</a><br/></td></tr>
 <tr class="separator:aa5f33eec269fb48a26af06e812397d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08e286385bd6713ee7fd52978dbac8ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08e286385bd6713ee7fd52978dbac8ba"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pushNode</b> (<a class="el" href="class_node.html">Node</a> *node, QPointF pos)</td></tr>
+<tr class="memitem:a08e286385bd6713ee7fd52978dbac8ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a08e286385bd6713ee7fd52978dbac8ba">pushNode</a> (<a class="el" href="class_node.html">Node</a> *node, QPointF pos)</td></tr>
+<tr class="memdesc:a08e286385bd6713ee7fd52978dbac8ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes node to graph at position.  <a href="#a08e286385bd6713ee7fd52978dbac8ba">More...</a><br/></td></tr>
 <tr class="separator:a08e286385bd6713ee7fd52978dbac8ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3496913073b738baca992ba93f494998"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3496913073b738baca992ba93f494998"></a>
-<a class="el" href="class_edge.html">Edge</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>addEdge</b> (<a class="el" href="class_edge.html">Edge</a> *edge)</td></tr>
+<tr class="memitem:a3496913073b738baca992ba93f494998"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">Edge</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a3496913073b738baca992ba93f494998">addEdge</a> (<a class="el" href="class_edge.html">Edge</a> *edge)</td></tr>
+<tr class="memdesc:a3496913073b738baca992ba93f494998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds new edge object to graph scene.  <a href="#a3496913073b738baca992ba93f494998">More...</a><br/></td></tr>
 <tr class="separator:a3496913073b738baca992ba93f494998"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2737fd5e3597ce99ee541e7f0a66a94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2737fd5e3597ce99ee541e7f0a66a94"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getMode</b> ()</td></tr>
+<tr class="memitem:ae2737fd5e3597ce99ee541e7f0a66a94"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#ae2737fd5e3597ce99ee541e7f0a66a94">getMode</a> ()</td></tr>
+<tr class="memdesc:ae2737fd5e3597ce99ee541e7f0a66a94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current nodegraph mode (Pan, <a class="el" href="class_select.html">Select</a> etc)  <a href="#ae2737fd5e3597ce99ee541e7f0a66a94">More...</a><br/></td></tr>
 <tr class="separator:ae2737fd5e3597ce99ee541e7f0a66a94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4e5a43f5d9d6ed266663a8fa1ae7300"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4e5a43f5d9d6ed266663a8fa1ae7300"></a>
-QStandardItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>getTableData</b> ()</td></tr>
+<tr class="memitem:af4e5a43f5d9d6ed266663a8fa1ae7300"><td class="memItemLeft" align="right" valign="top">QStandardItemModel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#af4e5a43f5d9d6ed266663a8fa1ae7300">getTableData</a> ()</td></tr>
+<tr class="memdesc:af4e5a43f5d9d6ed266663a8fa1ae7300"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pointer to main table data model.  <a href="#af4e5a43f5d9d6ed266663a8fa1ae7300">More...</a><br/></td></tr>
 <tr class="separator:af4e5a43f5d9d6ed266663a8fa1ae7300"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5d3bbbc716069763ac14f013e2619f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5d3bbbc716069763ac14f013e2619f6"></a>
-<a class="el" href="class_main_window.html">MainWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getParent</b> ()</td></tr>
+<tr class="memitem:af5d3bbbc716069763ac14f013e2619f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_main_window.html">MainWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#af5d3bbbc716069763ac14f013e2619f6">getParent</a> ()</td></tr>
+<tr class="memdesc:af5d3bbbc716069763ac14f013e2619f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get parent object of nodegraph.  <a href="#af5d3bbbc716069763ac14f013e2619f6">More...</a><br/></td></tr>
 <tr class="separator:af5d3bbbc716069763ac14f013e2619f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a260d25b9425ef3cb68a39ae3281f0b2c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260d25b9425ef3cb68a39ae3281f0b2c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>connectViewer</b> (<a class="el" href="class_node.html">Node</a> *node, int socket)</td></tr>
+<tr class="memitem:a260d25b9425ef3cb68a39ae3281f0b2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a260d25b9425ef3cb68a39ae3281f0b2c">connectViewer</a> (<a class="el" href="class_node.html">Node</a> *node, int socket)</td></tr>
+<tr class="memdesc:a260d25b9425ef3cb68a39ae3281f0b2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects viewer to selected node.  <a href="#a260d25b9425ef3cb68a39ae3281f0b2c">More...</a><br/></td></tr>
 <tr class="separator:a260d25b9425ef3cb68a39ae3281f0b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a916782da9e71a6682b9edc8467c4f313"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a916782da9e71a6682b9edc8467c4f313"></a>
-<a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getActiveViewer</b> ()</td></tr>
+<tr class="memitem:a916782da9e71a6682b9edc8467c4f313"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a916782da9e71a6682b9edc8467c4f313">getActiveViewer</a> ()</td></tr>
+<tr class="memdesc:a916782da9e71a6682b9edc8467c4f313"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get active viewer node.  <a href="#a916782da9e71a6682b9edc8467c4f313">More...</a><br/></td></tr>
 <tr class="separator:a916782da9e71a6682b9edc8467c4f313"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace0d62eab18f05c3731064091e8d8c5f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace0d62eab18f05c3731064091e8d8c5f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setActiveViewer</b> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memitem:ace0d62eab18f05c3731064091e8d8c5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#ace0d62eab18f05c3731064091e8d8c5f">setActiveViewer</a> (<a class="el" href="class_node.html">Node</a> *node)</td></tr>
+<tr class="memdesc:ace0d62eab18f05c3731064091e8d8c5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets node as active viewer.  <a href="#ace0d62eab18f05c3731064091e8d8c5f">More...</a><br/></td></tr>
 <tr class="separator:ace0d62eab18f05c3731064091e8d8c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b692c1231967ba6aa83fa83ddf60564"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b692c1231967ba6aa83fa83ddf60564"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>disableSelected</b> ()</td></tr>
+<tr class="memitem:a5b692c1231967ba6aa83fa83ddf60564"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a5b692c1231967ba6aa83fa83ddf60564">disableSelected</a> ()</td></tr>
+<tr class="memdesc:a5b692c1231967ba6aa83fa83ddf60564"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables selected nodes.  <a href="#a5b692c1231967ba6aa83fa83ddf60564">More...</a><br/></td></tr>
 <tr class="separator:a5b692c1231967ba6aa83fa83ddf60564"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c15d5fb252354061882f19d5658138b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c15d5fb252354061882f19d5658138b"></a>
-<a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getSelectedNode</b> ()</td></tr>
+<tr class="memitem:a7c15d5fb252354061882f19d5658138b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a7c15d5fb252354061882f19d5658138b">getSelectedNode</a> ()</td></tr>
+<tr class="memdesc:a7c15d5fb252354061882f19d5658138b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets node that was selected at contextmenuevent time.  <a href="#a7c15d5fb252354061882f19d5658138b">More...</a><br/></td></tr>
 <tr class="separator:a7c15d5fb252354061882f19d5658138b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -250,74 +271,59 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mouseReleaseEvent</b>
 <tr class="memitem:ab989b54ca021413c9774c054879bc364"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab989b54ca021413c9774c054879bc364"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>wheelEvent</b> (QWheelEvent *event)</td></tr>
 <tr class="separator:ab989b54ca021413c9774c054879bc364"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a570e378bf90b08322a62f0e7b29a123a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a570e378bf90b08322a62f0e7b29a123a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>contextMenuEvent</b> (QContextMenuEvent *event)</td></tr>
+<tr class="memitem:a570e378bf90b08322a62f0e7b29a123a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a570e378bf90b08322a62f0e7b29a123a">contextMenuEvent</a> (QContextMenuEvent *event)</td></tr>
+<tr class="memdesc:a570e378bf90b08322a62f0e7b29a123a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context menu event.  <a href="#a570e378bf90b08322a62f0e7b29a123a">More...</a><br/></td></tr>
 <tr class="separator:a570e378bf90b08322a62f0e7b29a123a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77b4d87f3dc92e331c60841ca4d5bffd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77b4d87f3dc92e331c60841ca4d5bffd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>scaleView</b> (qreal scaleFactor)</td></tr>
+<tr class="memitem:a77b4d87f3dc92e331c60841ca4d5bffd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a77b4d87f3dc92e331c60841ca4d5bffd">scaleView</a> (qreal scaleFactor)</td></tr>
+<tr class="memdesc:a77b4d87f3dc92e331c60841ca4d5bffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales view by scaleFactor.  <a href="#a77b4d87f3dc92e331c60841ca4d5bffd">More...</a><br/></td></tr>
 <tr class="separator:a77b4d87f3dc92e331c60841ca4d5bffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a147abcdfb186732a4a1d0869f507d7aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a147abcdfb186732a4a1d0869f507d7aa"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>centerView</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a147abcdfb186732a4a1d0869f507d7aa">centerView</a> ()</td></tr>
+<tr class="memdesc:a147abcdfb186732a4a1d0869f507d7aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Centers view on selected nodes. Not working!!! <br/></td></tr>
 <tr class="separator:a147abcdfb186732a4a1d0869f507d7aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:af5bee20937d31b53e72340b63383e058"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5bee20937d31b53e72340b63383e058"></a>
-QPoint&#160;</td><td class="memItemRight" valign="bottom"><b>_lastPos</b></td></tr>
+<tr class="memitem:af5bee20937d31b53e72340b63383e058"><td class="memItemLeft" align="right" valign="top">QPoint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#af5bee20937d31b53e72340b63383e058">_lastPos</a></td></tr>
 <tr class="separator:af5bee20937d31b53e72340b63383e058"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6bf8ff221cb30a86d5119a085f36e26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6bf8ff221cb30a86d5119a085f36e26"></a>
-QPointF&#160;</td><td class="memItemRight" valign="bottom"><b>_contextMenuPos</b></td></tr>
+<tr class="memitem:ae6bf8ff221cb30a86d5119a085f36e26"><td class="memItemLeft" align="right" valign="top">QPointF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#ae6bf8ff221cb30a86d5119a085f36e26">_contextMenuPos</a></td></tr>
 <tr class="separator:ae6bf8ff221cb30a86d5119a085f36e26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd341a799e5dd5c53403bbf88f1c979f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd341a799e5dd5c53403bbf88f1c979f"></a>
-<a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_contextSelectedNode</b></td></tr>
+<tr class="memitem:acd341a799e5dd5c53403bbf88f1c979f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#acd341a799e5dd5c53403bbf88f1c979f">_contextSelectedNode</a></td></tr>
 <tr class="separator:acd341a799e5dd5c53403bbf88f1c979f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a0dbbf9f2338f3644eb83c4c7dc513c3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0dbbf9f2338f3644eb83c4c7dc513c3c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>createActions</b> ()</td></tr>
+<tr class="memitem:a0dbbf9f2338f3644eb83c4c7dc513c3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a0dbbf9f2338f3644eb83c4c7dc513c3c">createActions</a> ()</td></tr>
+<tr class="memdesc:a0dbbf9f2338f3644eb83c4c7dc513c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates actions for built-in ops. OLD!  <a href="#a0dbbf9f2338f3644eb83c4c7dc513c3c">More...</a><br/></td></tr>
 <tr class="separator:a0dbbf9f2338f3644eb83c4c7dc513c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a13849d8f39850b9203cedbb10cd4aa61"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13849d8f39850b9203cedbb10cd4aa61"></a>
-<a class="el" href="class_main_window.html">MainWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>myParent</b></td></tr>
+<tr class="memitem:a13849d8f39850b9203cedbb10cd4aa61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_main_window.html">MainWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a13849d8f39850b9203cedbb10cd4aa61">myParent</a></td></tr>
 <tr class="separator:a13849d8f39850b9203cedbb10cd4aa61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dd769fd58b9154fae4f4a2fa45897fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2dd769fd58b9154fae4f4a2fa45897fe"></a>
-QGraphicsScene *&#160;</td><td class="memItemRight" valign="bottom"><b>myScene</b></td></tr>
+<tr class="memitem:a2dd769fd58b9154fae4f4a2fa45897fe"><td class="memItemLeft" align="right" valign="top">QGraphicsScene *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a2dd769fd58b9154fae4f4a2fa45897fe">myScene</a></td></tr>
 <tr class="separator:a2dd769fd58b9154fae4f4a2fa45897fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accfb574daec340ee65935521973ffa44"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="accfb574daec340ee65935521973ffa44"></a>
-QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>nodeList</b></td></tr>
+<tr class="memitem:accfb574daec340ee65935521973ffa44"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#accfb574daec340ee65935521973ffa44">nodeList</a></td></tr>
 <tr class="separator:accfb574daec340ee65935521973ffa44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a094ba4e961a92b61298f5248f162db9c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a094ba4e961a92b61298f5248f162db9c"></a>
-QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>nodeStack</b></td></tr>
+<tr class="memitem:a094ba4e961a92b61298f5248f162db9c"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a094ba4e961a92b61298f5248f162db9c">nodeStack</a></td></tr>
 <tr class="separator:a094ba4e961a92b61298f5248f162db9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae23fe967bafa5d0c1b8cf3d99bec5ff7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae23fe967bafa5d0c1b8cf3d99bec5ff7"></a>
-QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>evalStack</b></td></tr>
+<tr class="memitem:ae23fe967bafa5d0c1b8cf3d99bec5ff7"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#ae23fe967bafa5d0c1b8cf3d99bec5ff7">evalStack</a></td></tr>
 <tr class="separator:ae23fe967bafa5d0c1b8cf3d99bec5ff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ccfbc2b44637b565b216a85cce26a3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ccfbc2b44637b565b216a85cce26a3c"></a>
-QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>visitStack</b></td></tr>
+<tr class="memitem:a2ccfbc2b44637b565b216a85cce26a3c"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a2ccfbc2b44637b565b216a85cce26a3c">visitStack</a></td></tr>
 <tr class="separator:a2ccfbc2b44637b565b216a85cce26a3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e77adf4e0955c77c7bd9e119b9c5938"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e77adf4e0955c77c7bd9e119b9c5938"></a>
-QGraphicsLineItem *&#160;</td><td class="memItemRight" valign="bottom"><b>line</b></td></tr>
+<tr class="memitem:a3e77adf4e0955c77c7bd9e119b9c5938"><td class="memItemLeft" align="right" valign="top">QGraphicsLineItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a3e77adf4e0955c77c7bd9e119b9c5938">line</a></td></tr>
 <tr class="separator:a3e77adf4e0955c77c7bd9e119b9c5938"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ae9a2139642cdd5387a41aca8968b52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ae9a2139642cdd5387a41aca8968b52"></a>
-QGraphicsRectItem *&#160;</td><td class="memItemRight" valign="bottom"><b>selectRect</b></td></tr>
+<tr class="memitem:a7ae9a2139642cdd5387a41aca8968b52"><td class="memItemLeft" align="right" valign="top">QGraphicsRectItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a7ae9a2139642cdd5387a41aca8968b52">selectRect</a></td></tr>
 <tr class="separator:a7ae9a2139642cdd5387a41aca8968b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dc5da3aafd6d104bab269de7baec6b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6dc5da3aafd6d104bab269de7baec6b8"></a>
-QGraphicsItem *&#160;</td><td class="memItemRight" valign="bottom"><b>selectedItem</b></td></tr>
+<tr class="memitem:a6dc5da3aafd6d104bab269de7baec6b8"><td class="memItemLeft" align="right" valign="top">QGraphicsItem *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a6dc5da3aafd6d104bab269de7baec6b8">selectedItem</a></td></tr>
 <tr class="separator:a6dc5da3aafd6d104bab269de7baec6b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b35c632f34fceb315477e63ad789de6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b35c632f34fceb315477e63ad789de6"></a>
-Mode&#160;</td><td class="memItemRight" valign="bottom"><b>myMode</b></td></tr>
+<tr class="memitem:a2b35c632f34fceb315477e63ad789de6"><td class="memItemLeft" align="right" valign="top">Mode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a2b35c632f34fceb315477e63ad789de6">myMode</a></td></tr>
 <tr class="separator:a2b35c632f34fceb315477e63ad789de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65a1a3a1a61f958697de9ae4af1ab46a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65a1a3a1a61f958697de9ae4af1ab46a"></a>
-<a class="el" href="class_edge.html">Edge</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>activeEdge</b></td></tr>
+<tr class="memitem:a65a1a3a1a61f958697de9ae4af1ab46a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">Edge</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a65a1a3a1a61f958697de9ae4af1ab46a">activeEdge</a></td></tr>
 <tr class="separator:a65a1a3a1a61f958697de9ae4af1ab46a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1178bc43673961e58581102a4a489a00"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1178bc43673961e58581102a4a489a00"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>onNode</b></td></tr>
+<tr class="memitem:a1178bc43673961e58581102a4a489a00"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a1178bc43673961e58581102a4a489a00">onNode</a></td></tr>
 <tr class="separator:a1178bc43673961e58581102a4a489a00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbceb993dba97114592045a40091e09d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abbceb993dba97114592045a40091e09d"></a>
-<a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>activeViewer</b></td></tr>
+<tr class="memitem:abbceb993dba97114592045a40091e09d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#abbceb993dba97114592045a40091e09d">activeViewer</a></td></tr>
 <tr class="separator:abbceb993dba97114592045a40091e09d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a205a05b913b02763713b044bf3b7859a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a205a05b913b02763713b044bf3b7859a"></a>
 QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>newAct</b></td></tr>
@@ -343,22 +349,1550 @@ QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>newActV</b></td>
 <tr class="memitem:a37cea6441d342630c780dd974c1764f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37cea6441d342630c780dd974c1764f5"></a>
 QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>newBackDrop</b></td></tr>
 <tr class="separator:a37cea6441d342630c780dd974c1764f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a416ab9597b2f508b5eec3f4d93ef2625"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a416ab9597b2f508b5eec3f4d93ef2625"></a>
-QStandardItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>tableData</b></td></tr>
+<tr class="memitem:a416ab9597b2f508b5eec3f4d93ef2625"><td class="memItemLeft" align="right" valign="top">QStandardItemModel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode_graph.html#a416ab9597b2f508b5eec3f4d93ef2625">tableData</a></td></tr>
 <tr class="separator:a416ab9597b2f508b5eec3f4d93ef2625"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>[0] </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a0abbeafd84c1aad59437ff22c5c1f3b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">nodeGraph::nodeGraph </td>
+          <td>(</td>
+          <td class="paramtype">QGraphicsScene *&#160;</td>
+          <td class="paramname"><em>scene</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_main_window.html">MainWindow</a> *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Main nodegraph class that performs operations on nodes. </p>
+<p>All operations that add, move, connect or delete nodes are performed here, also holds the view into scne that holds the DAG objects. Subclasses QGraphicsView. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scene</td><td>Scene that holds graphical representation of DAG </td></tr>
+    <tr><td class="paramname">parent</td><td>Main UI window </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a0abbeafd84c1aad59437ff22c5c1f3b3_cgraph.png" border="0" usemap="#classnode_graph_a0abbeafd84c1aad59437ff22c5c1f3b3_cgraph" alt=""/></div>
+<map name="classnode_graph_a0abbeafd84c1aad59437ff22c5c1f3b3_cgraph" id="classnode_graph_a0abbeafd84c1aad59437ff22c5c1f3b3_cgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a14faf757d0346517efb2bdbecd69afa6" title="Add scene to nodegraph. " alt="" coords="222,5,373,32"/><area shape="rect" id="node3" href="classnode_graph.html#a0dbbf9f2338f3644eb83c4c7dc513c3c" title="Creates actions for built&#45;in ops. OLD! " alt="" coords="211,56,384,83"/><area shape="rect" id="node7" href="classnode_graph.html#aa5f33eec269fb48a26af06e812397d1d" title="Pushes node to graph. " alt="" coords="222,107,373,133"/><area shape="rect" id="node4" href="classnode_graph.html#abcbaece4826aee2cce441279e21d0d7a" title="Adds node to nodegraph. OLD!!! " alt="" coords="432,56,576,83"/><area shape="rect" id="node5" href="classnode_graph.html#ace0d62eab18f05c3731064091e8d8c5f" title="Sets node as active viewer. " alt="" coords="625,31,810,57"/><area shape="rect" id="node6" href="classnode_graph.html#a58c9cc14f65765c17a6d381be6c8ab6f" title="Pushes item to nodegraph at certain position. " alt="" coords="644,81,791,108"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a3496913073b738baca992ba93f494998"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_edge.html">Edge</a> * nodeGraph::addEdge </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_edge.html">Edge</a> *&#160;</td>
+          <td class="paramname"><em>edge</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds new edge object to graph scene. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">edge</td><td><a class="el" href="class_edge.html" title="[0] ">Edge</a> to be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the same edge. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a3496913073b738baca992ba93f494998_icgraph.png" border="0" usemap="#classnode_graph_a3496913073b738baca992ba93f494998_icgraph" alt=""/></div>
+<map name="classnode_graph_a3496913073b738baca992ba93f494998_icgraph" id="classnode_graph_a3496913073b738baca992ba93f494998_icgraph">
+<area shape="rect" id="node2" href="class_node.html#a37ed70373f2f52325e71843a14403206" title="Node input setup. " alt="" coords="198,5,333,32"/><area shape="rect" id="node4" href="class_node.html#aa084a287fbd5b64c4db813cd82f51763" title="Node inputs setup. Old, not used! " alt="" coords="202,56,329,83"/><area shape="rect" id="node3" href="class_node.html#aae63974f016529818a9052802a9162fc" title="Node constructor. New variant. " alt="" coords="381,5,472,32"/><area shape="rect" id="node5" href="class_node.html#a0f1a6da00f920a86905f591742e3c166" title="Node constructor. Old variant, not used. " alt="" coords="381,56,472,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="abcbaece4826aee2cce441279e21d0d7a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::addNode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds node to nodegraph. OLD!!! </p>
+<p>Adds new node to nodegraph, used with built-in ops. OLD! Not used with plugin system. </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_abcbaece4826aee2cce441279e21d0d7a_cgraph.png" border="0" usemap="#classnode_graph_abcbaece4826aee2cce441279e21d0d7a_cgraph" alt=""/></div>
+<map name="classnode_graph_abcbaece4826aee2cce441279e21d0d7a_cgraph" id="classnode_graph_abcbaece4826aee2cce441279e21d0d7a_cgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#ace0d62eab18f05c3731064091e8d8c5f" title="Sets node as active viewer. " alt="" coords="198,5,383,32"/><area shape="rect" id="node3" href="classnode_graph.html#a58c9cc14f65765c17a6d381be6c8ab6f" title="Pushes item to nodegraph at certain position. " alt="" coords="217,56,364,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_abcbaece4826aee2cce441279e21d0d7a_icgraph.png" border="0" usemap="#classnode_graph_abcbaece4826aee2cce441279e21d0d7a_icgraph" alt=""/></div>
+<map name="classnode_graph_abcbaece4826aee2cce441279e21d0d7a_icgraph" id="classnode_graph_abcbaece4826aee2cce441279e21d0d7a_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a0dbbf9f2338f3644eb83c4c7dc513c3c" title="Creates actions for built&#45;in ops. OLD! " alt="" coords="197,5,371,32"/><area shape="rect" id="node3" href="classnode_graph.html#a0abbeafd84c1aad59437ff22c5c1f3b3" title="Main nodegraph class that performs operations on nodes. " alt="" coords="419,5,575,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a80eb6c9c9ef7d4eec41e15dcabf9b5c7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::addOp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_op_interface.html">OpInterface</a> *&#160;</td>
+          <td class="paramname"><em>Op</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds new <a class="el" href="class_op.html">Op</a> to nodegraph. </p>
+<p>Adds new <a class="el" href="class_op.html">Op</a> to nodegraph. If one node is previously selected, adds new node to it's bottom. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_main_window.html#a4794eaad406f40093c06569cd556480d" title="Adds new Op to nodegraph. Adds new Op to main nodegraph. At first it casts the sender object to QActi...">MainWindow::addOp()</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_op.html">Op</a></td><td><a class="el" href="class_op_interface.html">OpInterface</a> to be added </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a80eb6c9c9ef7d4eec41e15dcabf9b5c7_cgraph.png" border="0" usemap="#classnode_graph_a80eb6c9c9ef7d4eec41e15dcabf9b5c7_cgraph" alt=""/></div>
+<map name="classnode_graph_a80eb6c9c9ef7d4eec41e15dcabf9b5c7_cgraph" id="classnode_graph_a80eb6c9c9ef7d4eec41e15dcabf9b5c7_cgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a58c9cc14f65765c17a6d381be6c8ab6f" title="Pushes item to nodegraph at certain position. " alt="" coords="184,5,331,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a80eb6c9c9ef7d4eec41e15dcabf9b5c7_icgraph.png" border="0" usemap="#classnode_graph_a80eb6c9c9ef7d4eec41e15dcabf9b5c7_icgraph" alt=""/></div>
+<map name="classnode_graph_a80eb6c9c9ef7d4eec41e15dcabf9b5c7_icgraph" id="classnode_graph_a80eb6c9c9ef7d4eec41e15dcabf9b5c7_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a4794eaad406f40093c06569cd556480d" title="Adds new Op to nodegraph. Adds new Op to main nodegraph. At first it casts the sender object to QActi..." alt="" coords="185,5,327,32"/><area shape="rect" id="node3" href="class_main_window.html#a150054b7e0f06b55eb2640adbd3d7cb9" title="Casts plugins to OpInterface and calls registerOp() " alt="" coords="376,5,568,32"/><area shape="rect" id="node4" href="class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2" title="Loads DLL plugins. " alt="" coords="616,5,787,32"/><area shape="rect" id="node5" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="835,5,1013,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a14faf757d0346517efb2bdbecd69afa6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::addScene </td>
+          <td>(</td>
+          <td class="paramtype">QGraphicsScene *&#160;</td>
+          <td class="paramname"><em>scene</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add scene to nodegraph. </p>
+<p>Sets main DAG scene as nodegraph scene. Nodegraph acts as a window into that scene and thus there can be more than one nodegraph connected to the same scene. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scene</td><td>Scene that holds the DAG objects. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_main_window.html#a48180171ce57b04e771bc49f85c1ee00" title="Creates the nodegraph DAG scene. ">MainWindow::createDAG()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a14faf757d0346517efb2bdbecd69afa6_icgraph.png" border="0" usemap="#classnode_graph_a14faf757d0346517efb2bdbecd69afa6_icgraph" alt=""/></div>
+<map name="classnode_graph_a14faf757d0346517efb2bdbecd69afa6_icgraph" id="classnode_graph_a14faf757d0346517efb2bdbecd69afa6_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a0abbeafd84c1aad59437ff22c5c1f3b3" title="Main nodegraph class that performs operations on nodes. " alt="" coords="206,5,362,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a260d25b9425ef3cb68a39ae3281f0b2c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::connectViewer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>socket</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Connects viewer to selected node. </p>
+<p><a class="el" href="class_viewer.html">Viewer</a> socket 'socket' gets connected to selected node 'node'. Socket part does not work at the moment. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td><a class="el" href="class_node.html">Node</a> to be connected </td></tr>
+    <tr><td class="paramname">socket</td><td><a class="el" href="class_viewer.html">Viewer</a> socket that gets connected (not working) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a260d25b9425ef3cb68a39ae3281f0b2c_cgraph.png" border="0" usemap="#classnode_graph_a260d25b9425ef3cb68a39ae3281f0b2c_cgraph" alt=""/></div>
+<map name="classnode_graph_a260d25b9425ef3cb68a39ae3281f0b2c_cgraph" id="classnode_graph_a260d25b9425ef3cb68a39ae3281f0b2c_cgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a916782da9e71a6682b9edc8467c4f313" title="Get active viewer node. " alt="" coords="233,67,418,94"/><area shape="rect" id="node3" href="class_node.html#a9bfe1d3a76fb2dff18b9cdf508287d93" title="Remove edge from node. " alt="" coords="260,118,391,144"/><area shape="rect" id="node4" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. " alt="" coords="255,168,395,195"/><area shape="rect" id="node5" href="class_node.html#a77633cd46714b708d3e42f2c165f42ff" title="Get list of incoming edges. " alt="" coords="739,30,845,56"/><area shape="rect" id="node6" href="classnode_graph.html#a5e24dbba0dee05f7e247abbdcf7a34c4" title="Add all nodes that are inputs for current node to &#39;nodeStack&#39;. " alt="" coords="467,52,655,93"/><area shape="rect" id="node7" href="classnode_graph.html#ac34f075a84e0c3a9367115d5295a1ecb" title="Reverses the order of nodes in stack. " alt="" coords="477,118,645,144"/><area shape="rect" id="node8" href="classnode_graph.html#af5d3bbbc716069763ac14f013e2619f6" title="Get parent object of nodegraph. " alt="" coords="717,168,867,195"/><area shape="rect" id="node9" href="class_main_window.html#a4910bd522e8791abaed69a7ee692753a" title="Get main viewer area. Returns main viewer area, that contains tableview and graphical views..." alt="" coords="481,219,642,246"/><area shape="rect" id="node10" href="classnode_graph.html#a14141eb2a0040c0eec920a5550f51e00" title="Node graph execution method. " alt="" coords="492,270,631,296"/><area shape="rect" id="node14" href="classnode_graph.html#a6815faf0db29b0a5bc0891e578db4e7c" title="Creates list of nodes in stack. " alt="" coords="480,320,643,347"/><area shape="rect" id="node11" href="classnode_graph.html#af4e5a43f5d9d6ed266663a8fa1ae7300" title="Get pointer to main table data model. " alt="" coords="707,244,877,271"/><area shape="rect" id="node13" href="class_main_window.html#a195a755d1c5b5282556c4ced26c3de41" title="Get main 2D scene. Returns main 2D QGraphicsScene scene called &#39;scene2D&#39;. " alt="" coords="705,295,879,322"/><area shape="rect" id="node12" href="class_main_window.html#a4862a67e934ab749c7e20642ce28e141" title="Get main tabledata model. " alt="" coords="929,244,1109,271"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a570e378bf90b08322a62f0e7b29a123a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::contextMenuEvent </td>
+          <td>(</td>
+          <td class="paramtype">QContextMenuEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Context menu event. </p>
+<p>This function shows the nodegraph context menu (right-click menu). It also stores right-click position and node that was selected at event time in variables _contextMenuPos and _contextSelectedNode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>Event. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnode_graph.html#ae6bf8ff221cb30a86d5119a085f36e26">_contextMenuPos</a> </dd>
+<dd>
+<a class="el" href="classnode_graph.html#acd341a799e5dd5c53403bbf88f1c979f">_contextSelectedNode</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0dbbf9f2338f3644eb83c4c7dc513c3c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::createActions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates actions for built-in ops. OLD! </p>
+<p>This function creates actions for built-in ops. Not used anymore! </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a0dbbf9f2338f3644eb83c4c7dc513c3c_cgraph.png" border="0" usemap="#classnode_graph_a0dbbf9f2338f3644eb83c4c7dc513c3c_cgraph" alt=""/></div>
+<map name="classnode_graph_a0dbbf9f2338f3644eb83c4c7dc513c3c_cgraph" id="classnode_graph_a0dbbf9f2338f3644eb83c4c7dc513c3c_cgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#abcbaece4826aee2cce441279e21d0d7a" title="Adds node to nodegraph. OLD!!! " alt="" coords="227,31,371,57"/><area shape="rect" id="node3" href="classnode_graph.html#ace0d62eab18f05c3731064091e8d8c5f" title="Sets node as active viewer. " alt="" coords="419,5,605,32"/><area shape="rect" id="node4" href="classnode_graph.html#a58c9cc14f65765c17a6d381be6c8ab6f" title="Pushes item to nodegraph at certain position. " alt="" coords="439,56,585,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a0dbbf9f2338f3644eb83c4c7dc513c3c_icgraph.png" border="0" usemap="#classnode_graph_a0dbbf9f2338f3644eb83c4c7dc513c3c_icgraph" alt=""/></div>
+<map name="classnode_graph_a0dbbf9f2338f3644eb83c4c7dc513c3c_icgraph" id="classnode_graph_a0dbbf9f2338f3644eb83c4c7dc513c3c_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a0abbeafd84c1aad59437ff22c5c1f3b3" title="Main nodegraph class that performs operations on nodes. " alt="" coords="227,5,383,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a6815faf0db29b0a5bc0891e578db4e7c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString nodeGraph::debugStack </td>
+          <td>(</td>
+          <td class="paramtype">QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td>
+          <td class="paramname"><em>stack</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates list of nodes in stack. </p>
+<p>Not used? </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stack</td><td>Stack which is debugged. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QString with node names in stack. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a6815faf0db29b0a5bc0891e578db4e7c_icgraph.png" border="0" usemap="#classnode_graph_a6815faf0db29b0a5bc0891e578db4e7c_icgraph" alt=""/></div>
+<map name="classnode_graph_a6815faf0db29b0a5bc0891e578db4e7c_icgraph" id="classnode_graph_a6815faf0db29b0a5bc0891e578db4e7c_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. " alt="" coords="217,31,357,57"/><area shape="rect" id="node3" href="classnode_graph.html#a260d25b9425ef3cb68a39ae3281f0b2c" title="Connects viewer to selected node. " alt="" coords="409,5,588,32"/><area shape="rect" id="node4" href="classnode_graph.html#a5b692c1231967ba6aa83fa83ddf60564" title="Disables selected nodes. " alt="" coords="406,56,591,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a5b692c1231967ba6aa83fa83ddf60564"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::disableSelected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Disables selected nodes. </p>
+<p>Disables all selected nodes. Disabled nodes let data pass through unchanged. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_node.html#a053bc67d7bb8c9f17d45941e1e251f34" title="Sets node as disabled. ">Node::disable()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a5b692c1231967ba6aa83fa83ddf60564_cgraph.png" border="0" usemap="#classnode_graph_a5b692c1231967ba6aa83fa83ddf60564_cgraph" alt=""/></div>
+<map name="classnode_graph_a5b692c1231967ba6aa83fa83ddf60564_cgraph" id="classnode_graph_a5b692c1231967ba6aa83fa83ddf60564_cgraph">
+<area shape="rect" id="node2" href="class_node.html#a053bc67d7bb8c9f17d45941e1e251f34" title="Sets node as disabled. " alt="" coords="260,20,361,47"/><area shape="rect" id="node5" href="class_node.html#ad043510fed99fb5f3fecda50902ab0d8" title="Is node disabled? " alt="" coords="251,100,371,127"/><area shape="rect" id="node6" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. " alt="" coords="241,209,381,236"/><area shape="rect" id="node3" href="class_node.html#a7780d0fe2155045286ae499acba274de" title="Overrides bounding rectangle. " alt="" coords="455,5,593,32"/><area shape="rect" id="node4" href="class_node.html#a14317825890619b1bc1ab48169391bf3" title="Get list of outgoing edges. " alt="" coords="697,5,813,32"/><area shape="rect" id="node7" href="class_node.html#a77633cd46714b708d3e42f2c165f42ff" title="Get list of incoming edges. " alt="" coords="702,85,807,112"/><area shape="rect" id="node8" href="classnode_graph.html#a5e24dbba0dee05f7e247abbdcf7a34c4" title="Add all nodes that are inputs for current node to &#39;nodeStack&#39;. " alt="" coords="430,107,618,149"/><area shape="rect" id="node9" href="classnode_graph.html#ac34f075a84e0c3a9367115d5295a1ecb" title="Reverses the order of nodes in stack. " alt="" coords="440,173,608,200"/><area shape="rect" id="node10" href="classnode_graph.html#af5d3bbbc716069763ac14f013e2619f6" title="Get parent object of nodegraph. " alt="" coords="680,224,829,251"/><area shape="rect" id="node11" href="class_main_window.html#a4910bd522e8791abaed69a7ee692753a" title="Get main viewer area. Returns main viewer area, that contains tableview and graphical views..." alt="" coords="443,275,605,301"/><area shape="rect" id="node12" href="classnode_graph.html#a14141eb2a0040c0eec920a5550f51e00" title="Node graph execution method. " alt="" coords="455,325,593,352"/><area shape="rect" id="node16" href="classnode_graph.html#a6815faf0db29b0a5bc0891e578db4e7c" title="Creates list of nodes in stack. " alt="" coords="443,376,605,403"/><area shape="rect" id="node13" href="classnode_graph.html#af4e5a43f5d9d6ed266663a8fa1ae7300" title="Get pointer to main table data model. " alt="" coords="670,300,839,327"/><area shape="rect" id="node15" href="class_main_window.html#a195a755d1c5b5282556c4ced26c3de41" title="Get main 2D scene. Returns main 2D QGraphicsScene scene called &#39;scene2D&#39;. " alt="" coords="667,351,842,377"/><area shape="rect" id="node14" href="class_main_window.html#a4862a67e934ab749c7e20642ce28e141" title="Get main tabledata model. " alt="" coords="891,300,1071,327"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a6cb6d701098460515581e8295da013f2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::evaluate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_node.html">Node</a> graph evaluation loop. </p>
+<p>Starts from active viewer and creates stack of nodes that are ordered in proper evaluation sequence. Used for loop detection? </p>
+<p>&lt; Current last node in evaluation stack </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a6cb6d701098460515581e8295da013f2_cgraph.png" border="0" usemap="#classnode_graph_a6cb6d701098460515581e8295da013f2_cgraph" alt=""/></div>
+<map name="classnode_graph_a6cb6d701098460515581e8295da013f2_cgraph" id="classnode_graph_a6cb6d701098460515581e8295da013f2_cgraph">
+<area shape="rect" id="node2" href="class_node.html#a77633cd46714b708d3e42f2c165f42ff" title="Get list of incoming edges. " alt="" coords="467,21,573,48"/><area shape="rect" id="node3" href="classnode_graph.html#a5e24dbba0dee05f7e247abbdcf7a34c4" title="Add all nodes that are inputs for current node to &#39;nodeStack&#39;. " alt="" coords="195,43,383,85"/><area shape="rect" id="node4" href="classnode_graph.html#ac34f075a84e0c3a9367115d5295a1ecb" title="Reverses the order of nodes in stack. " alt="" coords="205,109,373,136"/><area shape="rect" id="node5" href="classnode_graph.html#af5d3bbbc716069763ac14f013e2619f6" title="Get parent object of nodegraph. " alt="" coords="445,160,595,187"/><area shape="rect" id="node6" href="class_main_window.html#a4910bd522e8791abaed69a7ee692753a" title="Get main viewer area. Returns main viewer area, that contains tableview and graphical views..." alt="" coords="209,211,370,237"/><area shape="rect" id="node7" href="classnode_graph.html#a14141eb2a0040c0eec920a5550f51e00" title="Node graph execution method. " alt="" coords="220,261,359,288"/><area shape="rect" id="node11" href="classnode_graph.html#a6815faf0db29b0a5bc0891e578db4e7c" title="Creates list of nodes in stack. " alt="" coords="208,312,371,339"/><area shape="rect" id="node8" href="classnode_graph.html#af4e5a43f5d9d6ed266663a8fa1ae7300" title="Get pointer to main table data model. " alt="" coords="435,236,605,263"/><area shape="rect" id="node10" href="class_main_window.html#a195a755d1c5b5282556c4ced26c3de41" title="Get main 2D scene. Returns main 2D QGraphicsScene scene called &#39;scene2D&#39;. " alt="" coords="433,287,607,313"/><area shape="rect" id="node9" href="class_main_window.html#a4862a67e934ab749c7e20642ce28e141" title="Get main tabledata model. " alt="" coords="657,236,837,263"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a6cb6d701098460515581e8295da013f2_icgraph.png" border="0" usemap="#classnode_graph_a6cb6d701098460515581e8295da013f2_icgraph" alt=""/></div>
+<map name="classnode_graph_a6cb6d701098460515581e8295da013f2_icgraph" id="classnode_graph_a6cb6d701098460515581e8295da013f2_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a260d25b9425ef3cb68a39ae3281f0b2c" title="Connects viewer to selected node. " alt="" coords="199,5,377,32"/><area shape="rect" id="node3" href="classnode_graph.html#a5b692c1231967ba6aa83fa83ddf60564" title="Disables selected nodes. " alt="" coords="195,56,381,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa1634c5dc271236fd596d75e5fd75a0e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="class_node.html">Node</a> * &gt; nodeGraph::evaluateNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Evaluates node graph starting from node. </p>
+<p>Almost the same as <a class="el" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. ">evaluate()</a> but evaluates node graph starting from specified node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td><a class="el" href="class_node.html">Node</a> to be evaluated. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Stack of nodes ordered in execution order. </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. ">evaluate()</a> </dd>
+<dd>
+<a class="el" href="classnode_graph.html#a5e24dbba0dee05f7e247abbdcf7a34c4" title="Add all nodes that are inputs for current node to &#39;nodeStack&#39;. ">pushNodeEdgesToStack()</a> </dd>
+<dd>
+<a class="el" href="classnode_graph.html#a5e85a88f9f5b09e394e0016c6ff2a340" title="Checks if node is already visited. ">nodeVisited()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_aa1634c5dc271236fd596d75e5fd75a0e_cgraph.png" border="0" usemap="#classnode_graph_aa1634c5dc271236fd596d75e5fd75a0e_cgraph" alt=""/></div>
+<map name="classnode_graph_aa1634c5dc271236fd596d75e5fd75a0e_cgraph" id="classnode_graph_aa1634c5dc271236fd596d75e5fd75a0e_cgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a5e24dbba0dee05f7e247abbdcf7a34c4" title="Add all nodes that are inputs for current node to &#39;nodeStack&#39;. " alt="" coords="225,5,413,46"/><area shape="rect" id="node4" href="classnode_graph.html#ac34f075a84e0c3a9367115d5295a1ecb" title="Reverses the order of nodes in stack. " alt="" coords="235,71,403,97"/><area shape="rect" id="node5" href="classnode_graph.html#a5e85a88f9f5b09e394e0016c6ff2a340" title="Checks if node is already visited. " alt="" coords="238,121,399,148"/><area shape="rect" id="node3" href="class_node.html#a77633cd46714b708d3e42f2c165f42ff" title="Get list of incoming edges. " alt="" coords="462,12,567,39"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a14141eb2a0040c0eec920a5550f51e00"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::execute </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_node.html">Node</a> graph execution method. </p>
+<p>Calls the <a class="el" href="classnode_graph.html#a14141eb2a0040c0eec920a5550f51e00" title="Node graph execution method. ">execute()</a> function on last node in evaluation stack 'evalStack'. Usually it is the active viewer node. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. ">evaluate()</a> </dd>
+<dd>
+<a class="el" href="class_node.html#a6890991303fcc6c9b2b3dec678c8b5db" title="Node execution routine. ">Node::execute()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a14141eb2a0040c0eec920a5550f51e00_cgraph.png" border="0" usemap="#classnode_graph_a14141eb2a0040c0eec920a5550f51e00_cgraph" alt=""/></div>
+<map name="classnode_graph_a14141eb2a0040c0eec920a5550f51e00_cgraph" id="classnode_graph_a14141eb2a0040c0eec920a5550f51e00_cgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#af4e5a43f5d9d6ed266663a8fa1ae7300" title="Get pointer to main table data model. " alt="" coords="195,5,365,32"/><area shape="rect" id="node4" href="classnode_graph.html#af5d3bbbc716069763ac14f013e2619f6" title="Get parent object of nodegraph. " alt="" coords="205,56,355,83"/><area shape="rect" id="node5" href="class_main_window.html#a195a755d1c5b5282556c4ced26c3de41" title="Get main 2D scene. Returns main 2D QGraphicsScene scene called &#39;scene2D&#39;. " alt="" coords="193,107,367,133"/><area shape="rect" id="node3" href="class_main_window.html#a4862a67e934ab749c7e20642ce28e141" title="Get main tabledata model. " alt="" coords="417,5,597,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a14141eb2a0040c0eec920a5550f51e00_icgraph.png" border="0" usemap="#classnode_graph_a14141eb2a0040c0eec920a5550f51e00_icgraph" alt=""/></div>
+<map name="classnode_graph_a14141eb2a0040c0eec920a5550f51e00_icgraph" id="classnode_graph_a14141eb2a0040c0eec920a5550f51e00_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. " alt="" coords="193,31,333,57"/><area shape="rect" id="node3" href="classnode_graph.html#a260d25b9425ef3cb68a39ae3281f0b2c" title="Connects viewer to selected node. " alt="" coords="385,5,564,32"/><area shape="rect" id="node4" href="classnode_graph.html#a5b692c1231967ba6aa83fa83ddf60564" title="Disables selected nodes. " alt="" coords="382,56,567,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a6752281eb6d8a5bfa461e29ebb65309d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_edge.html">Edge</a> * nodeGraph::getActiveEdge </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns active edge. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_edge.html" title="[0] ">Edge</a> in member 'activeEdge' </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a916782da9e71a6682b9edc8467c4f313"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_node.html">Node</a> * nodeGraph::getActiveViewer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get active viewer node. </p>
+<p>This function returns active viewer node that is held in 'activeViewer'. </p>
+<dl class="section return"><dt>Returns</dt><dd>Active viewer node. </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnode_graph.html#ace0d62eab18f05c3731064091e8d8c5f" title="Sets node as active viewer. ">setActiveViewer()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a916782da9e71a6682b9edc8467c4f313_icgraph.png" border="0" usemap="#classnode_graph_a916782da9e71a6682b9edc8467c4f313_icgraph" alt=""/></div>
+<map name="classnode_graph_a916782da9e71a6682b9edc8467c4f313_icgraph" id="classnode_graph_a916782da9e71a6682b9edc8467c4f313_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a260d25b9425ef3cb68a39ae3281f0b2c" title="Connects viewer to selected node. " alt="" coords="240,5,419,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2737fd5e3597ce99ee541e7f0a66a94"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nodeGraph::getMode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get current nodegraph mode (Pan, <a class="el" href="class_select.html">Select</a> etc) </p>
+<dl class="section return"><dt>Returns</dt><dd>Current nodegraph mode. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af5d3bbbc716069763ac14f013e2619f6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_main_window.html">MainWindow</a> * nodeGraph::getParent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get parent object of nodegraph. </p>
+<p>Returns the parent of nodegraph, usually applications <a class="el" href="class_main_window.html">MainWindow</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_node.html">Node</a> graph parent object. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_af5d3bbbc716069763ac14f013e2619f6_icgraph.png" border="0" usemap="#classnode_graph_af5d3bbbc716069763ac14f013e2619f6_icgraph" alt=""/></div>
+<map name="classnode_graph_af5d3bbbc716069763ac14f013e2619f6_icgraph" id="classnode_graph_af5d3bbbc716069763ac14f013e2619f6_icgraph">
+<area shape="rect" id="node2" href="class_node.html#a211566b606141f95093e83000875fb32" title="Creates node callback. " alt="" coords="231,5,374,32"/><area shape="rect" id="node4" href="class_node.html#a6890991303fcc6c9b2b3dec678c8b5db" title="Node execution routine. " alt="" coords="249,56,356,83"/><area shape="rect" id="node5" href="class_node.html#a03ab3d453a097646328712f689961e25" title="Double click event on node. " alt="" coords="203,107,403,133"/><area shape="rect" id="node6" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. " alt="" coords="451,183,591,209"/><area shape="rect" id="node9" href="classnode_graph.html#a14141eb2a0040c0eec920a5550f51e00" title="Node graph execution method. " alt="" coords="233,208,372,235"/><area shape="rect" id="node3" href="class_node.html#a0f1a6da00f920a86905f591742e3c166" title="Node constructor. Old variant, not used. " alt="" coords="476,5,567,32"/><area shape="rect" id="node7" href="classnode_graph.html#a260d25b9425ef3cb68a39ae3281f0b2c" title="Connects viewer to selected node. " alt="" coords="644,157,823,184"/><area shape="rect" id="node8" href="classnode_graph.html#a5b692c1231967ba6aa83fa83ddf60564" title="Disables selected nodes. " alt="" coords="641,208,826,235"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a7c15d5fb252354061882f19d5658138b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_node.html">Node</a> * nodeGraph::getSelectedNode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets node that was selected at contextmenuevent time. </p>
+<p>This method is used for contextmenuevent. If one node is selected, this function returns selected node and new node will be added after that in nodegraph. </p>
+<dl class="section return"><dt>Returns</dt><dd>Selected node held in '_contextSelectedNode' </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnode_graph.html#acd341a799e5dd5c53403bbf88f1c979f">_contextSelectedNode</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a7c15d5fb252354061882f19d5658138b_icgraph.png" border="0" usemap="#classnode_graph_a7c15d5fb252354061882f19d5658138b_icgraph" alt=""/></div>
+<map name="classnode_graph_a7c15d5fb252354061882f19d5658138b_icgraph" id="classnode_graph_a7c15d5fb252354061882f19d5658138b_icgraph">
+<area shape="rect" id="node2" href="class_node.html#a37ed70373f2f52325e71843a14403206" title="Node input setup. " alt="" coords="246,5,381,32"/><area shape="rect" id="node3" href="class_node.html#aae63974f016529818a9052802a9162fc" title="Node constructor. New variant. " alt="" coords="429,5,520,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="af4e5a43f5d9d6ed266663a8fa1ae7300"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStandardItemModel * nodeGraph::getTableData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get pointer to main table data model. </p>
+<dl class="section return"><dt>Returns</dt><dd>Main table data model held in <a class="el" href="class_main_window.html">MainWindow</a> 'tableData' </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_af4e5a43f5d9d6ed266663a8fa1ae7300_cgraph.png" border="0" usemap="#classnode_graph_af4e5a43f5d9d6ed266663a8fa1ae7300_cgraph" alt=""/></div>
+<map name="classnode_graph_af4e5a43f5d9d6ed266663a8fa1ae7300_cgraph" id="classnode_graph_af4e5a43f5d9d6ed266663a8fa1ae7300_cgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a4862a67e934ab749c7e20642ce28e141" title="Get main tabledata model. " alt="" coords="225,5,405,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_af4e5a43f5d9d6ed266663a8fa1ae7300_icgraph.png" border="0" usemap="#classnode_graph_af4e5a43f5d9d6ed266663a8fa1ae7300_icgraph" alt=""/></div>
+<map name="classnode_graph_af4e5a43f5d9d6ed266663a8fa1ae7300_icgraph" id="classnode_graph_af4e5a43f5d9d6ed266663a8fa1ae7300_icgraph">
+<area shape="rect" id="node2" href="class_node.html#a6890991303fcc6c9b2b3dec678c8b5db" title="Node execution routine. " alt="" coords="240,5,347,32"/><area shape="rect" id="node3" href="classnode_graph.html#a14141eb2a0040c0eec920a5550f51e00" title="Node graph execution method. " alt="" coords="224,56,363,83"/><area shape="rect" id="node4" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. " alt="" coords="411,56,551,83"/><area shape="rect" id="node5" href="classnode_graph.html#a260d25b9425ef3cb68a39ae3281f0b2c" title="Connects viewer to selected node. " alt="" coords="604,31,783,57"/><area shape="rect" id="node6" href="classnode_graph.html#a5b692c1231967ba6aa83fa83ddf60564" title="Disables selected nodes. " alt="" coords="601,81,786,108"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa6e25c95718da6b8d0b06910f4553dcc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nodeGraph::inListNode </td>
+          <td>(</td>
+          <td class="paramtype">QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>node</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if node is in list 'list'. </p>
+<p>Almost the same as <a class="el" href="classnode_graph.html#a5e85a88f9f5b09e394e0016c6ff2a340" title="Checks if node is already visited. ">nodeVisited()</a> but checks against arbitrary list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>List to be checked against. </td></tr>
+    <tr><td class="paramname">node</td><td><a class="el" href="class_node.html">Node</a> to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if visited, 0 if not. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5e85a88f9f5b09e394e0016c6ff2a340"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nodeGraph::nodeVisited </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if node is already visited. </p>
+<p>Checks node against 'visitStack' to see if it is already visited. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td><a class="el" href="class_node.html">Node</a> to be checked. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if visited, 0 if not. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a5e85a88f9f5b09e394e0016c6ff2a340_icgraph.png" border="0" usemap="#classnode_graph_a5e85a88f9f5b09e394e0016c6ff2a340_icgraph" alt=""/></div>
+<map name="classnode_graph_a5e85a88f9f5b09e394e0016c6ff2a340_icgraph" id="classnode_graph_a5e85a88f9f5b09e394e0016c6ff2a340_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#aa1634c5dc271236fd596d75e5fd75a0e" title="Evaluates node graph starting from node. " alt="" coords="216,5,387,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a58c9cc14f65765c17a6d381be6c8ab6f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::pushItem </td>
+          <td>(</td>
+          <td class="paramtype">QGraphicsItem *&#160;</td>
+          <td class="paramname"><em>item</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QPointF&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pushes item to nodegraph at certain position. </p>
+<p>Pushes QGraphicsItem 'item' to graph at position 'pos'. Used instead of <a class="el" href="classnode_graph.html#aa5f33eec269fb48a26af06e812397d1d" title="Pushes node to graph. ">pushNode()</a> now. If item is node, it will be added to 'nodeList'. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">item</td><td>QGraphicsItem to be pushed. </td></tr>
+    <tr><td class="paramname">pos</td><td>Position where item will be. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnode_graph.html#accfb574daec340ee65935521973ffa44">nodeList</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a58c9cc14f65765c17a6d381be6c8ab6f_icgraph.png" border="0" usemap="#classnode_graph_a58c9cc14f65765c17a6d381be6c8ab6f_icgraph" alt=""/></div>
+<map name="classnode_graph_a58c9cc14f65765c17a6d381be6c8ab6f_icgraph" id="classnode_graph_a58c9cc14f65765c17a6d381be6c8ab6f_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#abcbaece4826aee2cce441279e21d0d7a" title="Adds node to nodegraph. OLD!!! " alt="" coords="200,5,344,32"/><area shape="rect" id="node5" href="classnode_graph.html#a80eb6c9c9ef7d4eec41e15dcabf9b5c7" title="Adds new Op to nodegraph. " alt="" coords="207,56,337,83"/><area shape="rect" id="node3" href="classnode_graph.html#a0dbbf9f2338f3644eb83c4c7dc513c3c" title="Creates actions for built&#45;in ops. OLD! " alt="" coords="392,5,565,32"/><area shape="rect" id="node4" href="classnode_graph.html#a0abbeafd84c1aad59437ff22c5c1f3b3" title="Main nodegraph class that performs operations on nodes. " alt="" coords="631,5,787,32"/><area shape="rect" id="node6" href="class_main_window.html#a4794eaad406f40093c06569cd556480d" title="Adds new Op to nodegraph. Adds new Op to main nodegraph. At first it casts the sender object to QActi..." alt="" coords="407,56,550,83"/><area shape="rect" id="node7" href="class_main_window.html#a150054b7e0f06b55eb2640adbd3d7cb9" title="Casts plugins to OpInterface and calls registerOp() " alt="" coords="613,56,805,83"/><area shape="rect" id="node8" href="class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2" title="Loads DLL plugins. " alt="" coords="853,56,1024,83"/><area shape="rect" id="node9" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="1072,56,1251,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa5f33eec269fb48a26af06e812397d1d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::pushNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pushes node to graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td><a class="el" href="class_node.html">Node</a> to be pushed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnode_graph.html#accfb574daec340ee65935521973ffa44">nodeList</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_aa5f33eec269fb48a26af06e812397d1d_icgraph.png" border="0" usemap="#classnode_graph_aa5f33eec269fb48a26af06e812397d1d_icgraph" alt=""/></div>
+<map name="classnode_graph_aa5f33eec269fb48a26af06e812397d1d_icgraph" id="classnode_graph_aa5f33eec269fb48a26af06e812397d1d_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a0abbeafd84c1aad59437ff22c5c1f3b3" title="Main nodegraph class that performs operations on nodes. " alt="" coords="206,5,362,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a08e286385bd6713ee7fd52978dbac8ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::pushNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QPointF&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pushes node to graph at position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td><a class="el" href="class_node.html">Node</a> to be pushed. </td></tr>
+    <tr><td class="paramname">pos</td><td>Position where node will be. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnode_graph.html#accfb574daec340ee65935521973ffa44">nodeList</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5e24dbba0dee05f7e247abbdcf7a34c4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::pushNodeEdgesToStack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add all nodes that are inputs for current node to 'nodeStack'. </p>
+<p>Add all nodes that are connected to current node as inputs to stack of nodes named 'nodeStack'. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td><a class="el" href="class_node.html">Node</a> whose inputs are added. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. ">evaluate()</a> </dd>
+<dd>
+<a class="el" href="classnode_graph.html#aa1634c5dc271236fd596d75e5fd75a0e" title="Evaluates node graph starting from node. ">evaluateNode()</a> </dd>
+<dd>
+<a class="el" href="class_node.html#a77633cd46714b708d3e42f2c165f42ff" title="Get list of incoming edges. ">Node::edgesIn()</a> </dd>
+<dd>
+Edge::sourceNode() </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a5e24dbba0dee05f7e247abbdcf7a34c4_cgraph.png" border="0" usemap="#classnode_graph_a5e24dbba0dee05f7e247abbdcf7a34c4_cgraph" alt=""/></div>
+<map name="classnode_graph_a5e24dbba0dee05f7e247abbdcf7a34c4_cgraph" id="classnode_graph_a5e24dbba0dee05f7e247abbdcf7a34c4_cgraph">
+<area shape="rect" id="node2" href="class_node.html#a77633cd46714b708d3e42f2c165f42ff" title="Get list of incoming edges. " alt="" coords="243,12,349,39"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a5e24dbba0dee05f7e247abbdcf7a34c4_icgraph.png" border="0" usemap="#classnode_graph_a5e24dbba0dee05f7e247abbdcf7a34c4_icgraph" alt=""/></div>
+<map name="classnode_graph_a5e24dbba0dee05f7e247abbdcf7a34c4_icgraph" id="classnode_graph_a5e24dbba0dee05f7e247abbdcf7a34c4_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. " alt="" coords="258,31,398,57"/><area shape="rect" id="node5" href="classnode_graph.html#aa1634c5dc271236fd596d75e5fd75a0e" title="Evaluates node graph starting from node. " alt="" coords="243,81,413,108"/><area shape="rect" id="node3" href="classnode_graph.html#a260d25b9425ef3cb68a39ae3281f0b2c" title="Connects viewer to selected node. " alt="" coords="465,5,644,32"/><area shape="rect" id="node4" href="classnode_graph.html#a5b692c1231967ba6aa83fa83ddf60564" title="Disables selected nodes. " alt="" coords="462,56,647,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ab83b8c304ac8621042a25f67995c453c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::removeEdge </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_edge.html">Edge</a> *&#160;</td>
+          <td class="paramname"><em>edge</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes edge from scene and deletes it. </p>
+<p>Detaches edge from source and destination nodes, removes edge object from DAG scene and deletes the edge object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">edge</td><td><a class="el" href="class_edge.html" title="[0] ">Edge</a> to be removed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_node.html#a9bfe1d3a76fb2dff18b9cdf508287d93" title="Remove edge from node. ">Node::removeEdge()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_ab83b8c304ac8621042a25f67995c453c_cgraph.png" border="0" usemap="#classnode_graph_ab83b8c304ac8621042a25f67995c453c_cgraph" alt=""/></div>
+<map name="classnode_graph_ab83b8c304ac8621042a25f67995c453c_cgraph" id="classnode_graph_ab83b8c304ac8621042a25f67995c453c_cgraph">
+<area shape="rect" id="node2" href="class_node.html#a9bfe1d3a76fb2dff18b9cdf508287d93" title="Remove edge from node. " alt="" coords="219,5,349,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a7ec3935cd3e0735969476d7463a0aa82"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::removeNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes node from nodegraph. </p>
+<p>Removes node from nodegraph and deletes it. Reconnects all edges to node that is higher in graph hierarchy. Deletes node Ops and callbacks. <a class="el" href="class_op.html">Op</a> deletion is buggy!!! </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td><a class="el" href="class_node.html">Node</a> to be removed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a7ec3935cd3e0735969476d7463a0aa82_cgraph.png" border="0" usemap="#classnode_graph_a7ec3935cd3e0735969476d7463a0aa82_cgraph" alt=""/></div>
+<map name="classnode_graph_a7ec3935cd3e0735969476d7463a0aa82_cgraph" id="classnode_graph_a7ec3935cd3e0735969476d7463a0aa82_cgraph">
+<area shape="rect" id="node2" href="class_node.html#a77633cd46714b708d3e42f2c165f42ff" title="Get list of incoming edges. " alt="" coords="219,5,325,32"/><area shape="rect" id="node3" href="class_node.html#a339261597715c88141ccb52d8e10f38c" title="Get list of node edges. " alt="" coords="225,56,319,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ac34f075a84e0c3a9367115d5295a1ecb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="class_node.html">Node</a> * &gt; nodeGraph::reverseStack </td>
+          <td>(</td>
+          <td class="paramtype">QList&lt; <a class="el" href="class_node.html">Node</a> * &gt;&#160;</td>
+          <td class="paramname"><em>stack</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reverses the order of nodes in stack. </p>
+<p>Reverses the order of nodes in stack. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stack</td><td>Stack to be reversed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reversed node stack. </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_ac34f075a84e0c3a9367115d5295a1ecb_icgraph.png" border="0" usemap="#classnode_graph_ac34f075a84e0c3a9367115d5295a1ecb_icgraph" alt=""/></div>
+<map name="classnode_graph_ac34f075a84e0c3a9367115d5295a1ecb_icgraph" id="classnode_graph_ac34f075a84e0c3a9367115d5295a1ecb_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. " alt="" coords="237,31,377,57"/><area shape="rect" id="node5" href="classnode_graph.html#aa1634c5dc271236fd596d75e5fd75a0e" title="Evaluates node graph starting from node. " alt="" coords="221,81,392,108"/><area shape="rect" id="node3" href="classnode_graph.html#a260d25b9425ef3cb68a39ae3281f0b2c" title="Connects viewer to selected node. " alt="" coords="444,5,623,32"/><area shape="rect" id="node4" href="classnode_graph.html#a5b692c1231967ba6aa83fa83ddf60564" title="Disables selected nodes. " alt="" coords="441,56,626,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a77b4d87f3dc92e331c60841ca4d5bffd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::scaleView </td>
+          <td>(</td>
+          <td class="paramtype">qreal&#160;</td>
+          <td class="paramname"><em>scaleFactor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Scales view by scaleFactor. </p>
+<p>This is a helper function for mouse wheel zoom. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scaleFactor</td><td>Factor to scale view by. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a77b4d87f3dc92e331c60841ca4d5bffd_icgraph.png" border="0" usemap="#classnode_graph_a77b4d87f3dc92e331c60841ca4d5bffd_icgraph" alt=""/></div>
+<map name="classnode_graph_a77b4d87f3dc92e331c60841ca4d5bffd_icgraph" id="classnode_graph_a77b4d87f3dc92e331c60841ca4d5bffd_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a5f13b3c668ad35f3872a5add3832848c" title="Zoom in. " alt="" coords="211,5,346,32"/><area shape="rect" id="node3" href="classnode_graph.html#a44b65b86c9532f7205b02bd224743f12" title="Zoom out. " alt="" coords="205,56,352,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ace0d62eab18f05c3731064091e8d8c5f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::setActiveViewer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_node.html">Node</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets node as active viewer. </p>
+<p>This function sets selected node as active viewer. Active viewer is held in 'activeViewer'. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td><a class="el" href="class_node.html">Node</a> to be set as viewer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnode_graph.html#a916782da9e71a6682b9edc8467c4f313" title="Get active viewer node. ">getActiveViewer()</a> </dd>
+<dd>
+<a class="el" href="classnode_graph.html#abbceb993dba97114592045a40091e09d">activeViewer</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_ace0d62eab18f05c3731064091e8d8c5f_icgraph.png" border="0" usemap="#classnode_graph_ace0d62eab18f05c3731064091e8d8c5f_icgraph" alt=""/></div>
+<map name="classnode_graph_ace0d62eab18f05c3731064091e8d8c5f_icgraph" id="classnode_graph_ace0d62eab18f05c3731064091e8d8c5f_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#abcbaece4826aee2cce441279e21d0d7a" title="Adds node to nodegraph. OLD!!! " alt="" coords="240,5,384,32"/><area shape="rect" id="node3" href="classnode_graph.html#a0dbbf9f2338f3644eb83c4c7dc513c3c" title="Creates actions for built&#45;in ops. OLD! " alt="" coords="432,5,605,32"/><area shape="rect" id="node4" href="classnode_graph.html#a0abbeafd84c1aad59437ff22c5c1f3b3" title="Main nodegraph class that performs operations on nodes. " alt="" coords="654,5,810,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a5f13b3c668ad35f3872a5add3832848c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::zoomIn </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Zoom in. </p>
+<p>Zooming helper function. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnode_graph.html#a77b4d87f3dc92e331c60841ca4d5bffd" title="Scales view by scaleFactor. ">scaleView()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a5f13b3c668ad35f3872a5add3832848c_cgraph.png" border="0" usemap="#classnode_graph_a5f13b3c668ad35f3872a5add3832848c_cgraph" alt=""/></div>
+<map name="classnode_graph_a5f13b3c668ad35f3872a5add3832848c_cgraph" id="classnode_graph_a5f13b3c668ad35f3872a5add3832848c_cgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a77b4d87f3dc92e331c60841ca4d5bffd" title="Scales view by scaleFactor. " alt="" coords="189,5,341,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a44b65b86c9532f7205b02bd224743f12"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nodeGraph::zoomOut </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Zoom out. </p>
+<p>Zooming helper function. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnode_graph.html#a77b4d87f3dc92e331c60841ca4d5bffd" title="Scales view by scaleFactor. ">scaleView()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classnode_graph_a44b65b86c9532f7205b02bd224743f12_cgraph.png" border="0" usemap="#classnode_graph_a44b65b86c9532f7205b02bd224743f12_cgraph" alt=""/></div>
+<map name="classnode_graph_a44b65b86c9532f7205b02bd224743f12_cgraph" id="classnode_graph_a44b65b86c9532f7205b02bd224743f12_cgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a77b4d87f3dc92e331c60841ca4d5bffd" title="Scales view by scaleFactor. " alt="" coords="200,5,352,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ae6bf8ff221cb30a86d5119a085f36e26"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QPointF nodeGraph::_contextMenuPos</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Position of contextMenuEvent. New node will be added here. </p>
+
+</div>
+</div>
+<a class="anchor" id="acd341a799e5dd5c53403bbf88f1c979f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_node.html">Node</a>* nodeGraph::_contextSelectedNode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="class_node.html">Node</a> selected at the time of contextMenuEvent. </p>
+
+</div>
+</div>
+<a class="anchor" id="af5bee20937d31b53e72340b63383e058"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QPoint nodeGraph::_lastPos</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Mouse position at last event. </p>
+
+</div>
+</div>
+<a class="anchor" id="a65a1a3a1a61f958697de9ae4af1ab46a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_edge.html">Edge</a>* nodeGraph::activeEdge</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Active edge being dragged. </p>
+
+</div>
+</div>
+<a class="anchor" id="abbceb993dba97114592045a40091e09d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_node.html">Node</a>* nodeGraph::activeViewer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="class_node.html">Node</a> that is set as active viewer. Graph evaluation starts from this node. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae23fe967bafa5d0c1b8cf3d99bec5ff7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;<a class="el" href="class_node.html">Node</a> *&gt; nodeGraph::evalStack</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>List of nodes sorted by execution order. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3e77adf4e0955c77c7bd9e119b9c5938"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QGraphicsLineItem* nodeGraph::line</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Graphical representation of line. Used in edge dragging? </p>
+
+</div>
+</div>
+<a class="anchor" id="a2b35c632f34fceb315477e63ad789de6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mode nodeGraph::myMode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Nodegraph current mode. Used in mouse interactions. </p>
+
+</div>
+</div>
+<a class="anchor" id="a13849d8f39850b9203cedbb10cd4aa61"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_main_window.html">MainWindow</a>* nodeGraph::myParent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Nodegraph parent object. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2dd769fd58b9154fae4f4a2fa45897fe"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QGraphicsScene* nodeGraph::myScene</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Nodegraph scene that holds graphical representation of graph. </p>
+
+</div>
+</div>
+<a class="anchor" id="accfb574daec340ee65935521973ffa44"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;<a class="el" href="class_node.html">Node</a> *&gt; nodeGraph::nodeList</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>List of all nodes in nodegraph. </p>
+
+</div>
+</div>
+<a class="anchor" id="a094ba4e961a92b61298f5248f162db9c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;<a class="el" href="class_node.html">Node</a> *&gt; nodeGraph::nodeStack</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>List of nodes. </p>
+
+</div>
+</div>
+<a class="anchor" id="a1178bc43673961e58581102a4a489a00"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nodeGraph::onNode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Is mouse on node?. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6dc5da3aafd6d104bab269de7baec6b8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QGraphicsItem* nodeGraph::selectedItem</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Current selected item. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7ae9a2139642cdd5387a41aca8968b52"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QGraphicsRectItem* nodeGraph::selectRect</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Graphical representation of selection rectangle. </p>
+
+</div>
+</div>
+<a class="anchor" id="a416ab9597b2f508b5eec3f4d93ef2625"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStandardItemModel* nodeGraph::tableData</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Table data model. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2ccfbc2b44637b565b216a85cce26a3c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;<a class="el" href="class_node.html">Node</a> *&gt; nodeGraph::visitStack</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>List of nodes visited. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/hendrik/Documents/GitHub/Piri/Piri/libraries/PiriLib/<a class="el" href="nodegraph_8h_source.html">nodegraph.h</a></li>
 <li>C:/Users/hendrik/Documents/GitHub/Piri/Piri/libraries/PiriLib/nodegraph.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 11 2014 14:56:15 for Piri by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.6
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classnode_graph.html">nodeGraph</a></li>
+    <li class="footer">Generated on Mon Jan 13 2014 16:17:52 for Piri by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
 </body>
 </html>

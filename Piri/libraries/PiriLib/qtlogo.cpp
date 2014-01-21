@@ -3,6 +3,7 @@
 #include <QGLWidget>
 #include <QMatrix4x4>
 #include <QVector3D>
+#include <GL/glu.h>
 
 #include <qmath.h>
 
@@ -25,9 +26,8 @@ struct Geometry
     void finalize();
     void loadArrays() const;
 };
-//! [0]
 
-//! [1]
+
 class Patch
 {
 public:
@@ -49,7 +49,7 @@ public:
     Smoothing sm;
     Geometry *geom;
 };
-//! [1]
+
 
 static inline void qSetColor(float colorVec[], QColor c)
 {

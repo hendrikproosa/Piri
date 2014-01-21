@@ -15,11 +15,12 @@
 #include <QStyleOption>
 #include <QtDebug>
 
-int TestFuncNode(int a, int b)
-{
-    return a + b;
-}
-
+/*!
+ * \brief Node constructor. Old variant, not used.
+ * \param nodeGraph Parent nodegraph.
+ * \param name Node name.
+ * \param type Node type.
+ */
 Node::Node(nodeGraph *nodeGraph, QString name, int type) :
     graph(nodeGraph),
     myCallback(0),
@@ -42,7 +43,13 @@ Node::Node(nodeGraph *nodeGraph, QString name, int type) :
     makeCallback();
 }
 
-Node::Node(nodeGraph *nodeGraph, QString name, OpInterface *Op) :
+/*!
+ * \brief Node constructor. New variant.
+ * \param nodeGraph Parent nodegraph.
+ * \param name Node name.
+ * \param op Node OpInterface.
+ */
+Node::Node(nodeGraph *nodeGraph, QString name, OpInterface *op) :
     graph(nodeGraph),
     myCallback(0),
     mainEdge(0),
@@ -59,26 +66,25 @@ Node::Node(nodeGraph *nodeGraph, QString name, OpInterface *Op) :
     setCacheMode(DeviceCoordinateCache);
     setZValue(1);
 
-    //myDesc = Op->description().split(";").first().split("/").first();
+    myOp2 = op;
 
-    myOp2 = Op;
-
-    qDebug() << "Node::Node op set...";
     setupInputs2();
-    qDebug() << "Node::Node inputs set...";
-    //setupOps();
     makeCallback();
-    qDebug() << "Node::Node callback set...";
-    qDebug() << "Node: päring graph->getParent: " << graph->getParent();
 }
 
-
+/*!
+ * \brief Node destructor.
+ */
 Node::~Node()
 {
     qDebug() << "Destructor: " << this->name();
 }
 
-
+/*!
+ * \brief Node input setup.
+ *
+ * This function sets up node connections and also connects it to Op.
+ */
 void Node::setupInputs2()
 {
     QStringList arg = myOp2->description().split(";");
@@ -136,7 +142,12 @@ void Node::setupInputs2()
     qDebug() << "SetupInputs2 OK!";
 }
 
-
+/*!
+ * \brief Node inputs setup. Old, not used!
+ *
+ * This is the old version of input setup used with built-in ops.
+ * Not used anymore.
+ */
 void Node::setupInputs()
 {
     switch (nodeType) {
@@ -185,6 +196,11 @@ void Node::setupInputs()
 }
 
 
+/*!
+ * \brief Node op setup. OLD!
+ *
+ * This is the old op setup function used with built-in ops. Not used anymore.
+ */
 void Node::setupOps()
 {
 
@@ -229,19 +245,37 @@ void Node::setupOps()
 
 }
 
-
+/*!
+ * \brief Sets node as disabled.
+ *
+ * Sets node as disabled. Node state is held in variable 'disabled'.
+ * Emits update need on boundingRect.
+ * \param val State.
+ */
 void Node::disable(bool val)
 {
     disabled = val;
     emit this->update(boundingRect());
 }
 
-
+/*!
+ * \brief Is node disabled?
+ * \return True or false.
+ */
 bool Node::isDisabled()
 {
     return disabled;
 }
 
+/*!
+ * \brief Creates node callback.
+ *
+ * This function creates node callbacks. Includes part for built-in ops
+ * that is not used.
+ * @see Knob_Callback
+ * @see OpInterface::knobs()
+ * @see Op::setCallback()
+ */
 void Node::makeCallback()
 {
     if (version)
@@ -263,6 +297,23 @@ void Node::makeCallback()
     qDebug() << "Node::makeCallback callback name: " << myCallback->getParent()->name();
 }
 
+/*!
+ * \brief Calculate Node hash
+ * \return
+ */
+QString Node::getHash()
+{
+    return getCallback()->getHash();
+}
+
+
+/*!
+ * \brief Node execution routine.
+ *
+ * This function calls engine() on Op if node has inputs or if it is top node
+ * (node that reads or creates data).
+ * @see OpInterface::engine()
+ */
 void Node::execute()
 {
     qDebug() << "Execute: " << this->name();
@@ -274,6 +325,10 @@ void Node::execute()
             qDebug() << "Engine...";
             if (version)
             {
+                nodeHash = getHash();
+                qDebug() << "Node: " << this->name() << " hash: " << nodeHash;
+                //qDebug() << myCallback->knobs.first();
+
                 myOp2->engine();
             } else {
                 myOp->engine();
@@ -297,7 +352,10 @@ void Node::execute()
 
 }
 
-
+/*!
+ * \brief Set node name.
+ * \param name New name.
+ */
 void Node::setName(QString name)
 {
     nodeName = name;
@@ -305,11 +363,20 @@ void Node::setName(QString name)
     this->update();
 }
 
+/*!
+ * \brief Some old test.
+ * \param name New name
+ */
 void Node::setNameS(QString name)
 {
     setName(name);
 }
 
+/*!
+ * \brief Add new edge.
+ * \param edge Edge to add.
+ * \param isMain Is this edge main edge?
+ */
 void Node::addEdge(Edge *edge, int isMain)
 {
     numInputs += 1;
@@ -320,6 +387,10 @@ void Node::addEdge(Edge *edge, int isMain)
     edge->adjust();
 }
 
+/*!
+ * \brief Remove edge from node.
+ * \param edge Edge to be removed.
+ */
 void Node::removeEdge(Edge *edge)
 {
     QList<Edge *> returnList;
@@ -334,6 +405,11 @@ void Node::removeEdge(Edge *edge)
 }
 
 
+/*!
+ * \brief Get list of node edges.
+ * \return List of node edges.
+ * @see edgeList
+ */
 QList<Edge *> Node::edges() const
 {
     QList<Edge *> returnList;
@@ -346,6 +422,10 @@ QList<Edge *> Node::edges() const
     return returnList;
 }
 
+/*!
+ * \brief Get list of incoming edges.
+ * \return List of edges.
+ */
 QList<Edge *> Node::edgesIn() const
 {
     QList<Edge *> returnList;
@@ -363,6 +443,10 @@ QList<Edge *> Node::edgesIn() const
     return returnList;
 }
 
+/*!
+ * \brief Get list of outgoing edges.
+ * \return List of edges.
+ */
 QList<Edge *> Node::edgesOut() const
 {
     QList<Edge *> returnList;
@@ -374,6 +458,12 @@ QList<Edge *> Node::edgesOut() const
     return returnList;
 }
 
+/*!
+ * \brief Overrides bounding rectangle.
+ *
+ * Reimplemented function.
+ * \return Bounding rectangle.
+ */
 QRectF Node::boundingRect() const
 {
     QRectF bRect;
@@ -395,7 +485,12 @@ QRectF Node::boundingRect() const
     return bRect;
 }
 
-
+/*!
+ * \brief Overrides node shape.
+ *
+ * Reimplemented function.
+ * \return Node shape.
+ */
 QPainterPath Node::shape() const
 {
     QPainterPath path;
@@ -411,7 +506,13 @@ QPainterPath Node::shape() const
     return path;
 }
 
-
+/*!
+ * \brief Node painting.
+ *
+ * Reimplemented function.
+ * \param painter
+ * \param option
+ */
 void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
 {
     QColor bottomColor(QColor::fromRgbF(0.6, 0.4, 0.2, 1));
@@ -518,7 +619,15 @@ void Node::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 
 }
 
-
+/*!
+ * \brief Item changed event.
+ *
+ * Reimplemented function. Tests if node is selected or moved and
+ * adjusts edges or colors knob callback differently.
+ * \param change
+ * \param value
+ * \return
+ */
 QVariant Node::itemChange(GraphicsItemChange change, const QVariant &value)
 {
     switch (change) {
@@ -566,15 +675,22 @@ QVariant Node::itemChange(GraphicsItemChange change, const QVariant &value)
     return QGraphicsItem::itemChange(change, value);
 }
 
-
+/*!
+ * \brief Mouse press event. Does nothing.
+ * \param event
+ */
 void Node::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    //update();
-    //qDebug() << "Node!" << name();
     QGraphicsItem::mousePressEvent(event);
 }
 
-
+/*!
+ * \brief Double click event on node.
+ *
+ * Reimplemented function. If knob callback is not visible it will be
+ * show in properties window.
+ * \param event
+ */
 void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
     qDebug() << "Node!" << name();
@@ -590,9 +706,11 @@ void Node::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 
 }
 
+/*!
+ * \brief Mouse release event. Does nothing.
+ * \param event
+ */
 void Node::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    //update();
-    //qDebug() << "Node!" << name();
     QGraphicsItem::mouseReleaseEvent(event);
 }

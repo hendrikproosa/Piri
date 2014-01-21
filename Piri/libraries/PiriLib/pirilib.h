@@ -15,4 +15,8 @@ public:
     PiriLib();
 };
 
+
+QString generateHash(QString hashBase);
+
+
 #endif // PIRILIB_H

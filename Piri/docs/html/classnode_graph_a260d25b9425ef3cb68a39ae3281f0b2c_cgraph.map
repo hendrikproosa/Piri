@@ -1,0 +1,15 @@
+<map id="nodeGraph::connectViewer" name="nodeGraph::connectViewer">
+<area shape="rect" id="node2" href="$classnode_graph.html#a916782da9e71a6682b9edc8467c4f313" title="Get active viewer node. " alt="" coords="233,67,418,94"/>
+<area shape="rect" id="node3" href="$class_node.html#a9bfe1d3a76fb2dff18b9cdf508287d93" title="Remove edge from node. " alt="" coords="260,118,391,144"/>
+<area shape="rect" id="node4" href="$classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. " alt="" coords="255,168,395,195"/>
+<area shape="rect" id="node5" href="$class_node.html#a77633cd46714b708d3e42f2c165f42ff" title="Get list of incoming edges. " alt="" coords="739,30,845,56"/>
+<area shape="rect" id="node6" href="$classnode_graph.html#a5e24dbba0dee05f7e247abbdcf7a34c4" title="Add all nodes that are inputs for current node to &#39;nodeStack&#39;. " alt="" coords="467,52,655,93"/>
+<area shape="rect" id="node7" href="$classnode_graph.html#ac34f075a84e0c3a9367115d5295a1ecb" title="Reverses the order of nodes in stack. " alt="" coords="477,118,645,144"/>
+<area shape="rect" id="node8" href="$classnode_graph.html#af5d3bbbc716069763ac14f013e2619f6" title="Get parent object of nodegraph. " alt="" coords="717,168,867,195"/>
+<area shape="rect" id="node9" href="$class_main_window.html#a4910bd522e8791abaed69a7ee692753a" title="Get main viewer area. Returns main viewer area, that contains tableview and graphical views..." alt="" coords="481,219,642,246"/>
+<area shape="rect" id="node10" href="$classnode_graph.html#a14141eb2a0040c0eec920a5550f51e00" title="Node graph execution method. " alt="" coords="492,270,631,296"/>
+<area shape="rect" id="node14" href="$classnode_graph.html#a6815faf0db29b0a5bc0891e578db4e7c" title="Creates list of nodes in stack. " alt="" coords="480,320,643,347"/>
+<area shape="rect" id="node11" href="$classnode_graph.html#af4e5a43f5d9d6ed266663a8fa1ae7300" title="Get pointer to main table data model. " alt="" coords="707,244,877,271"/>
+<area shape="rect" id="node13" href="$class_main_window.html#a195a755d1c5b5282556c4ced26c3de41" title="Get main 2D scene. Returns main 2D QGraphicsScene scene called &#39;scene2D&#39;. " alt="" coords="705,295,879,322"/>
+<area shape="rect" id="node12" href="$class_main_window.html#a4862a67e934ab749c7e20642ce28e141" title="Get main tabledata model. " alt="" coords="929,244,1109,271"/>
+</map>

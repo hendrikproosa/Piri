@@ -1,0 +1,6 @@
+<map id="nodeGraph::addEdge" name="nodeGraph::addEdge">
+<area shape="rect" id="node2" href="$class_node.html#a37ed70373f2f52325e71843a14403206" title="Node input setup. " alt="" coords="198,5,333,32"/>
+<area shape="rect" id="node4" href="$class_node.html#aa084a287fbd5b64c4db813cd82f51763" title="Node inputs setup. Old, not used! " alt="" coords="202,56,329,83"/>
+<area shape="rect" id="node3" href="$class_node.html#aae63974f016529818a9052802a9162fc" title="Node constructor. New variant. " alt="" coords="381,5,472,32"/>
+<area shape="rect" id="node5" href="$class_node.html#a0f1a6da00f920a86905f591742e3c166" title="Node constructor. Old variant, not used. " alt="" coords="381,56,472,83"/>
+</map>

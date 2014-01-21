@@ -4,6 +4,7 @@
 #include <QGraphicsView>
 #include <QGraphicsView>
 #include <QtWidgets>
+#include <QGLWidget>
 
 #include "pirilib.h"
 

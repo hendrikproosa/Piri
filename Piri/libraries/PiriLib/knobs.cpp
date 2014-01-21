@@ -1,4 +1,4 @@
-#include "knobs.h"
+
 #include "knob_callback.h"
 #include "dataop.h"
 
@@ -7,7 +7,16 @@
 #include <QtWidgets>
 #include <QObject>
 
+#include "knobs.h"
 
+/*!
+ * \brief Adds values to last widget in callback.
+ *
+ * Adds new values to last widget, for example combobox. Can be comma separated
+ * list of multiple values.
+ * \param f Knob Callback that has the widget.
+ * \param str List of values to be added
+ */
 void ADD_VALUES(Knob_Callback *f, QString str)
 {
     QWidget *last = f->getLayout()->itemAt(f->getLayout()->rowCount()*2-1)->widget();
@@ -24,7 +33,15 @@ void ADD_VALUES(Knob_Callback *f, QString str)
     }
 }
 
-
+/*!
+ * \brief Updates value list in callback widget.
+ *
+ * Updates the widget with new values. Clears all old values! Values can be
+ * in comma separated list.
+ * \param f Knob callback that has the widget.
+ * \param widget Widget to be updated.
+ * \param str List of values to be added.
+ */
 void UPDATE_VALUES(Knob_Callback *f, QWidget* widget, QString str)
 {
     if (qobject_cast<ComboBoxKnob*>(widget))
@@ -36,6 +53,15 @@ void UPDATE_VALUES(Knob_Callback *f, QWidget* widget, QString str)
     }
 }
 
+/*!
+ * \brief Updates widget and sets current index.
+ *
+ * This function updates widget and sets current index to 'str'.
+ * Str must be index number! Most useful with comboboxes.
+ * \param f Knob callback that has the widget.
+ * \param widget Widget to be updated.
+ * \param str Index to be set.
+ */
 void UPDATE(Knob_Callback *f, QWidget* widget, QString str)
 {
     if (qobject_cast<ComboBoxKnob*>(widget))
@@ -46,6 +72,16 @@ void UPDATE(Knob_Callback *f, QWidget* widget, QString str)
 }
 
 
+KnobBase::KnobBase()
+{
+    hash();
+}
+
+void KnobBase::hash()
+{
+    _myHash = "tere";
+}
+
 
 /*
 ----------------------------------------------------------------------
@@ -53,37 +89,64 @@ STRING
 ----------------------------------------------------------------------
 */
 
+/*!
+ * \brief Creates a new string knob.
+ * \param f Knob callback that will hold the knob.
+ * \param value Value that will be connected to knob.
+ * \param label Knob label.
+ * \return New StringKnob object.
+ */
 StringKnob* String_knob(Knob_Callback *f, QString *value, QString label)
 {
-    qDebug() << "String knob: " << value << *value << label;
+    //qDebug() << "String knob: " << value << *value << label << value->toString();
     StringKnob *knob = new StringKnob(f, value, label);
     f->getLayout()->addRow(label, knob);
+    f->addKnob(knob, label, (QVariant*)value);
     knob->setToolTip(label.replace(":", "").toLower());
     return knob;
 }
 
-StringKnob::StringKnob(QWidget *parent) : QLineEdit(parent)
-{
-    //return &this;
-    this->setText(QString("StringKnob set text"));
-}
 
+/*!
+ * \brief StringKnob initializer.
+ * \param f Knob callback that will hold the knob.
+ * \param value Value that will be connected to knob.
+ * \param label Knob label.
+ */
 StringKnob::StringKnob(Knob_Callback *f, QString* value, QString label) :
     _myValue(value)
 {
-
     this->setText(*value);
-    //this->setMaximumWidth(100);
     connect(this, SIGNAL(editingFinished()), this, SLOT(updateValue()));
     connect(this, SIGNAL(editingFinished()), f, SLOT(valueChanged()));
-
+    updateHash();
 }
 
+/*!
+ * \brief Get node hash string.
+ * \return Hash string.
+ */
+QString StringKnob::getHash()
+{
+    return _myHash;
+}
+
+void StringKnob::updateHash()
+{
+    _myHash = generateHash(QString(*_myValue));
+}
+
+/*!
+ * \brief Updates variable associated with knob.
+ */
 void StringKnob::updateValue()
 {
-    qDebug() << "In UpdateValue";
+
     *_myValue = this->text();
+    updateHash();
+    //qDebug() << "StringKnob hash updated: " << _myHash;
 }
+
 
 /*
 ----------------------------------------------------------------------
@@ -91,33 +154,49 @@ INTEGER_KNOB
 ----------------------------------------------------------------------
 */
 
+/*!
+ * \brief Creates a new integerknob.
+ * \param f Knob callback that will hold the knob.
+ * \param value Value that will be connected to knob.
+ * \param label Knob label.
+ * \return New IntegerKnob object.
+ */
 IntegerKnob *Integer_knob(Knob_Callback *f, int *value, QString label)
 {
     qDebug() << "Integer knob: " << value << *value << label;
     IntegerKnob *knob = new IntegerKnob(f, value, label);
     f->getLayout()->addRow(label, knob);
+    //f->addKnob(knob, label, QString("%1").arg(*value, 0, 'g', 30));
+    f->addKnob(knob, label, (QVariant*)value);
     knob->setToolTip(label.replace(":", "").toLower());
     return knob;
 }
 
-IntegerKnob::IntegerKnob(QWidget *parent) : QSpinBox(parent)
-{
 
-}
-
-IntegerKnob::IntegerKnob(Knob_Callback *f, int* value, QString label) :
+/*!
+ * \brief Main IntegerKnob initializer.
+ * \param f Knob callback that will hold the knob.
+ * \param value Value that will be connected to knob.
+ * \param label Knob label.
+ */
+IntegerKnob::IntegerKnob(Knob_Callback *f, int *value, QString label) :
     _myValue(value)
 {
-
     this->setValue(*value);
     this->setMaximumWidth(70);
     this->setMinimumHeight(20);
     this->setRange(-100000000, 100000000);
     connect(this, SIGNAL(valueChanged(int)), this, SLOT(updateValue(int)));
     connect(this, SIGNAL(valueChanged(int)), f, SLOT(valueChanged()));
-
+    updateHash();
 }
 
+/*!
+ * \brief IntegerKnob initializer with min and max.
+ * \param f Knob callback that will hold the knob.
+ * \param value Value that will be connected to knob.
+ * \param label Knob label.
+ */
 IntegerKnob::IntegerKnob(Knob_Callback *f, int *value, QString label, int min, int max) :
     _myValue(value)
 {
@@ -129,9 +208,32 @@ IntegerKnob::IntegerKnob(Knob_Callback *f, int *value, QString label, int min, i
     connect(this, SIGNAL(valueChanged(int)), f, SLOT(valueChanged()));
 }
 
+/*!
+ * \brief Get node hash string.
+ * \return Hash string.
+ */
+QString IntegerKnob::getHash()
+{
+    return _myHash;
+}
+
+/*!
+ * \brief Update knob hash after changes.
+ */
+void IntegerKnob::updateHash()
+{
+    _myHash = generateHash(QString(*_myValue).toLatin1());
+}
+
+
+/*!
+ * \brief Updates variable connected to knob.
+ * \param v
+ */
 void IntegerKnob::updateValue(int v)
 {
     *_myValue = this->value();
+    updateHash();
 }
 
 
@@ -146,24 +248,21 @@ CheckBoxKnob *CheckBox_knob(Knob_Callback *f, bool *value, QString label)
     qDebug() << "Checkbox knob: " << value << *value << label;
     CheckBoxKnob *knob = new CheckBoxKnob(f, value, label);
     f->getLayout()->addRow(label, knob);
+    f->addKnob(knob, label, (QVariant*)value);
     knob->setToolTip(label.replace(":", "").toLower());
     return knob;
 }
 
-CheckBoxKnob::CheckBoxKnob(QWidget *parent) : QCheckBox(parent)
-{
-}
 
 CheckBoxKnob::CheckBoxKnob(Knob_Callback *f, bool* value, QString label) :
     _myValue(value)
 {
     this->setTristate(false);
     this->setChecked(*value);
-    //this->setCheckState(static_cast<Qt::CheckState>(*value));
     this->setMaximumSize(15, 15);
     connect(this, SIGNAL(stateChanged(int)), this, SLOT(updateValue(int)));
-    connect(this, SIGNAL(pressed()), f, SLOT(valueChanged()));
     connect(this, SIGNAL(clicked()), f, SLOT(valueChanged()));
+    updateHash();
 }
 
 int CheckBoxKnob::value()
@@ -174,6 +273,7 @@ int CheckBoxKnob::value()
 void CheckBoxKnob::updateValue(int v)
 {
     *_myValue = this->isChecked();
+    updateHash();
 }
 
 void CheckBoxKnob::valueChanged(bool v)
@@ -183,44 +283,57 @@ void CheckBoxKnob::valueChanged(bool v)
     emit updateValue(val);
 }
 
+void CheckBoxKnob::updateHash()
+{
+    _myHash = generateHash(QString(*_myValue));
+}
+
+QString CheckBoxKnob::getHash()
+{
+    return _myHash;
+}
+
 /*
 ----------------------------------------------------------------------
 COMBOBOX
 ----------------------------------------------------------------------
 */
 
-ComboBoxKnob* ComboBox_knob2()
-{
-    qDebug() << "Ei häda miskit!";
-}
-
 ComboBoxKnob* ComboBox_knob(Knob_Callback *f, int *value, QString label, QString valueName)
 {
     qDebug() << "Combobox knob: " << value << *value << label;
-    ComboBoxKnob *knob = new ComboBoxKnob(f, value, label);
+    ComboBoxKnob *knob = new ComboBoxKnob(f, value);
     f->getLayout()->addRow(label, knob);
-    f->addKnob(knob, label, valueName);
+    f->addKnob(knob, label, (QVariant*)value);
     knob->setToolTip(valueName);
     return knob;
 }
 
-ComboBoxKnob::ComboBoxKnob(QWidget *parent) : QComboBox (parent)
-{
-}
 
-ComboBoxKnob::ComboBoxKnob(Knob_Callback *f, int* value, QString label) :
+ComboBoxKnob::ComboBoxKnob(Knob_Callback *f, int* value) :
     _myValue(value)
 {
     this->setMinimumWidth(70);
     connect(this, SIGNAL(currentIndexChanged(int)), this, SLOT(updateValue(int)));
     connect(this, SIGNAL(currentIndexChanged(int)), f, SLOT(valueChanged()));
+    updateHash();
 }
 
 void ComboBoxKnob::updateValue(int v)
 {
     *_myValue = this->currentIndex();
+    updateHash();
 }
 
+void ComboBoxKnob::updateHash()
+{
+    _myHash = generateHash(QString(*_myValue));
+}
+
+QString ComboBoxKnob::getHash()
+{
+    return _myHash;
+}
 
 /*
 ----------------------------------------------------------------------
@@ -230,36 +343,16 @@ FILEOPENDIALOG
 
 FileDialogKnob* FileDialog_knob(Knob_Callback *f, QString *value, QString label)
 {
-    //qDebug() << "Filedialog knob: " << value << *value << label;
-    FileDialogKnob *knob = new FileDialogKnob(f, value, label);
-    /*
-    QWidget *fdl = new QWidget();
-    QHBoxLayout* hLayout = new QHBoxLayout;
-    hLayout->setMargin(0);
-    fdl->setLayout(hLayout);
-
-    QPushButton *dlgButton = new QPushButton();
-    StringKnob *nameknob = new StringKnob(f, value, label);
-    nameknob->setToolTip(label.replace(":", "").toLower());
-
-    //connect(dlgButton, SIGNAL(clicked()), knob, SLOT(getFileName());
-    QObject::connect(dlgButton, SIGNAL(clicked()), knob, SLOT(getFileName()));
-    QObject::connect(this, SIGNAL(clicked()), knob, SLOT(getFileName()));
-    hLayout->addWidget(nameknob);
-    hLayout->addWidget(dlgButton);
-
-    */
+    FileDialogKnob *knob = new FileDialogKnob(f, value);
     f->getLayout()->addRow(label, knob);
+    //f->addKnob(knob, label, *value);
+    f->addKnob(knob, label, (QVariant*)value);
     knob->setToolTip(label.replace(":", "").toLower());
     return knob;
 }
 
-FileDialogKnob::FileDialogKnob(QWidget *parent) : QWidget(parent)
-{
 
-}
-
-FileDialogKnob::FileDialogKnob(Knob_Callback *f, QString* value, QString label) :
+FileDialogKnob::FileDialogKnob(Knob_Callback *f, QString* value) :
     _myValue(value)
 {
 
@@ -276,23 +369,30 @@ FileDialogKnob::FileDialogKnob(Knob_Callback *f, QString* value, QString label) 
     QObject::connect(dlgButton, SIGNAL(clicked()), this, SLOT(getFileName()));
     QObject::connect(this, SIGNAL(valueUpdated(QString)), nameknob, SLOT(setText(QString)));
     QObject::connect(nameknob, SIGNAL(textChanged(QString)), f, SLOT(valueChanged()));
+    updateHash();
 }
 
-
-void FileDialogKnob::updateValue()
-{
-    //*_myValue = this->text();
-    qDebug() << "Update catched!";
-}
 
 void FileDialogKnob::updateValueFromDialog(QString s)
 {
     *_myValue = s;
+    updateHash();
 }
 
 void FileDialogKnob::getFileName()
 {
-    QString fname = QFileDialog::getOpenFileName(this, tr("Open File"), "E:/projektid/progemine/piri/");
+    QString fname = QFileDialog::getOpenFileName(this, tr("Open File"), "E:/");
     *_myValue = fname;
     emit valueUpdated(fname);
+}
+
+void FileDialogKnob::updateHash()
+{
+    _myHash = generateHash(*_myValue);
+
+}
+
+QString FileDialogKnob::getHash()
+{
+    return _myHash;
 }

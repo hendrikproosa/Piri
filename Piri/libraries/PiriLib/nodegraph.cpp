@@ -19,7 +19,15 @@
 #include <QStandardItemModel>
 #include <QTableView>
 
-//! [0]
+/*!
+ * \brief Main nodegraph class that performs operations on nodes.
+ *
+ * All operations that add, move, connect or delete nodes are performed here,
+ * also holds the view into scne that holds the DAG objects.
+ * Subclasses QGraphicsView.
+ * \param scene Scene that holds graphical representation of DAG
+ * \param parent Main UI window
+ */
 nodeGraph::nodeGraph(QGraphicsScene *scene, MainWindow *parent)
     : QGraphicsView(parent),
       myParent(parent),
@@ -50,58 +58,51 @@ nodeGraph::nodeGraph(QGraphicsScene *scene, MainWindow *parent)
 
 }
 
-
+/*!
+ * \brief Add scene to nodegraph.
+ *
+ * Sets main DAG scene as nodegraph scene. Nodegraph acts as a window into that scene
+ * and thus there can be more than one nodegraph connected to the same scene.
+ * \param scene Scene that holds the DAG objects.
+ * @see MainWindow::createDAG()
+ */
 void nodeGraph::addScene(QGraphicsScene *scene)
 {
     setScene(scene);
 }
 
-
+/*!
+ * \brief Node graph evaluation loop.
+ *
+ * Starts from active viewer and creates stack of nodes that are ordered
+ * in proper evaluation sequence. Used for loop detection?
+ */
 void nodeGraph::evaluate()
 {
 
-    Node *vNode, *curNode;
-    //qDebug() << "Nodes: " << nodeList.length();
+    Node *curNode; /*!< Current last node in evaluation stack */
 
     evalStack.clear();
     visitStack.clear();
 
-    foreach (Node *node, nodeList) {
-        qDebug() << "Name: " << node->name() << "Type: " << node->getType() << "Edges: " << node->edges().length();
-    }
-
-
-    qDebug() << "nodes in scene: " << nodeList.count();
     if (nodeList.isEmpty()) { return; }
-
-    /*
-    foreach (Node *node, nodeList) {
-        if (node->getType() == 0) {
-            vNode = node;
-            nodeStack << vNode;
-            curNode = node;
-        }
-    }
-    */
 
     if (activeViewer == 0 || activeViewer->edgesIn().isEmpty()) { return; }
 
     nodeStack << activeViewer;
     curNode = activeViewer;
     evalStack << activeViewer;
-    //qDebug() << "Viewer: " << activeViewer->name();
 
     while (nodeStack.length()) {
         if (curNode->getType() != 0) {
             evalStack << curNode;
         }
-        //qDebug() << "CurNode: " << curNode->name();
         nodeStack.removeLast();
         pushNodeEdgesToStack(curNode);
-        //debugStack(nodeStack);
         if (!nodeStack.length()) {break;}
         curNode = nodeStack.last();
     }
+
     foreach (Node *node, reverseStack(evalStack)) {
         if (!visitStack.contains(node) && node->getType() != 99)
         {
@@ -113,29 +114,40 @@ void nodeGraph::evaluate()
     getParent()->getViewer()->getTableView()->setUpdatesEnabled(false);
     execute();
     getParent()->getViewer()->getTableView()->setUpdatesEnabled(true);
-    //debugStack(evalStack);
 
-    QString blah = QString(QCryptographicHash::hash(("myPassword"),QCryptographicHash::Md5).toHex());
-    //qDebug() << blah;
     emit evaluated(debugStack(evalStack));
 }
 
-
+/*!
+ * \brief Node graph execution method.
+ *
+ * Calls the execute() function on last node in evaluation stack 'evalStack'.
+ * Usually it is the active viewer node.
+ * @see evaluate()
+ * @see Node::execute()
+ */
 void nodeGraph::execute()
 {
-
     getTableData()->clear();
     getParent()->getScene2D()->clear();
 
-    qDebug() << "Execute";
     if (evalStack.count())
     {
         evalStack.last()->execute();
     }
-    //if (activeViewer)
-    //    activeViewer->execute();
 }
 
+/*!
+ * \brief Evaluates node graph starting from node.
+ *
+ * Almost the same as evaluate() but evaluates node graph starting from
+ * specified node.
+ * \param node Node to be evaluated.
+ * \return Stack of nodes ordered in execution order.
+ * @see evaluate()
+ * @see pushNodeEdgesToStack()
+ * @see nodeVisited()
+ */
 QList<Node *> nodeGraph::evaluateNode(Node *node)
 {
     Node *vNode, *curNode;
@@ -147,13 +159,10 @@ QList<Node *> nodeGraph::evaluateNode(Node *node)
     nodeStack << vNode;
     curNode = node;
 
-    qDebug() << "Viewer: " << vNode->name();
     while (nodeStack.length()) {
         evalStack << curNode;
-        qDebug() << "CurNode: " << curNode->name();
         if (!nodeStack.isEmpty()) {nodeStack.removeLast();}
         pushNodeEdgesToStack(curNode);
-        //debugStack(nodeStack);
         if (nodeStack.isEmpty()) {break;}
         curNode = nodeStack.last();
     }
@@ -161,43 +170,60 @@ QList<Node *> nodeGraph::evaluateNode(Node *node)
         if (!nodeVisited(node))
         {
             visitStack << node;
-            //qDebug() << node->name();
         }
-
     }
     evalStack = visitStack;
     return evalStack;
 }
 
+/*!
+ * \brief Add all nodes that are inputs for current node to 'nodeStack'
+ *
+ * Add all nodes that are connected to current node as inputs to stack of nodes
+ * named 'nodeStack'.
+ * \param node Node whose inputs are added.
+ * @see evaluate()
+ * @see evaluateNode()
+ * @see Node::edgesIn()
+ * @see Edge::sourceNode()
+ */
 void nodeGraph::pushNodeEdgesToStack(Node *node)
 {
     if (!node->edgesIn().isEmpty())
     {
         foreach (Edge* edge, node->edgesIn()) {
             nodeStack << edge->sourceNode();
-            //qDebug() << "Pushed: " << nodeStack.last()->name();
         }
     }
 
 }
 
+/*!
+ * \brief Creates list of nodes in stack.
+ *
+ * Not used?
+ * \param stack Stack which is debugged.
+ * \return QString with node names in stack.
+ */
 QString nodeGraph::debugStack(QList<Node *> stack)
 {
     QString evalList;
     if (stack.length() > 0) {
-        //qDebug() << "Debugging stack:";
         foreach (Node *node, stack) {
             evalList += QString(node->name()) + QString("\n");
         }
+    } else {
     }
-    else {
-    qDebug() << "Stack on tühi!";
-    }
-    //qDebug() << evalList;
     return evalList;
-
 }
 
+/*!
+ * \brief Reverses the order of nodes in stack.
+ *
+ * Reverses the order of nodes in stack.
+ * \param stack Stack to be reversed.
+ * \return Reversed node stack.
+ */
 QList<Node *> nodeGraph::reverseStack(QList<Node *> stack)
 {
     QList<Node *> tempStack;
@@ -208,6 +234,13 @@ QList<Node *> nodeGraph::reverseStack(QList<Node *> stack)
     return tempStack;
 }
 
+/*!
+ * \brief Checks if node is already visited.
+ *
+ * Checks node against 'visitStack' to see if it is already visited.
+ * \param node Node to be checked.
+ * \return 1 if visited, 0 if not.
+ */
 int nodeGraph::nodeVisited(Node *node)
 {
     foreach (Node *vnode, visitStack) {
@@ -216,6 +249,14 @@ int nodeGraph::nodeVisited(Node *node)
     return 0;
 }
 
+/*!
+ * \brief Checks if node is in list 'list'
+ *
+ * Almost the same as nodeVisited() but checks against arbitrary list.
+ * \param list List to be checked against.
+ * \param node Node to be checked.
+ * \return 1 if visited, 0 if not.
+ */
 int nodeGraph::inListNode(QList<Node *> list, Node *node)
 {
     foreach (Node *n, list) {
@@ -224,12 +265,22 @@ int nodeGraph::inListNode(QList<Node *> list, Node *node)
     return 0;
 }
 
+/*!
+ * \brief Does nothing.
+ */
 void nodeGraph::itemMoved()
 {
-    //viewport()->update();
-    //qDebug() << "moved";
+
 }
 
+/*!
+ * \brief Removes edge from scene and deletes it.
+ *
+ * Detaches edge from source and destination nodes, removes edge object
+ * from DAG scene and deletes the edge object.
+ * \param edge Edge to be removed.
+ * @see Node::removeEdge()
+ */
 void nodeGraph::removeEdge(Edge *edge)
 {
     edge->sourceNode()->removeEdge(edge);
@@ -238,24 +289,23 @@ void nodeGraph::removeEdge(Edge *edge)
     delete edge;
 }
 
+/*!
+ * \brief Removes node from nodegraph.
+ *
+ * Removes node from nodegraph and deletes it. Reconnects all edges to node
+ * that is higher in graph hierarchy. Deletes node Ops and callbacks. Op deletion is buggy!!!
+ * \param node Node to be removed.
+ */
 void nodeGraph::removeNode(Node *node)
 {
-    qDebug() << "Node - mainEdge: " << node->getMainEdge();
-    qDebug() << "Edges in: " << node->edgesIn();
-    qDebug() << "Edges out: " << node->edgesOut();
-    qDebug() << "Edges: " << node->edges();
-
-    delete node->getOp();
+    //delete node->getOp();
     delete node->getCallback();
 
     Edge *mE = node->getMainEdge();
     Node *mD = 0;
-    qDebug() << "MainEdge: " << mE;
     if (mE) {
-        qDebug() << "meDest: " << node->name();
         mD = mE->sourceNode();
         if (mD) {
-            qDebug() << "meSource" << mD->name();
         }
     }
 
@@ -263,9 +313,7 @@ void nodeGraph::removeNode(Node *node)
     {
         edge->disconnect();
         this->scene()->removeItem(edge);
-        //delete edge;
     }
-
 
     foreach (Edge *edge, node->edges())
     {
@@ -274,15 +322,11 @@ void nodeGraph::removeNode(Node *node)
         }
     }
 
-    qDebug() << "edgesIn deleted";
-
-    qDebug() << "Edges: " << node->edges();
     foreach (Edge *edge, node->edges())
     {
         if (edge->sourceNode() != 0) {
             qDebug() << "Edge - source: " << edge->sourceNode()->name();
             edge->disconnect();
-            //edge->setSourceNode();
             //qDebug() << "Edge - source ds: " << edge->sourceNode()->name();
             edge->setSourceNode(mD);
         }
@@ -304,11 +348,19 @@ void nodeGraph::removeNode(Node *node)
     qDebug() << "node deleted";
 }
 
+/*!
+ * \brief Returns active edge.
+ * \return Edge in member 'activeEdge'
+ */
 Edge* nodeGraph::getActiveEdge()
 {
     return activeEdge;
 }
 
+/*!
+ * \brief Get current nodegraph mode (Pan, Select etc)
+ * \return Current nodegraph mode.
+ */
 int nodeGraph::getMode()
 {
     int m = 0;
@@ -320,53 +372,79 @@ int nodeGraph::getMode()
     return m;
 }
 
-
+/*!
+ * \brief Get pointer to main table data model.
+ * \return Main table data model held in MainWindow 'tableData'
+ */
 QStandardItemModel* nodeGraph::getTableData()
 {
-    qDebug() << "nodeGraph::getTableData() - " <<  getParent();
-    if (this->getParent() == NULL) qDebug() << "nodeGraph Parent NULL!";
-    qDebug() << "nodeGraph parent: " << this->myParent;
     return this->myParent->getTableData();
 }
 
 
+/*!
+ * \brief Get parent object of nodegraph.
+ *
+ * Returns the parent of nodegraph, usually applications MainWindow.
+ * \return Node graph parent object.
+ */
 MainWindow* nodeGraph::getParent()
 {
     return myParent;
 }
 
-
+/*!
+ * \brief Connects viewer to selected node.
+ *
+ * Viewer socket 'socket' gets connected to selected node 'node'. Socket part
+ * does not work at the moment.
+ * \param node Node to be connected
+ * \param socket Viewer socket that gets connected (not working)
+ */
 void nodeGraph::connectViewer(Node *node, int socket)
 {
-
     Edge *e = getActiveViewer()->getMainEdge();
-    qDebug() << "Node " << node->name() << " to socket " << socket;
-    qDebug() << "Active viewer: " << getActiveViewer()->name();
-    qDebug() << "Viewer Main Edge: " << e;
     if (e->sourceNode())
     {
-        qDebug() << "Viewer Main Edge name: " << e->sourceNode()->name();
         e->sourceNode()->removeEdge(e);
     }
-    //node->removeEdge(getActiveViewer()->getMainEdge());
     e->setSourceNode(node);
-
     evaluate();
 }
 
-
+/*!
+ * \brief Get active viewer node.
+ *
+ * This function returns active viewer node that is held in 'activeViewer'.
+ * \return Active viewer node.
+ * @see setActiveViewer()
+ */
 Node* nodeGraph::getActiveViewer()
 {
     return activeViewer;
 }
 
 
+/*!
+ * \brief Sets node as active viewer.
+ *
+ * This function sets selected node as active viewer. Active viewer is held in 'activeViewer'.
+ * \param node Node to be set as viewer
+ * @see getActiveViewer()
+ * @see activeViewer
+ */
 void nodeGraph::setActiveViewer(Node *node)
 {
     activeViewer = node;
 }
 
 
+/*!
+ * \brief Disables selected nodes.
+ *
+ * Disables all selected nodes. Disabled nodes let data pass through unchanged.
+ * @see Node::disable()
+ */
 void nodeGraph::disableSelected()
 {
     foreach (QGraphicsItem *i, this->scene()->selectedItems()) {
@@ -378,6 +456,15 @@ void nodeGraph::disableSelected()
     evaluate();
 }
 
+/*!
+ * \brief Gets node that was selected at contextmenuevent time.
+ *
+ * This method is used for contextmenuevent. If one node is selected, this
+ * function returns selected node and new node will be added after that
+ * in nodegraph.
+ * \return Selected node held in '_contextSelectedNode'
+ * @see _contextSelectedNode
+ */
 Node* nodeGraph::getSelectedNode()
 {
     if (_contextSelectedNode)
@@ -779,11 +866,7 @@ void nodeGraph::mouseReleaseEvent(QMouseEvent *event)
     selectRect = 0;
     activeEdge = 0;
 
-    //qDebug() << "nodeGraph::mouseReleaseEvent";
     QGraphicsView::mouseReleaseEvent(event);
-    //viewport()->setCursor(Qt::ArrowCursor);
-    //viewport()->update();
-    //qDebug() << "nodeGraph::mouseReleaseEvent ok";
 
 }
 
@@ -960,6 +1043,12 @@ void nodeGraph::wheelEvent(QWheelEvent *event)
 #endif
 
 
+/*!
+ * \brief Scales view by scaleFactor.
+ *
+ * This is a helper function for mouse wheel zoom.
+ * \param scaleFactor Factor to scale view by.
+ */
 void nodeGraph::scaleView(qreal scaleFactor)
 {
     qreal factor = transform().scale(scaleFactor, scaleFactor).mapRect(QRectF(0, 0, 1, 1)).width();
@@ -969,6 +1058,9 @@ void nodeGraph::scaleView(qreal scaleFactor)
 
 }
 
+/*!
+ * \brief Centers view on selected nodes. Not working!!!
+ */
 void nodeGraph::centerView()
 {
     qreal x1, y1, x2, y2;
@@ -992,47 +1084,85 @@ void nodeGraph::centerView()
     //qDebug() << "brect: " << this->scene()->itemsBoundingRect();
 }
 
+/*!
+ * \brief Zoom in.
+ *
+ * Zooming helper function.
+ * @see scaleView()
+ */
 void nodeGraph::zoomIn()
 {
     scaleView(qreal(1.1));
 }
 
+/*!
+ * \brief Zoom out.
+ *
+ * Zooming helper function.
+ * @see scaleView()
+ */
 void nodeGraph::zoomOut()
 {
     scaleView(1 / qreal(1.1));
 }
 
+/*!
+ * \brief Pushes item to nodegraph at certain position.
+ *
+ * Pushes QGraphicsItem 'item' to graph at position 'pos'. Used instead of
+ * pushNode() now. If item is node, it will be added to 'nodeList'.
+ * \param item QGraphicsItem to be pushed.
+ * \param pos Position where item will be.
+ * @see nodeList
+ */
 void nodeGraph::pushItem(QGraphicsItem *item, QPointF pos)
 {
     this->scene()->addItem(item);
     item->setPos(pos);
-    //qDebug() << "item: " << item;
     if (qgraphicsitem_cast<Node*>(item))
         nodeList << qgraphicsitem_cast<Node*>(item);
-    //qDebug() << "Pushed item: " << item;
 }
 
+/*!
+ * \brief Pushes node to graph.
+ * \param node Node to be pushed.
+ * @see nodeList
+ */
 void nodeGraph::pushNode(Node *node)
 {
     this->scene()->addItem(node);
     nodeList << node;
-    qDebug() << "Pushed: " << node->name();
 }
 
+/*!
+ * \brief Pushes node to graph at position.
+ * \param node Node to be pushed.
+ * \param pos Position where node will be.
+ * @see nodeList
+ */
 void nodeGraph::pushNode(Node *node, QPointF pos)
 {
     this->scene()->addItem(node);
     node->setPos(pos);
     nodeList << node;
-    //qDebug() << "Pushed_pos: " << node->name();
 }
 
+/*!
+ * \brief Adds new edge object to graph scene.
+ * \param edge Edge to be added.
+ * \return Returns the same edge.
+ */
 Edge *nodeGraph::addEdge(Edge *edge)
 {
     this->scene()->addItem(edge);
     return edge;
 }
 
+/*!
+ * \brief Adds node to nodegraph. OLD!!!
+ *
+ * Adds new node to nodegraph, used with built-in ops. OLD! Not used with plugin system.
+ */
 void nodeGraph::addNode()
 {
     QAction *pAction = qobject_cast<QAction*>(sender());
@@ -1088,6 +1218,14 @@ void nodeGraph::addNode()
     item->setSelected(true);
 }
 
+
+/*!
+ * \brief Adds new Op to nodegraph.
+ *
+ * Adds new Op to nodegraph. If one node is previously selected, adds new node to it's bottom.
+ * @see MainWindow::addOp()
+ * \param Op OpInterface to be added
+ */
 void nodeGraph::addOp(OpInterface *Op)
 {
     qDebug() << "AddOp" << Op->description();
@@ -1106,6 +1244,11 @@ void nodeGraph::addOp(OpInterface *Op)
     qDebug() << "nodeGraph::addOp finished...";
 }
 
+/*!
+ * \brief Creates actions for built-in ops. OLD!
+ *
+ * This function creates actions for built-in ops. Not used anymore!
+ */
 void nodeGraph::createActions()
 {
     newActV = new QAction(tr("&New Viewer"), this);
@@ -1142,6 +1285,16 @@ void nodeGraph::createActions()
 
 }
 
+/*!
+ * \brief Context menu event.
+ *
+ * This function shows the nodegraph context menu (right-click menu). It also
+ * stores right-click position and node that was selected at event time in
+ * variables _contextMenuPos and _contextSelectedNode.
+ * \param event Event.
+ * @see _contextMenuPos
+ * @see _contextSelectedNode
+ */
 void nodeGraph::contextMenuEvent(QContextMenuEvent *event)
 {
     /*

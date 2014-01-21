@@ -70,25 +70,28 @@ protected:
     void contextMenuEvent(QContextMenuEvent *event);
     void scaleView(qreal scaleFactor);
     void centerView();
-    QPoint _lastPos;
-    QPointF _contextMenuPos;
-    Node* _contextSelectedNode;
+
+    QPoint _lastPos; /*!< Mouse position at last event. */
+    QPointF _contextMenuPos; /*!< Position of contextMenuEvent. New node will be added here. */
+    Node* _contextSelectedNode; /*!< Node selected at the time of contextMenuEvent. */
 
 private:
 
-    MainWindow *myParent;
-    QGraphicsScene *myScene;
+    MainWindow *myParent; /*!< Nodegraph parent object. */
+    QGraphicsScene *myScene; /*!< Nodegraph scene that holds graphical representation of graph. */
 
+    QList<Node *> nodeList; /*!< List of all nodes in nodegraph. */
+    QList<Node *> nodeStack; /*!< List of nodes. */
+    QList<Node *> evalStack; /*!< List of nodes sorted by execution order. */
+    QList<Node *> visitStack; /*!< List of nodes visited. */
+    QGraphicsLineItem *line; /*!< Graphical representation of line. Used in edge dragging? */
+    QGraphicsRectItem *selectRect; /*!< Graphical representation of selection rectangle. */
+    QGraphicsItem *selectedItem; /*!< Current selected item. */
+    Mode myMode; /*!< Nodegraph current mode. Used in mouse interactions. */
+    Edge *activeEdge; /*!< Active edge being dragged. */
+    int onNode; /*!< Is mouse on node?. */
 
-    QList<Node *> nodeList, nodeStack, evalStack, visitStack;
-    QGraphicsLineItem *line;
-    QGraphicsRectItem *selectRect;
-    QGraphicsItem *selectedItem;
-    Mode myMode;
-    Edge *activeEdge;
-    int onNode;
-
-    Node *activeViewer;
+    Node *activeViewer; /*!< Node that is set as active viewer. Graph evaluation starts from this node. */
 
     void createActions();
     QAction *newAct;
@@ -100,7 +103,7 @@ private:
     QAction *newActV;
     QAction *newBackDrop;
 
-    QStandardItemModel *tableData;
+    QStandardItemModel *tableData; /*!< Table data model. */
 
 
 };

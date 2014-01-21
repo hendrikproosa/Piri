@@ -1,4 +1,7 @@
 <map id="MainWindow::loadPlugins" name="MainWindow::loadPlugins">
-<area shape="rect" id="node2" href="$class_main_window.html#a150054b7e0f06b55eb2640adbd3d7cb9" title="Casts plugins to OpInterface and calls registerOp() " alt="" coords="224,5,416,32"/>
+<area shape="rect" id="node2" href="$class_main_window.html#a150054b7e0f06b55eb2640adbd3d7cb9" title="Casts plugins to OpInterface and calls registerOp() " alt="" coords="224,31,416,57"/>
 <area shape="rect" id="node3" href="$class_main_window.html#ac185075c143d60340513e2f77365ba5a" title="Registers loaded plugin to system. " alt="" coords="465,5,629,32"/>
+<area shape="rect" id="node4" href="$class_main_window.html#a4794eaad406f40093c06569cd556480d" title="Adds new Op to nodegraph. Adds new Op to main nodegraph. At first it casts the sender object to QActi..." alt="" coords="475,56,618,83"/>
+<area shape="rect" id="node5" href="$classnode_graph.html#a80eb6c9c9ef7d4eec41e15dcabf9b5c7" title="Adds new Op to nodegraph. " alt="" coords="677,56,808,83"/>
+<area shape="rect" id="node6" href="$classnode_graph.html#a58c9cc14f65765c17a6d381be6c8ab6f" title="Pushes item to nodegraph at certain position. " alt="" coords="856,56,1003,83"/>
 </map>

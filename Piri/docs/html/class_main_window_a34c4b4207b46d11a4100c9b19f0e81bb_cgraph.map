@@ -1,0 +1,18 @@
+<map id="MainWindow::MainWindow" name="MainWindow::MainWindow">
+<area shape="rect" id="node2" href="$class_main_window.html#a31a0ea01ec4b679a24b2354f8eccd929" title="Creates the main scene for 2D data. " alt="" coords="255,5,433,32"/>
+<area shape="rect" id="node3" href="$class_main_window.html#a48180171ce57b04e771bc49f85c1ee00" title="Creates the nodegraph DAG scene. " alt="" coords="260,56,428,83"/>
+<area shape="rect" id="node4" href="$class_main_window.html#aa8bdc3dd951bf17a7b78e7425920a639" title="Creates the table datamodel. " alt="" coords="261,107,427,133"/>
+<area shape="rect" id="node5" href="$class_main_window.html#a62cd8712fb41a754298f6f60eead2cb0" title="Creates main application actions. " alt="" coords="252,157,436,184"/>
+<area shape="rect" id="node8" href="$class_main_window.html#aa4907b0251d305659e403c62921ef331" title="Creates main menubar and nodegraph popup menu. " alt="" coords="255,208,433,235"/>
+<area shape="rect" id="node10" href="$class_main_window.html#af0a8a3f54a87bd7ad6f23248dd0e9c09" title="Creates main UI statusbar. " alt="" coords="245,259,443,285"/>
+<area shape="rect" id="node11" href="$class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2" title="Loads DLL plugins. " alt="" coords="259,309,429,336"/>
+<area shape="rect" id="node17" href="$class_main_window.html#a5eabeda2fa3d2e1e2ddda56cb3511663" title="Create UI docking windows. " alt="" coords="233,360,455,387"/>
+<area shape="rect" id="node6" href="$class_main_window.html#a6ce4eb489a32f1a18c306b99e0cbb82e" title="MainWindow close action. " alt="" coords="543,107,678,133"/>
+<area shape="rect" id="node7" href="$class_main_window.html#a7be6a5d98970ac1a6296c6f9aee1e9bb" title="MainWindow about action. " alt="" coords="543,157,679,184"/>
+<area shape="rect" id="node9" href="$class_main_window.html#a90f289728085b2907e2de4596503d1d0" title="Adds new class to node menu. Not used? " alt="" coords="505,208,717,235"/>
+<area shape="rect" id="node12" href="$class_main_window.html#a150054b7e0f06b55eb2640adbd3d7cb9" title="Casts plugins to OpInterface and calls registerOp() " alt="" coords="515,309,707,336"/>
+<area shape="rect" id="node13" href="$class_main_window.html#ac185075c143d60340513e2f77365ba5a" title="Registers loaded plugin to system. " alt="" coords="766,284,930,311"/>
+<area shape="rect" id="node14" href="$class_main_window.html#a4794eaad406f40093c06569cd556480d" title="Adds new Op to nodegraph. Adds new Op to main nodegraph. At first it casts the sender object to QActi..." alt="" coords="777,335,919,361"/>
+<area shape="rect" id="node15" href="$classnode_graph.html#a80eb6c9c9ef7d4eec41e15dcabf9b5c7" title="Adds new Op to nodegraph. " alt="" coords="979,335,1109,361"/>
+<area shape="rect" id="node16" href="$classnode_graph.html#a58c9cc14f65765c17a6d381be6c8ab6f" title="Pushes item to nodegraph at certain position. " alt="" coords="1157,335,1304,361"/>
+</map>

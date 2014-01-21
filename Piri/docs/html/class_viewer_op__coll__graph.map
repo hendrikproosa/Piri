@@ -1,6 +1,6 @@
 <map id="ViewerOp" name="ViewerOp">
 <area shape="rect" id="node2" href="$class_data_op.html" title="DataOp" alt="" coords="223,5,289,32"/>
-<area shape="rect" id="node3" href="$class_node.html" title="[0] " alt="" coords="429,96,480,123"/>
+<area shape="rect" id="node3" href="$class_node.html" title="Node" alt="" coords="429,96,480,123"/>
 <area shape="rect" id="node5" href="$classnode_graph.html" title="[0] " alt="" coords="403,293,488,320"/>
 <area shape="rect" id="node7" href="$class_edge.html" title="[0] " alt="" coords="706,201,757,228"/>
 <area shape="rect" id="node14" href="$class_knob___callback.html" title="Knob_Callback" alt="" coords="171,201,280,228"/>

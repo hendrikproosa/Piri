@@ -8,6 +8,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -66,12 +73,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_main_window.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -80,7 +102,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -98,17 +119,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Inheritance diagram for MainWindow:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_main_window__inherit__graph.png" border="0" usemap="#_main_window_inherit__map" alt="Inheritance graph"/></div>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for MainWindow:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_main_window__coll__graph.png" border="0" usemap="#_main_window_coll__map" alt="Collaboration graph"/></div>
 <map name="_main_window_coll__map" id="_main_window_coll__map">
-<area shape="rect" id="node3" href="classnode_graph.html" title="[0] " alt="" coords="587,173,672,200"/><area shape="rect" id="node12" href="class_viewer.html" title="Viewer" alt="" coords="353,173,415,200"/><area shape="rect" id="node5" href="class_node.html" title="[0] " alt="" coords="249,277,300,304"/><area shape="rect" id="node8" href="class_data_op.html" title="DataOp" alt="" coords="132,472,199,499"/><area shape="rect" id="node9" href="class_knob___callback.html" title="Knob_Callback" alt="" coords="5,381,115,408"/><area shape="rect" id="node11" href="class_edge.html" title="[0] " alt="" coords="405,381,456,408"/><area shape="rect" id="node7" href="class_op_interface.html" title="OpInterface" alt="" coords="108,173,196,200"/><area shape="rect" id="node13" href="structsettings.html" title="settings" alt="" coords="218,83,285,109"/></map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<area shape="rect" id="node3" href="classnode_graph.html" title="[0] " alt="" coords="587,173,672,200"/><area shape="rect" id="node12" href="class_viewer.html" title="Viewer" alt="" coords="353,173,415,200"/><area shape="rect" id="node5" href="class_node.html" title="Node" alt="" coords="249,277,300,304"/><area shape="rect" id="node8" href="class_data_op.html" title="DataOp" alt="" coords="132,472,199,499"/><area shape="rect" id="node9" href="class_knob___callback.html" title="Knob_Callback" alt="" coords="5,381,115,408"/><area shape="rect" id="node11" href="class_edge.html" title="[0] " alt="" coords="405,381,456,408"/><area shape="rect" id="node7" href="class_op_interface.html" title="OpInterface" alt="" coords="108,173,196,200"/><area shape="rect" id="node13" href="structsettings.html" title="settings" alt="" coords="218,83,285,109"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a34c4b4207b46d11a4100c9b19f0e81bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb">MainWindow</a> ()</td></tr>
+<tr class="memdesc:a34c4b4207b46d11a4100c9b19f0e81bb"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_main_window.html">MainWindow</a> initializer.  <a href="#a34c4b4207b46d11a4100c9b19f0e81bb">More...</a><br/></td></tr>
+<tr class="separator:a34c4b4207b46d11a4100c9b19f0e81bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4862a67e934ab749c7e20642ce28e141"><td class="memItemLeft" align="right" valign="top">QStandardItemModel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a4862a67e934ab749c7e20642ce28e141">getTableData</a> ()</td></tr>
 <tr class="memdesc:a4862a67e934ab749c7e20642ce28e141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get main tabledata model.  <a href="#a4862a67e934ab749c7e20642ce28e141">More...</a><br/></td></tr>
 <tr class="separator:a4862a67e934ab749c7e20642ce28e141"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,14 +142,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4a9cc990bf54adc798c8d6a19795fb63"><td class="memItemLeft" align="right" valign="top">QLayout *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a4a9cc990bf54adc798c8d6a19795fb63">getPropViewLayout</a> ()</td></tr>
 <tr class="memdesc:a4a9cc990bf54adc798c8d6a19795fb63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get main properties view layout.  <a href="#a4a9cc990bf54adc798c8d6a19795fb63">More...</a><br/></td></tr>
 <tr class="separator:a4a9cc990bf54adc798c8d6a19795fb63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cecca76871bce1965a8be41ea97f5ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3cecca76871bce1965a8be41ea97f5ff"></a>
-<a class="el" href="classnode_graph.html">nodeGraph</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getMainGraph</b> ()</td></tr>
+<tr class="memitem:a3cecca76871bce1965a8be41ea97f5ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnode_graph.html">nodeGraph</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a3cecca76871bce1965a8be41ea97f5ff">getMainGraph</a> ()</td></tr>
+<tr class="memdesc:a3cecca76871bce1965a8be41ea97f5ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get main nodegraph. Get main nodegraph that holds nodes and edges.  <a href="#a3cecca76871bce1965a8be41ea97f5ff">More...</a><br/></td></tr>
 <tr class="separator:a3cecca76871bce1965a8be41ea97f5ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4910bd522e8791abaed69a7ee692753a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4910bd522e8791abaed69a7ee692753a"></a>
-<a class="el" href="class_viewer.html">Viewer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getViewer</b> ()</td></tr>
+<tr class="memitem:a4910bd522e8791abaed69a7ee692753a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_viewer.html">Viewer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a4910bd522e8791abaed69a7ee692753a">getViewer</a> ()</td></tr>
+<tr class="memdesc:a4910bd522e8791abaed69a7ee692753a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get main viewer area. Returns main viewer area, that contains tableview and graphical views.  <a href="#a4910bd522e8791abaed69a7ee692753a">More...</a><br/></td></tr>
 <tr class="separator:a4910bd522e8791abaed69a7ee692753a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a195a755d1c5b5282556c4ced26c3de41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a195a755d1c5b5282556c4ced26c3de41"></a>
-QGraphicsScene *&#160;</td><td class="memItemRight" valign="bottom"><b>getScene2D</b> ()</td></tr>
+<tr class="memitem:a195a755d1c5b5282556c4ced26c3de41"><td class="memItemLeft" align="right" valign="top">QGraphicsScene *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a195a755d1c5b5282556c4ced26c3de41">getScene2D</a> ()</td></tr>
+<tr class="memdesc:a195a755d1c5b5282556c4ced26c3de41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get main 2D scene. Returns main 2D QGraphicsScene scene called 'scene2D'.  <a href="#a195a755d1c5b5282556c4ced26c3de41">More...</a><br/></td></tr>
 <tr class="separator:a195a755d1c5b5282556c4ced26c3de41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a126479682724d822fcc70055d515a0b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a126479682724d822fcc70055d515a0b1"></a>
 QString&#160;</td><td class="memItemRight" valign="bottom"><b>errorMessage</b> ()</td></tr>
@@ -133,11 +157,9 @@ QString&#160;</td><td class="memItemRight" valign="bottom"><b>errorMessage</b> (
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a3eee444ef3d95e37288b05d63d70e11f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3eee444ef3d95e37288b05d63d70e11f"></a>
-QMenu *&#160;</td><td class="memItemRight" valign="bottom"><b>nodeMenu</b></td></tr>
+<tr class="memitem:a3eee444ef3d95e37288b05d63d70e11f"><td class="memItemLeft" align="right" valign="top">QMenu *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a3eee444ef3d95e37288b05d63d70e11f">nodeMenu</a></td></tr>
 <tr class="separator:a3eee444ef3d95e37288b05d63d70e11f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54452b2a8abd6a546cb65a573c388090"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54452b2a8abd6a546cb65a573c388090"></a>
-QList&lt; QMenu * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>menuClasses</b></td></tr>
+<tr class="memitem:a54452b2a8abd6a546cb65a573c388090"><td class="memItemLeft" align="right" valign="top">QList&lt; QMenu * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a54452b2a8abd6a546cb65a573c388090">menuClasses</a></td></tr>
 <tr class="separator:a54452b2a8abd6a546cb65a573c388090"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -148,14 +170,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mouseMoveEvent</b> (Q
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-slots"></a>
 Private Slots</h2></td></tr>
-<tr class="memitem:a7be6a5d98970ac1a6296c6f9aee1e9bb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7be6a5d98970ac1a6296c6f9aee1e9bb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>about</b> ()</td></tr>
+<tr class="memitem:a7be6a5d98970ac1a6296c6f9aee1e9bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a7be6a5d98970ac1a6296c6f9aee1e9bb">about</a> ()</td></tr>
+<tr class="memdesc:a7be6a5d98970ac1a6296c6f9aee1e9bb"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_main_window.html">MainWindow</a> about action.  <a href="#a7be6a5d98970ac1a6296c6f9aee1e9bb">More...</a><br/></td></tr>
 <tr class="separator:a7be6a5d98970ac1a6296c6f9aee1e9bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ce4eb489a32f1a18c306b99e0cbb82e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ce4eb489a32f1a18c306b99e0cbb82e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr>
+<tr class="memitem:a6ce4eb489a32f1a18c306b99e0cbb82e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a6ce4eb489a32f1a18c306b99e0cbb82e">close</a> ()</td></tr>
+<tr class="memdesc:a6ce4eb489a32f1a18c306b99e0cbb82e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_main_window.html">MainWindow</a> close action.  <a href="#a6ce4eb489a32f1a18c306b99e0cbb82e">More...</a><br/></td></tr>
 <tr class="separator:a6ce4eb489a32f1a18c306b99e0cbb82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4794eaad406f40093c06569cd556480d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4794eaad406f40093c06569cd556480d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addOp</b> ()</td></tr>
+<tr class="memitem:a4794eaad406f40093c06569cd556480d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a4794eaad406f40093c06569cd556480d">addOp</a> ()</td></tr>
+<tr class="memdesc:a4794eaad406f40093c06569cd556480d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds new <a class="el" href="class_op.html">Op</a> to nodegraph. Adds new <a class="el" href="class_op.html">Op</a> to main nodegraph. At first it casts the sender object to QAction, then casts QAction parent to <a class="el" href="class_op_interface.html">OpInterface</a> and calls mainGraph-&gt;addOp(Op).  <a href="#a4794eaad406f40093c06569cd556480d">More...</a><br/></td></tr>
 <tr class="separator:a4794eaad406f40093c06569cd556480d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
@@ -169,17 +191,17 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:aa8bdc3dd951bf17a7b78e7425920a639"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#aa8bdc3dd951bf17a7b78e7425920a639">createData</a> ()</td></tr>
 <tr class="memdesc:aa8bdc3dd951bf17a7b78e7425920a639"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the table datamodel.  <a href="#aa8bdc3dd951bf17a7b78e7425920a639">More...</a><br/></td></tr>
 <tr class="separator:aa8bdc3dd951bf17a7b78e7425920a639"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62cd8712fb41a754298f6f60eead2cb0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62cd8712fb41a754298f6f60eead2cb0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>createActions</b> ()</td></tr>
+<tr class="memitem:a62cd8712fb41a754298f6f60eead2cb0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a62cd8712fb41a754298f6f60eead2cb0">createActions</a> ()</td></tr>
+<tr class="memdesc:a62cd8712fb41a754298f6f60eead2cb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates main application actions.  <a href="#a62cd8712fb41a754298f6f60eead2cb0">More...</a><br/></td></tr>
 <tr class="separator:a62cd8712fb41a754298f6f60eead2cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4907b0251d305659e403c62921ef331"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4907b0251d305659e403c62921ef331"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>createMenus</b> ()</td></tr>
+<tr class="memitem:aa4907b0251d305659e403c62921ef331"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#aa4907b0251d305659e403c62921ef331">createMenus</a> ()</td></tr>
+<tr class="memdesc:aa4907b0251d305659e403c62921ef331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates main menubar and nodegraph popup menu.  <a href="#aa4907b0251d305659e403c62921ef331">More...</a><br/></td></tr>
 <tr class="separator:aa4907b0251d305659e403c62921ef331"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae507eebccfd83f32681cda1a40bae1b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae507eebccfd83f32681cda1a40bae1b1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addNodeMenuItem</b> (QString s)</td></tr>
-<tr class="separator:ae507eebccfd83f32681cda1a40bae1b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0a8a3f54a87bd7ad6f23248dd0e9c09"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af0a8a3f54a87bd7ad6f23248dd0e9c09"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>createStatusBar</b> ()</td></tr>
+<tr class="memitem:a90f289728085b2907e2de4596503d1d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a90f289728085b2907e2de4596503d1d0">addNodeMenuItem</a> (QString menuItemName)</td></tr>
+<tr class="memdesc:a90f289728085b2907e2de4596503d1d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds new class to node menu. Not used?  <a href="#a90f289728085b2907e2de4596503d1d0">More...</a><br/></td></tr>
+<tr class="separator:a90f289728085b2907e2de4596503d1d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0a8a3f54a87bd7ad6f23248dd0e9c09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#af0a8a3f54a87bd7ad6f23248dd0e9c09">createStatusBar</a> ()</td></tr>
+<tr class="memdesc:af0a8a3f54a87bd7ad6f23248dd0e9c09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates main UI statusbar.  <a href="#af0a8a3f54a87bd7ad6f23248dd0e9c09">More...</a><br/></td></tr>
 <tr class="separator:af0a8a3f54a87bd7ad6f23248dd0e9c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5eabeda2fa3d2e1e2ddda56cb3511663"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a5eabeda2fa3d2e1e2ddda56cb3511663">createDockWindows</a> ()</td></tr>
 <tr class="memdesc:a5eabeda2fa3d2e1e2ddda56cb3511663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create UI docking windows.  <a href="#a5eabeda2fa3d2e1e2ddda56cb3511663">More...</a><br/></td></tr>
@@ -196,50 +218,290 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>createStatusBar</b> (
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a998685c8faf90c391c11687d036dd5b5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a998685c8faf90c391c11687d036dd5b5"></a>
-QDir&#160;</td><td class="memItemRight" valign="bottom"><b>pluginsDir</b></td></tr>
+<tr class="memitem:a998685c8faf90c391c11687d036dd5b5"><td class="memItemLeft" align="right" valign="top">QDir&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a998685c8faf90c391c11687d036dd5b5">pluginsDir</a></td></tr>
 <tr class="separator:a998685c8faf90c391c11687d036dd5b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18f3d8f824f33a1e537e7a55a2f06a36"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18f3d8f824f33a1e537e7a55a2f06a36"></a>
-QStringList&#160;</td><td class="memItemRight" valign="bottom"><b>pluginFileNames</b></td></tr>
+<tr class="memitem:a18f3d8f824f33a1e537e7a55a2f06a36"><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a18f3d8f824f33a1e537e7a55a2f06a36">pluginFileNames</a></td></tr>
 <tr class="separator:a18f3d8f824f33a1e537e7a55a2f06a36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2da3df80fbb2a7ec4202829ac0da4dd5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2da3df80fbb2a7ec4202829ac0da4dd5"></a>
-QGraphicsScene *&#160;</td><td class="memItemRight" valign="bottom"><b>scene2D</b></td></tr>
+<tr class="memitem:a2da3df80fbb2a7ec4202829ac0da4dd5"><td class="memItemLeft" align="right" valign="top">QGraphicsScene *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a2da3df80fbb2a7ec4202829ac0da4dd5">scene2D</a></td></tr>
 <tr class="separator:a2da3df80fbb2a7ec4202829ac0da4dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0868b9737b6a2cf7eadf0d5f0567fa56"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0868b9737b6a2cf7eadf0d5f0567fa56"></a>
-QGraphicsScene *&#160;</td><td class="memItemRight" valign="bottom"><b>sceneDAG</b></td></tr>
+<tr class="memitem:a0868b9737b6a2cf7eadf0d5f0567fa56"><td class="memItemLeft" align="right" valign="top">QGraphicsScene *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a0868b9737b6a2cf7eadf0d5f0567fa56">sceneDAG</a></td></tr>
 <tr class="separator:a0868b9737b6a2cf7eadf0d5f0567fa56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33790917d997c2b0d17ed65ecbdcc460"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33790917d997c2b0d17ed65ecbdcc460"></a>
-<a class="el" href="classnode_graph.html">nodeGraph</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mainGraph</b></td></tr>
+<tr class="memitem:a33790917d997c2b0d17ed65ecbdcc460"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classnode_graph.html">nodeGraph</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a33790917d997c2b0d17ed65ecbdcc460">mainGraph</a></td></tr>
 <tr class="separator:a33790917d997c2b0d17ed65ecbdcc460"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a521d769978eeaf5b3b5b95591bb8c77b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a521d769978eeaf5b3b5b95591bb8c77b"></a>
-QStandardItemModel *&#160;</td><td class="memItemRight" valign="bottom"><b>tableData</b></td></tr>
+<tr class="memitem:a521d769978eeaf5b3b5b95591bb8c77b"><td class="memItemLeft" align="right" valign="top">QStandardItemModel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a521d769978eeaf5b3b5b95591bb8c77b">tableData</a></td></tr>
 <tr class="separator:a521d769978eeaf5b3b5b95591bb8c77b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6469a04deac1509771cebab9391b85b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af6469a04deac1509771cebab9391b85b"></a>
-QWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>propView</b></td></tr>
+<tr class="memitem:af6469a04deac1509771cebab9391b85b"><td class="memItemLeft" align="right" valign="top">QWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#af6469a04deac1509771cebab9391b85b">propView</a></td></tr>
 <tr class="separator:af6469a04deac1509771cebab9391b85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad56a5252fa74ded606c8fd71e96ceedd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad56a5252fa74ded606c8fd71e96ceedd"></a>
-<a class="el" href="class_viewer.html">Viewer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>myViewer</b></td></tr>
+<tr class="memitem:ad56a5252fa74ded606c8fd71e96ceedd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_viewer.html">Viewer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#ad56a5252fa74ded606c8fd71e96ceedd">myViewer</a></td></tr>
 <tr class="separator:ad56a5252fa74ded606c8fd71e96ceedd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a426da48f6e2f865b07a28533c07c4f7a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a426da48f6e2f865b07a28533c07c4f7a"></a>
-QMenu *&#160;</td><td class="memItemRight" valign="bottom"><b>fileMenu</b></td></tr>
+<tr class="memitem:a426da48f6e2f865b07a28533c07c4f7a"><td class="memItemLeft" align="right" valign="top">QMenu *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a426da48f6e2f865b07a28533c07c4f7a">fileMenu</a></td></tr>
 <tr class="separator:a426da48f6e2f865b07a28533c07c4f7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b05548b0849cd96a73ad5b38cc73bef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b05548b0849cd96a73ad5b38cc73bef"></a>
-QMenu *&#160;</td><td class="memItemRight" valign="bottom"><b>editMenu</b></td></tr>
+<tr class="memitem:a5b05548b0849cd96a73ad5b38cc73bef"><td class="memItemLeft" align="right" valign="top">QMenu *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a5b05548b0849cd96a73ad5b38cc73bef">editMenu</a></td></tr>
 <tr class="separator:a5b05548b0849cd96a73ad5b38cc73bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e38d7c63a3dc537d05eafe7e0f5f4db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6e38d7c63a3dc537d05eafe7e0f5f4db"></a>
-QMenu *&#160;</td><td class="memItemRight" valign="bottom"><b>viewMenu</b></td></tr>
+<tr class="memitem:a6e38d7c63a3dc537d05eafe7e0f5f4db"><td class="memItemLeft" align="right" valign="top">QMenu *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a6e38d7c63a3dc537d05eafe7e0f5f4db">viewMenu</a></td></tr>
 <tr class="separator:a6e38d7c63a3dc537d05eafe7e0f5f4db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a947c15e520bfea60338b2577f67146b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a947c15e520bfea60338b2577f67146b8"></a>
-QMenu *&#160;</td><td class="memItemRight" valign="bottom"><b>helpMenu</b></td></tr>
+<tr class="memitem:a947c15e520bfea60338b2577f67146b8"><td class="memItemLeft" align="right" valign="top">QMenu *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a947c15e520bfea60338b2577f67146b8">helpMenu</a></td></tr>
 <tr class="separator:a947c15e520bfea60338b2577f67146b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07b31cf99def3b2de7958ffaf2eec463"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07b31cf99def3b2de7958ffaf2eec463"></a>
-QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>aboutAct</b></td></tr>
+<tr class="memitem:a07b31cf99def3b2de7958ffaf2eec463"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a07b31cf99def3b2de7958ffaf2eec463">aboutAct</a></td></tr>
 <tr class="separator:a07b31cf99def3b2de7958ffaf2eec463"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c7d0504f384c2b6d383a5aa478f1fe7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c7d0504f384c2b6d383a5aa478f1fe7"></a>
-QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>quitAct</b></td></tr>
+<tr class="memitem:a2c7d0504f384c2b6d383a5aa478f1fe7"><td class="memItemLeft" align="right" valign="top">QAction *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_main_window.html#a2c7d0504f384c2b6d383a5aa478f1fe7">quitAct</a></td></tr>
 <tr class="separator:a2c7d0504f384c2b6d383a5aa478f1fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a34c4b4207b46d11a4100c9b19f0e81bb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MainWindow::MainWindow </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_main_window.html">MainWindow</a> initializer. </p>
+<p>Calls methots to create scene, DAG, table datamodel, actions, menus, statusbar and docked subwindows. Also calls <a class="el" href="class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2" title="Loads DLL plugins. ">loadPlugins()</a> that loads all DLL plugins. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_main_window.html#a31a0ea01ec4b679a24b2354f8eccd929" title="Creates the main scene for 2D data. ">createScene()</a> </dd>
+<dd>
+<a class="el" href="class_main_window.html#a48180171ce57b04e771bc49f85c1ee00" title="Creates the nodegraph DAG scene. ">createDAG()</a> </dd>
+<dd>
+<a class="el" href="class_main_window.html#aa8bdc3dd951bf17a7b78e7425920a639" title="Creates the table datamodel. ">createData()</a> </dd>
+<dd>
+<a class="el" href="class_main_window.html#a62cd8712fb41a754298f6f60eead2cb0" title="Creates main application actions. ">createActions()</a> </dd>
+<dd>
+<a class="el" href="class_main_window.html#aa4907b0251d305659e403c62921ef331" title="Creates main menubar and nodegraph popup menu. ">createMenus()</a> </dd>
+<dd>
+<a class="el" href="class_main_window.html#af0a8a3f54a87bd7ad6f23248dd0e9c09" title="Creates main UI statusbar. ">createStatusBar()</a> </dd>
+<dd>
+<a class="el" href="class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2" title="Loads DLL plugins. ">loadPlugins()</a> </dd>
+<dd>
+<a class="el" href="class_main_window.html#a5eabeda2fa3d2e1e2ddda56cb3511663" title="Create UI docking windows. ">createDockWindows()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a34c4b4207b46d11a4100c9b19f0e81bb_cgraph.png" border="0" usemap="#class_main_window_a34c4b4207b46d11a4100c9b19f0e81bb_cgraph" alt=""/></div>
+<map name="class_main_window_a34c4b4207b46d11a4100c9b19f0e81bb_cgraph" id="class_main_window_a34c4b4207b46d11a4100c9b19f0e81bb_cgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a31a0ea01ec4b679a24b2354f8eccd929" title="Creates the main scene for 2D data. " alt="" coords="255,5,433,32"/><area shape="rect" id="node3" href="class_main_window.html#a48180171ce57b04e771bc49f85c1ee00" title="Creates the nodegraph DAG scene. " alt="" coords="260,56,428,83"/><area shape="rect" id="node4" href="class_main_window.html#aa8bdc3dd951bf17a7b78e7425920a639" title="Creates the table datamodel. " alt="" coords="261,107,427,133"/><area shape="rect" id="node5" href="class_main_window.html#a62cd8712fb41a754298f6f60eead2cb0" title="Creates main application actions. " alt="" coords="252,157,436,184"/><area shape="rect" id="node8" href="class_main_window.html#aa4907b0251d305659e403c62921ef331" title="Creates main menubar and nodegraph popup menu. " alt="" coords="255,208,433,235"/><area shape="rect" id="node10" href="class_main_window.html#af0a8a3f54a87bd7ad6f23248dd0e9c09" title="Creates main UI statusbar. " alt="" coords="245,259,443,285"/><area shape="rect" id="node11" href="class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2" title="Loads DLL plugins. " alt="" coords="259,309,429,336"/><area shape="rect" id="node17" href="class_main_window.html#a5eabeda2fa3d2e1e2ddda56cb3511663" title="Create UI docking windows. " alt="" coords="233,360,455,387"/><area shape="rect" id="node6" href="class_main_window.html#a6ce4eb489a32f1a18c306b99e0cbb82e" title="MainWindow close action. " alt="" coords="543,107,678,133"/><area shape="rect" id="node7" href="class_main_window.html#a7be6a5d98970ac1a6296c6f9aee1e9bb" title="MainWindow about action. " alt="" coords="543,157,679,184"/><area shape="rect" id="node9" href="class_main_window.html#a90f289728085b2907e2de4596503d1d0" title="Adds new class to node menu. Not used? " alt="" coords="505,208,717,235"/><area shape="rect" id="node12" href="class_main_window.html#a150054b7e0f06b55eb2640adbd3d7cb9" title="Casts plugins to OpInterface and calls registerOp() " alt="" coords="515,309,707,336"/><area shape="rect" id="node13" href="class_main_window.html#ac185075c143d60340513e2f77365ba5a" title="Registers loaded plugin to system. " alt="" coords="766,284,930,311"/><area shape="rect" id="node14" href="class_main_window.html#a4794eaad406f40093c06569cd556480d" title="Adds new Op to nodegraph. Adds new Op to main nodegraph. At first it casts the sender object to QActi..." alt="" coords="777,335,919,361"/><area shape="rect" id="node15" href="classnode_graph.html#a80eb6c9c9ef7d4eec41e15dcabf9b5c7" title="Adds new Op to nodegraph. " alt="" coords="979,335,1109,361"/><area shape="rect" id="node16" href="classnode_graph.html#a58c9cc14f65765c17a6d381be6c8ab6f" title="Pushes item to nodegraph at certain position. " alt="" coords="1157,335,1304,361"/></map>
+</div>
+</p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a7be6a5d98970ac1a6296c6f9aee1e9bb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::about </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_main_window.html">MainWindow</a> about action. </p>
+<p>Action that gets called when user selects menu item Help-&gt;About... </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_main_window.html#a62cd8712fb41a754298f6f60eead2cb0" title="Creates main application actions. ">createActions()</a> </dd>
+<dd>
+<a class="el" href="class_main_window.html#aa4907b0251d305659e403c62921ef331" title="Creates main menubar and nodegraph popup menu. ">createMenus()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a7be6a5d98970ac1a6296c6f9aee1e9bb_icgraph.png" border="0" usemap="#class_main_window_a7be6a5d98970ac1a6296c6f9aee1e9bb_icgraph" alt=""/></div>
+<map name="class_main_window_a7be6a5d98970ac1a6296c6f9aee1e9bb_icgraph" id="class_main_window_a7be6a5d98970ac1a6296c6f9aee1e9bb_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a62cd8712fb41a754298f6f60eead2cb0" title="Creates main application actions. " alt="" coords="189,5,373,32"/><area shape="rect" id="node3" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="421,5,600,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a90f289728085b2907e2de4596503d1d0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::addNodeMenuItem </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>menuItemName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds new class to node menu. Not used? </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Menu item name. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_main_window.html#aa4907b0251d305659e403c62921ef331" title="Creates main menubar and nodegraph popup menu. ">createMenus()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a90f289728085b2907e2de4596503d1d0_icgraph.png" border="0" usemap="#class_main_window_a90f289728085b2907e2de4596503d1d0_icgraph" alt=""/></div>
+<map name="class_main_window_a90f289728085b2907e2de4596503d1d0_icgraph" id="class_main_window_a90f289728085b2907e2de4596503d1d0_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#aa4907b0251d305659e403c62921ef331" title="Creates main menubar and nodegraph popup menu. " alt="" coords="267,5,445,32"/><area shape="rect" id="node3" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="493,5,672,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a4794eaad406f40093c06569cd556480d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::addOp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Adds new <a class="el" href="class_op.html">Op</a> to nodegraph. Adds new <a class="el" href="class_op.html">Op</a> to main nodegraph. At first it casts the sender object to QAction, then casts QAction parent to <a class="el" href="class_op_interface.html">OpInterface</a> and calls mainGraph-&gt;addOp(Op). </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classnode_graph.html#a80eb6c9c9ef7d4eec41e15dcabf9b5c7" title="Adds new Op to nodegraph. ">nodeGraph::addOp()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a4794eaad406f40093c06569cd556480d_cgraph.png" border="0" usemap="#class_main_window_a4794eaad406f40093c06569cd556480d_cgraph" alt=""/></div>
+<map name="class_main_window_a4794eaad406f40093c06569cd556480d_cgraph" id="class_main_window_a4794eaad406f40093c06569cd556480d_cgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a80eb6c9c9ef7d4eec41e15dcabf9b5c7" title="Adds new Op to nodegraph. " alt="" coords="197,5,328,32"/><area shape="rect" id="node3" href="classnode_graph.html#a58c9cc14f65765c17a6d381be6c8ab6f" title="Pushes item to nodegraph at certain position. " alt="" coords="376,5,523,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a4794eaad406f40093c06569cd556480d_icgraph.png" border="0" usemap="#class_main_window_a4794eaad406f40093c06569cd556480d_icgraph" alt=""/></div>
+<map name="class_main_window_a4794eaad406f40093c06569cd556480d_icgraph" id="class_main_window_a4794eaad406f40093c06569cd556480d_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a150054b7e0f06b55eb2640adbd3d7cb9" title="Casts plugins to OpInterface and calls registerOp() " alt="" coords="197,5,389,32"/><area shape="rect" id="node3" href="class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2" title="Loads DLL plugins. " alt="" coords="437,5,608,32"/><area shape="rect" id="node4" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="656,5,835,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a6ce4eb489a32f1a18c306b99e0cbb82e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::close </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_main_window.html">MainWindow</a> close action. </p>
+<p>Action that gets called when user selects menu item File-&gt;Close </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_main_window.html#a62cd8712fb41a754298f6f60eead2cb0" title="Creates main application actions. ">createActions()</a> </dd>
+<dd>
+<a class="el" href="class_main_window.html#aa4907b0251d305659e403c62921ef331" title="Creates main menubar and nodegraph popup menu. ">createMenus()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a6ce4eb489a32f1a18c306b99e0cbb82e_icgraph.png" border="0" usemap="#class_main_window_a6ce4eb489a32f1a18c306b99e0cbb82e_icgraph" alt=""/></div>
+<map name="class_main_window_a6ce4eb489a32f1a18c306b99e0cbb82e_icgraph" id="class_main_window_a6ce4eb489a32f1a18c306b99e0cbb82e_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a62cd8712fb41a754298f6f60eead2cb0" title="Creates main application actions. " alt="" coords="189,5,373,32"/><area shape="rect" id="node3" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="421,5,600,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a62cd8712fb41a754298f6f60eead2cb0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::createActions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates main application actions. </p>
+<p>Creates main application actions. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_main_window.html#aa4907b0251d305659e403c62921ef331" title="Creates main menubar and nodegraph popup menu. ">createMenus()</a> </dd>
+<dd>
+<a class="el" href="class_main_window.html#a6ce4eb489a32f1a18c306b99e0cbb82e" title="MainWindow close action. ">close()</a> </dd>
+<dd>
+<a class="el" href="class_main_window.html#a7be6a5d98970ac1a6296c6f9aee1e9bb" title="MainWindow about action. ">about()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a62cd8712fb41a754298f6f60eead2cb0_cgraph.png" border="0" usemap="#class_main_window_a62cd8712fb41a754298f6f60eead2cb0_cgraph" alt=""/></div>
+<map name="class_main_window_a62cd8712fb41a754298f6f60eead2cb0_cgraph" id="class_main_window_a62cd8712fb41a754298f6f60eead2cb0_cgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a6ce4eb489a32f1a18c306b99e0cbb82e" title="MainWindow close action. " alt="" coords="238,5,373,32"/><area shape="rect" id="node3" href="class_main_window.html#a7be6a5d98970ac1a6296c6f9aee1e9bb" title="MainWindow about action. " alt="" coords="237,56,373,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a62cd8712fb41a754298f6f60eead2cb0_icgraph.png" border="0" usemap="#class_main_window_a62cd8712fb41a754298f6f60eead2cb0_icgraph" alt=""/></div>
+<map name="class_main_window_a62cd8712fb41a754298f6f60eead2cb0_icgraph" id="class_main_window_a62cd8712fb41a754298f6f60eead2cb0_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="237,5,416,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
 <a class="anchor" id="a48180171ce57b04e771bc49f85c1ee00"></a>
 <div class="memitem">
 <div class="memproto">
@@ -263,6 +525,15 @@ QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>quitAct</b></td>
 
 <p>Creates the nodegraph DAG scene. </p>
 <p>Nodegraph DAG scene creates a QGrapicsScene 'sceneDAG' that spans -10 000 to 10 000 units and holds all node graph items. </p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a48180171ce57b04e771bc49f85c1ee00_icgraph.png" border="0" usemap="#class_main_window_a48180171ce57b04e771bc49f85c1ee00_icgraph" alt=""/></div>
+<map name="class_main_window_a48180171ce57b04e771bc49f85c1ee00_icgraph" id="class_main_window_a48180171ce57b04e771bc49f85c1ee00_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="221,5,400,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -290,6 +561,15 @@ QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>quitAct</b></td>
 <p>Creates the table datamodel. </p>
 <p>Creates table data model 'tableData' based on QStandardItemModel. </p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_main_window.html#a4862a67e934ab749c7e20642ce28e141" title="Get main tabledata model. ">getTableData()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_aa8bdc3dd951bf17a7b78e7425920a639_icgraph.png" border="0" usemap="#class_main_window_aa8bdc3dd951bf17a7b78e7425920a639_icgraph" alt=""/></div>
+<map name="class_main_window_aa8bdc3dd951bf17a7b78e7425920a639_icgraph" id="class_main_window_aa8bdc3dd951bf17a7b78e7425920a639_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="221,5,400,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -322,6 +602,60 @@ QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>quitAct</b></td>
 <dd>
 <a class="el" href="class_main_window.html#a48180171ce57b04e771bc49f85c1ee00" title="Creates the nodegraph DAG scene. ">createDAG()</a> </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a5eabeda2fa3d2e1e2ddda56cb3511663_icgraph.png" border="0" usemap="#class_main_window_a5eabeda2fa3d2e1e2ddda56cb3511663_icgraph" alt=""/></div>
+<map name="class_main_window_a5eabeda2fa3d2e1e2ddda56cb3511663_icgraph" id="class_main_window_a5eabeda2fa3d2e1e2ddda56cb3511663_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="277,5,456,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa4907b0251d305659e403c62921ef331"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::createMenus </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates main menubar and nodegraph popup menu. </p>
+<p>Creates main UI menubar items and nodegraph popup menu items. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_main_window.html#a90f289728085b2907e2de4596503d1d0" title="Adds new class to node menu. Not used? ">addNodeMenuItem()</a> </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_aa4907b0251d305659e403c62921ef331_cgraph.png" border="0" usemap="#class_main_window_aa4907b0251d305659e403c62921ef331_cgraph" alt=""/></div>
+<map name="class_main_window_aa4907b0251d305659e403c62921ef331_cgraph" id="class_main_window_aa4907b0251d305659e403c62921ef331_cgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a90f289728085b2907e2de4596503d1d0" title="Adds new class to node menu. Not used? " alt="" coords="233,5,445,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_aa4907b0251d305659e403c62921ef331_icgraph.png" border="0" usemap="#class_main_window_aa4907b0251d305659e403c62921ef331_icgraph" alt=""/></div>
+<map name="class_main_window_aa4907b0251d305659e403c62921ef331_icgraph" id="class_main_window_aa4907b0251d305659e403c62921ef331_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="232,5,411,32"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a31a0ea01ec4b679a24b2354f8eccd929"></a>
@@ -347,6 +681,72 @@ QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>quitAct</b></td>
 
 <p>Creates the main scene for 2D data. </p>
 <p>This function creates the main QGraphicsScene 'scene2D' where all 2D graphical objects will be added. Scene span is -10 000 000 to 10 000 000 units. </p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a31a0ea01ec4b679a24b2354f8eccd929_icgraph.png" border="0" usemap="#class_main_window_a31a0ea01ec4b679a24b2354f8eccd929_icgraph" alt=""/></div>
+<map name="class_main_window_a31a0ea01ec4b679a24b2354f8eccd929_icgraph" id="class_main_window_a31a0ea01ec4b679a24b2354f8eccd929_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="232,5,411,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="af0a8a3f54a87bd7ad6f23248dd0e9c09"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::createStatusBar </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates main UI statusbar. </p>
+<p>Main UI statusbar in the bottom left corner. </p>
+<dl class="section see"><dt>See Also</dt><dd>Knob_Callback::showError() </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_af0a8a3f54a87bd7ad6f23248dd0e9c09_icgraph.png" border="0" usemap="#class_main_window_af0a8a3f54a87bd7ad6f23248dd0e9c09_icgraph" alt=""/></div>
+<map name="class_main_window_af0a8a3f54a87bd7ad6f23248dd0e9c09_icgraph" id="class_main_window_af0a8a3f54a87bd7ad6f23248dd0e9c09_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="253,5,432,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a3cecca76871bce1965a8be41ea97f5ff"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnode_graph.html">nodeGraph</a> * MainWindow::getMainGraph </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get main nodegraph. Get main nodegraph that holds nodes and edges. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_main_window.html#a48180171ce57b04e771bc49f85c1ee00" title="Creates the nodegraph DAG scene. ">createDAG()</a> </dd>
+<dd>
+<a class="el" href="class_main_window.html#a5eabeda2fa3d2e1e2ddda56cb3511663" title="Create UI docking windows. ">createDockWindows()</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Nodegraph 'mainGraph' </dd></dl>
 
 </div>
 </div>
@@ -388,6 +788,42 @@ QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>quitAct</b></td>
 <a class="el" href="class_main_window.html#a0ec372f4d60081c41a2bbeb0fa13cf2e" title="Get main properties view. ">getPropView()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Main properties view layout. </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a4a9cc990bf54adc798c8d6a19795fb63_icgraph.png" border="0" usemap="#class_main_window_a4a9cc990bf54adc798c8d6a19795fb63_icgraph" alt=""/></div>
+<map name="class_main_window_a4a9cc990bf54adc798c8d6a19795fb63_icgraph" id="class_main_window_a4a9cc990bf54adc798c8d6a19795fb63_icgraph">
+<area shape="rect" id="node2" href="class_node.html#a211566b606141f95093e83000875fb32" title="Creates node callback. " alt="" coords="298,5,441,32"/><area shape="rect" id="node4" href="class_node.html#a03ab3d453a097646328712f689961e25" title="Double click event on node. " alt="" coords="269,56,469,83"/><area shape="rect" id="node3" href="class_node.html#a0f1a6da00f920a86905f591742e3c166" title="Node constructor. Old variant, not used. " alt="" coords="517,5,608,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a195a755d1c5b5282556c4ced26c3de41"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QGraphicsScene * MainWindow::getScene2D </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get main 2D scene. Returns main 2D QGraphicsScene scene called 'scene2D'. </p>
+<dl class="section return"><dt>Returns</dt><dd>Main 2D scene 'scene2D' </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a195a755d1c5b5282556c4ced26c3de41_icgraph.png" border="0" usemap="#class_main_window_a195a755d1c5b5282556c4ced26c3de41_icgraph" alt=""/></div>
+<map name="class_main_window_a195a755d1c5b5282556c4ced26c3de41_icgraph" id="class_main_window_a195a755d1c5b5282556c4ced26c3de41_icgraph">
+<area shape="rect" id="node2" href="class_node.html#a6890991303fcc6c9b2b3dec678c8b5db" title="Node execution routine. " alt="" coords="245,5,352,32"/><area shape="rect" id="node3" href="classnode_graph.html#a14141eb2a0040c0eec920a5550f51e00" title="Node graph execution method. " alt="" coords="229,56,368,83"/><area shape="rect" id="node4" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. " alt="" coords="417,56,557,83"/><area shape="rect" id="node5" href="classnode_graph.html#a260d25b9425ef3cb68a39ae3281f0b2c" title="Connects viewer to selected node. " alt="" coords="609,31,788,57"/><area shape="rect" id="node6" href="classnode_graph.html#a5b692c1231967ba6aa83fa83ddf60564" title="Disables selected nodes. " alt="" coords="606,81,791,108"/></map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a4862a67e934ab749c7e20642ce28e141"></a>
@@ -406,6 +842,43 @@ QAction *&#160;</td><td class="memItemRight" valign="bottom"><b>quitAct</b></td>
 <p>Get main tabledata model. </p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_main_window.html#aa8bdc3dd951bf17a7b78e7425920a639" title="Creates the table datamodel. ">createData()</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>main table datamodel 'tableData' </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a4862a67e934ab749c7e20642ce28e141_icgraph.png" border="0" usemap="#class_main_window_a4862a67e934ab749c7e20642ce28e141_icgraph" alt=""/></div>
+<map name="class_main_window_a4862a67e934ab749c7e20642ce28e141_icgraph" id="class_main_window_a4862a67e934ab749c7e20642ce28e141_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#af4e5a43f5d9d6ed266663a8fa1ae7300" title="Get pointer to main table data model. " alt="" coords="235,31,405,57"/><area shape="rect" id="node3" href="class_node.html#a6890991303fcc6c9b2b3dec678c8b5db" title="Node execution routine. " alt="" coords="469,5,576,32"/><area shape="rect" id="node4" href="classnode_graph.html#a14141eb2a0040c0eec920a5550f51e00" title="Node graph execution method. " alt="" coords="453,56,592,83"/><area shape="rect" id="node5" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. " alt="" coords="641,56,781,83"/><area shape="rect" id="node6" href="classnode_graph.html#a260d25b9425ef3cb68a39ae3281f0b2c" title="Connects viewer to selected node. " alt="" coords="833,31,1012,57"/><area shape="rect" id="node7" href="classnode_graph.html#a5b692c1231967ba6aa83fa83ddf60564" title="Disables selected nodes. " alt="" coords="830,81,1015,108"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a4910bd522e8791abaed69a7ee692753a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_viewer.html">Viewer</a> * MainWindow::getViewer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get main viewer area. Returns main viewer area, that contains tableview and graphical views. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_main_window.html#a5eabeda2fa3d2e1e2ddda56cb3511663" title="Create UI docking windows. ">createDockWindows()</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Main viewer area 'myViewer' </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_a4910bd522e8791abaed69a7ee692753a_icgraph.png" border="0" usemap="#class_main_window_a4910bd522e8791abaed69a7ee692753a_icgraph" alt=""/></div>
+<map name="class_main_window_a4910bd522e8791abaed69a7ee692753a_icgraph" id="class_main_window_a4910bd522e8791abaed69a7ee692753a_icgraph">
+<area shape="rect" id="node2" href="classnode_graph.html#a6cb6d701098460515581e8295da013f2" title="Node graph evaluation loop. " alt="" coords="217,31,357,57"/><area shape="rect" id="node3" href="classnode_graph.html#a260d25b9425ef3cb68a39ae3281f0b2c" title="Connects viewer to selected node. " alt="" coords="409,5,588,32"/><area shape="rect" id="node4" href="classnode_graph.html#a5b692c1231967ba6aa83fa83ddf60564" title="Disables selected nodes. " alt="" coords="406,56,591,83"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -443,7 +916,16 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_main_window_ad63ce417061edc862704eb68e7a7a2d2_cgraph.png" border="0" usemap="#class_main_window_ad63ce417061edc862704eb68e7a7a2d2_cgraph" alt=""/></div>
 <map name="class_main_window_ad63ce417061edc862704eb68e7a7a2d2_cgraph" id="class_main_window_ad63ce417061edc862704eb68e7a7a2d2_cgraph">
-<area shape="rect" id="node2" href="class_main_window.html#a150054b7e0f06b55eb2640adbd3d7cb9" title="Casts plugins to OpInterface and calls registerOp() " alt="" coords="224,5,416,32"/><area shape="rect" id="node3" href="class_main_window.html#ac185075c143d60340513e2f77365ba5a" title="Registers loaded plugin to system. " alt="" coords="465,5,629,32"/></map>
+<area shape="rect" id="node2" href="class_main_window.html#a150054b7e0f06b55eb2640adbd3d7cb9" title="Casts plugins to OpInterface and calls registerOp() " alt="" coords="224,31,416,57"/><area shape="rect" id="node3" href="class_main_window.html#ac185075c143d60340513e2f77365ba5a" title="Registers loaded plugin to system. " alt="" coords="465,5,629,32"/><area shape="rect" id="node4" href="class_main_window.html#a4794eaad406f40093c06569cd556480d" title="Adds new Op to nodegraph. Adds new Op to main nodegraph. At first it casts the sender object to QActi..." alt="" coords="475,56,618,83"/><area shape="rect" id="node5" href="classnode_graph.html#a80eb6c9c9ef7d4eec41e15dcabf9b5c7" title="Adds new Op to nodegraph. " alt="" coords="677,56,808,83"/><area shape="rect" id="node6" href="classnode_graph.html#a58c9cc14f65765c17a6d381be6c8ab6f" title="Pushes item to nodegraph at certain position. " alt="" coords="856,56,1003,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_main_window_ad63ce417061edc862704eb68e7a7a2d2_icgraph.png" border="0" usemap="#class_main_window_ad63ce417061edc862704eb68e7a7a2d2_icgraph" alt=""/></div>
+<map name="class_main_window_ad63ce417061edc862704eb68e7a7a2d2_icgraph" id="class_main_window_ad63ce417061edc862704eb68e7a7a2d2_icgraph">
+<area shape="rect" id="node2" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="224,5,403,32"/></map>
 </div>
 </p>
 
@@ -490,7 +972,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_main_window_a150054b7e0f06b55eb2640adbd3d7cb9_cgraph.png" border="0" usemap="#class_main_window_a150054b7e0f06b55eb2640adbd3d7cb9_cgraph" alt=""/></div>
 <map name="class_main_window_a150054b7e0f06b55eb2640adbd3d7cb9_cgraph" id="class_main_window_a150054b7e0f06b55eb2640adbd3d7cb9_cgraph">
-<area shape="rect" id="node2" href="class_main_window.html#ac185075c143d60340513e2f77365ba5a" title="Registers loaded plugin to system. " alt="" coords="246,5,410,32"/></map>
+<area shape="rect" id="node2" href="class_main_window.html#ac185075c143d60340513e2f77365ba5a" title="Registers loaded plugin to system. " alt="" coords="246,5,410,32"/><area shape="rect" id="node3" href="class_main_window.html#a4794eaad406f40093c06569cd556480d" title="Adds new Op to nodegraph. Adds new Op to main nodegraph. At first it casts the sender object to QActi..." alt="" coords="257,56,399,83"/><area shape="rect" id="node4" href="classnode_graph.html#a80eb6c9c9ef7d4eec41e15dcabf9b5c7" title="Adds new Op to nodegraph. " alt="" coords="459,56,589,83"/><area shape="rect" id="node5" href="classnode_graph.html#a58c9cc14f65765c17a6d381be6c8ab6f" title="Pushes item to nodegraph at certain position. " alt="" coords="637,56,784,83"/></map>
 </div>
 </p>
 
@@ -499,7 +981,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_main_window_a150054b7e0f06b55eb2640adbd3d7cb9_icgraph.png" border="0" usemap="#class_main_window_a150054b7e0f06b55eb2640adbd3d7cb9_icgraph" alt=""/></div>
 <map name="class_main_window_a150054b7e0f06b55eb2640adbd3d7cb9_icgraph" id="class_main_window_a150054b7e0f06b55eb2640adbd3d7cb9_icgraph">
-<area shape="rect" id="node2" href="class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2" title="Loads DLL plugins. " alt="" coords="245,5,416,32"/></map>
+<area shape="rect" id="node2" href="class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2" title="Loads DLL plugins. " alt="" coords="245,5,416,32"/><area shape="rect" id="node3" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="464,5,643,32"/></map>
 </div>
 </p>
 
@@ -544,12 +1026,12 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Registers loaded plugin to system. </p>
-<p>Splits description of loaded plugin into class, name and description. Creates new QAction and ties it with menu entry and addOp() function for adding new node to graph. Adds new menu class if necessary and new entry for loaded operation. </p>
+<p>Splits description of loaded plugin into class, name and description. Creates new QAction and ties it with menu entry and <a class="el" href="class_main_window.html#a4794eaad406f40093c06569cd556480d" title="Adds new Op to nodegraph. Adds new Op to main nodegraph. At first it casts the sender object to QActi...">addOp()</a> function for adding new node to graph. Adds new menu class if necessary and new entry for loaded operation. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">plugin</td><td>Plugin to be registered. </td></tr>
     <tr><td class="paramname">text</td><td>Plugin desctiption from Op-&gt;description(). </td></tr>
-    <tr><td class="paramname">member</td><td>addOp() function to be tied into signal-slot mechanism. </td></tr>
+    <tr><td class="paramname">member</td><td><a class="el" href="class_main_window.html#a4794eaad406f40093c06569cd556480d" title="Adds new Op to nodegraph. Adds new Op to main nodegraph. At first it casts the sender object to QActi...">addOp()</a> function to be tied into signal-slot mechanism. </td></tr>
   </table>
   </dd>
 </dl>
@@ -562,9 +1044,330 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_main_window_ac185075c143d60340513e2f77365ba5a_icgraph.png" border="0" usemap="#class_main_window_ac185075c143d60340513e2f77365ba5a_icgraph" alt=""/></div>
 <map name="class_main_window_ac185075c143d60340513e2f77365ba5a_icgraph" id="class_main_window_ac185075c143d60340513e2f77365ba5a_icgraph">
-<area shape="rect" id="node2" href="class_main_window.html#a150054b7e0f06b55eb2640adbd3d7cb9" title="Casts plugins to OpInterface and calls registerOp() " alt="" coords="219,5,411,32"/><area shape="rect" id="node3" href="class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2" title="Loads DLL plugins. " alt="" coords="459,5,629,32"/></map>
+<area shape="rect" id="node2" href="class_main_window.html#a150054b7e0f06b55eb2640adbd3d7cb9" title="Casts plugins to OpInterface and calls registerOp() " alt="" coords="219,5,411,32"/><area shape="rect" id="node3" href="class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2" title="Loads DLL plugins. " alt="" coords="459,5,629,32"/><area shape="rect" id="node4" href="class_main_window.html#a34c4b4207b46d11a4100c9b19f0e81bb" title="MainWindow initializer. " alt="" coords="677,5,856,32"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a07b31cf99def3b2de7958ffaf2eec463"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* MainWindow::aboutAct</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Shows about dialog. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5b05548b0849cd96a73ad5b38cc73bef"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMenu* MainWindow::editMenu</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Edit menu object. </p>
+
+</div>
+</div>
+<a class="anchor" id="a426da48f6e2f865b07a28533c07c4f7a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMenu* MainWindow::fileMenu</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>File menu object. </p>
+
+</div>
+</div>
+<a class="anchor" id="a947c15e520bfea60338b2577f67146b8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMenu* MainWindow::helpMenu</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Help menu object. </p>
+
+</div>
+</div>
+<a class="anchor" id="a33790917d997c2b0d17ed65ecbdcc460"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classnode_graph.html">nodeGraph</a>* MainWindow::mainGraph</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Nodegraph object that operates on DAG. </p>
+
+</div>
+</div>
+<a class="anchor" id="a54452b2a8abd6a546cb65a573c388090"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;QMenu*&gt; MainWindow::menuClasses</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>List of node graph context menu items. </p>
+
+</div>
+</div>
+<a class="anchor" id="ad56a5252fa74ded606c8fd71e96ceedd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_viewer.html">Viewer</a>* MainWindow::myViewer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Dockable viewer subwindow. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3eee444ef3d95e37288b05d63d70e11f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMenu* MainWindow::nodeMenu</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="class_node.html">Node</a> graph context menu. </p>
+
+</div>
+</div>
+<a class="anchor" id="a18f3d8f824f33a1e537e7a55a2f06a36"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStringList MainWindow::pluginFileNames</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>List of all plugin names. </p>
+
+</div>
+</div>
+<a class="anchor" id="a998685c8faf90c391c11687d036dd5b5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QDir MainWindow::pluginsDir</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Plugin directory. </p>
+
+</div>
+</div>
+<a class="anchor" id="af6469a04deac1509771cebab9391b85b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QWidget* MainWindow::propView</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Dockable properties subwindow. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2c7d0504f384c2b6d383a5aa478f1fe7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAction* MainWindow::quitAct</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Closes application. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2da3df80fbb2a7ec4202829ac0da4dd5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QGraphicsScene* MainWindow::scene2D</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>2D scene that holds graphical objects. </p>
+
+</div>
+</div>
+<a class="anchor" id="a0868b9737b6a2cf7eadf0d5f0567fa56"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QGraphicsScene* MainWindow::sceneDAG</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Nodegraph scene that holds graphical objects of graph. </p>
+
+</div>
+</div>
+<a class="anchor" id="a521d769978eeaf5b3b5b95591bb8c77b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QStandardItemModel* MainWindow::tableData</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Table data model. </p>
+
+</div>
+</div>
+<a class="anchor" id="a6e38d7c63a3dc537d05eafe7e0f5f4db"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QMenu* MainWindow::viewMenu</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>View menu object. </p>
 
 </div>
 </div>
@@ -573,11 +1376,15 @@ Here is the caller graph for this function:</div>
 <li>C:/Users/hendrik/Documents/GitHub/Piri/Piri/libraries/PiriLib/mainwindow.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Jan 11 2014 14:56:15 for Piri by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.6
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_main_window.html">MainWindow</a></li>
+    <li class="footer">Generated on Mon Jan 13 2014 16:17:52 for Piri by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
+  </ul>
+</div>
 </body>
 </html>

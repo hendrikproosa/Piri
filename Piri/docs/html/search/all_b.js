@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['node',['Node',['../class_node.html',1,'']]],
-  ['nodegraph',['nodeGraph',['../classnode_graph.html',1,'nodeGraph'],['../classnode_graph.html#a0abbeafd84c1aad59437ff22c5c1f3b3',1,'nodeGraph::nodeGraph()']]]
+  ['line',['line',['../classnode_graph.html#a3e77adf4e0955c77c7bd9e119b9c5938',1,'nodeGraph']]],
+  ['loadplugins',['loadPlugins',['../class_main_window.html#ad63ce417061edc862704eb68e7a7a2d2',1,'MainWindow']]]
 ];

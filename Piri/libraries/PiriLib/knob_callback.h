@@ -8,7 +8,9 @@
 struct KnobStruct {
     QWidget* widget;
     QString label;
+    QVariant* value;
     QString valueName;
+    QString* hash;
 };
 
 class DataOp;
@@ -27,8 +29,9 @@ public:
     QFormLayout *getLayout();
     Node* getParent();
     DataOp* getOp();
-    void addKnob(QWidget* knob, QString label, QString valName);
+    void addKnob(QWidget* knob, QString label, QVariant *value);
     KnobStruct* getKnob(QString valName);
+    QString getHash();
 
     //void addValue(QVariant* v);
     void showError(QString msg);
@@ -42,6 +45,7 @@ private:
     QFormLayout* myLayout;
     Node* myParent;
     QList<KnobStruct*> knobs;
+    QString myHash;
     //QList<QVariant*> myValues;
 
 };
